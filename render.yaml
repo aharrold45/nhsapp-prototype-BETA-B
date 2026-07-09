@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: nhsapp-prototype-DS-bloods
+    env: node
+    plan: free
+    repo: https://github.com/aharrold45/nhsapp-prototype-DS-bloods
+    branch: main
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
