@@ -1,0 +1,3 @@
+run = "npm ci && npm start"
+language = "nodejs"
+# .replit: preconfigured run command for Replit
