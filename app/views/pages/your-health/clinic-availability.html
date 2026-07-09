@@ -120,28 +120,56 @@
         });
       }
 
-      function periodLabel(day) {
+      function periodLabel(slots) {
+        var times = slots.map(function (s) { return s.start; });
+        var has = function (t) { return times.indexOf(t) !== -1; };
         var parts = [];
-        if (day.morning && day.morning.length) parts.push('Morning');
-        if (day.afternoon && day.afternoon.length) parts.push('Lunchtime');
-        if (day.evening && day.evening.length) parts.push('Evening');
+        if (has('8:00 am') || has('9:00 am')) parts.push('Early morning');
+        if (has('12:00 pm') || has('1:00 pm')) parts.push('Lunchtime');
+        if (has('5:00 pm') || has('6:00 pm')) parts.push('Evening');
         if (!parts.length) return '';
         if (parts.length === 1) return parts[0] + ' available';
         var last = parts.pop();
         return parts.join(', ') + ' and ' + last + ' available';
       }
 
+      function hashSeed(str) {
+        var h = 0;
+        for (var i = 0; i < str.length; i++) {
+          h = (Math.imul(31, h) + str.charCodeAt(i)) >>> 0;
+        }
+        return h;
+      }
+
+      function daytimeCount(day) {
+        var daytime = (day.morning ? day.morning.length : 0) +
+                      (day.afternoon ? day.afternoon.length : 0);
+        var rng = (hashSeed(day.iso || '') % 10000) / 10000;
+        var idx = typeof day.index !== 'undefined' ? day.index : 7;
+        var min, max;
+        if (idx <= 2)       { min = 1; max = 3; }
+        else if (idx <= 5)  { min = 2; max = 5; }
+        else if (idx <= 14) { min = 3; max = 8; }
+        else                { min = 4; max = daytime; }
+        max = Math.min(max, daytime);
+        min = Math.min(min, max);
+        return min + Math.floor(rng * (max - min + 1));
+      }
+
       function renderBatch() {
         var batch = availDays.slice(shown, shown + BATCH);
         var container = document.getElementById('dates-container');
         batch.forEach(function (day) {
-          var count = (day.morning ? day.morning.length : 0) +
-                      (day.afternoon ? day.afternoon.length : 0) +
-                      (day.evening ? day.evening.length : 0);
+          var dtCount = daytimeCount(day);
+          var dtSlots = (day.morning || []).concat(day.afternoon || []).slice(0, dtCount);
+          var evSlots = day.evening || [];
+          var shownSlots = dtSlots.concat(evSlots);
+          var count = shownSlots.length;
           var url = '/pages/your-health/select-time?clinic=' + clinicId +
                     '&postcode=' + postcode +
                     '&iso=' + encodeURIComponent(day.iso) +
-                    '&date=' + encodeURIComponent(day.dateLabel);
+                    '&date=' + encodeURIComponent(day.dateLabel) +
+                    '&count=' + dtCount;
           var card = document.createElement('a');
           card.className = 'date-card';
           card.href = url;
@@ -149,7 +177,7 @@
             '<div class="date-card__body">' +
               '<span class="date-card__date">' + formatDate(day.dateLabel) + '</span>' +
               '<p class="date-card__slots">' + count + ' ' + (count === 1 ? 'slot' : 'slots') + '</p>' +
-              '<p class="date-card__period">' + periodLabel(day) + '</p>' +
+              '<p class="date-card__period">' + periodLabel(shownSlots) + '</p>' +
             '</div>' +
             '<div class="date-card__chev">&#8250;</div>';
           container.appendChild(card);

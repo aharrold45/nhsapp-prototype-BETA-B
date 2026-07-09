@@ -25,6 +25,7 @@
         <h2 class="nhsuk-heading-m nhsuk-u-margin-top-20 nhsuk-u-margin-bottom-20">Actions required</h2>
       </div>
 
+      {% if not data.bookedAppointment %}
       <ul class="nhsapp-cards">
         <li class="nhsapp-card">
           <div class="nhsapp-card__container">
@@ -56,6 +57,7 @@
           </div>
         </li>
       </ul>
+      {% endif %}
       <ul class="nhsapp-cards">
         <li class="nhsapp-card">
           <div class="nhsapp-card__container">

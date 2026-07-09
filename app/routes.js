@@ -137,9 +137,17 @@ router.get('/pages/your-health/select-time', (req, res) => {
 	const ord = n + (ordSuffixes[(v - 20) % 10] || ordSuffixes[v] || ordSuffixes[0]);
 	const dateHeading = dayNames[d.getDay()] + ' ' + ord + ' ' + day.month;
 
+	const daytime = [...(day.morning || []), ...(day.afternoon || [])];
+	const dtCount = parseInt(req.query.count, 10);
+	const slots = [
+		...(dtCount > 0 ? daytime.slice(0, dtCount) : daytime),
+		...(day.evening || [])
+	];
+
 	res.render('pages/your-health/select-time', {
 		clinic,
 		day,
+		slots,
 		dateHeading,
 		postcode: req.query.postcode || ''
 	});

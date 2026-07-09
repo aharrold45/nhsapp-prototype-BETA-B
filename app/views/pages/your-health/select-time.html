@@ -8,8 +8,6 @@
 
   <style>
     .select-time__clinic { color:#4c6272; margin:0 0 24px; }
-    .select-time__period { font-weight:700; font-size:1.0625rem; margin:20px 0 8px; }
-    .select-time__period:first-of-type { margin-top:0; }
   </style>
 
   <div class="nhsuk-grid-row">
@@ -30,39 +28,16 @@
               <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m">
                 <h2 class="nhsuk-fieldset__heading">Choose a time</h2>
               </legend>
+              <span class="nhsuk-hint nhsuk-u-margin-bottom-0">Times shown are expected start and finish.</span>
+              <div style="height: 20px;"></div>
 
               <div class="nhsuk-radios">
-
-                {% if day.morning and day.morning.length %}
-                  <p class="select-time__period">Morning</p>
-                  {% for slot in day.morning %}
-                    <div class="nhsuk-radios__item">
-                      <input class="nhsuk-radios__input" id="time-m-{{ loop.index }}" name="time" type="radio" value="{{ slot.start }}">
-                      <label class="nhsuk-label nhsuk-radios__label" for="time-m-{{ loop.index }}">{{ slot.start }}</label>
-                    </div>
-                  {% endfor %}
-                {% endif %}
-
-                {% if day.afternoon and day.afternoon.length %}
-                  <p class="select-time__period">Lunchtime</p>
-                  {% for slot in day.afternoon %}
-                    <div class="nhsuk-radios__item">
-                      <input class="nhsuk-radios__input" id="time-a-{{ loop.index }}" name="time" type="radio" value="{{ slot.start }}">
-                      <label class="nhsuk-label nhsuk-radios__label" for="time-a-{{ loop.index }}">{{ slot.start }}</label>
-                    </div>
-                  {% endfor %}
-                {% endif %}
-
-                {% if day.evening and day.evening.length %}
-                  <p class="select-time__period">Evening</p>
-                  {% for slot in day.evening %}
-                    <div class="nhsuk-radios__item">
-                      <input class="nhsuk-radios__input" id="time-e-{{ loop.index }}" name="time" type="radio" value="{{ slot.start }}">
-                      <label class="nhsuk-label nhsuk-radios__label" for="time-e-{{ loop.index }}">{{ slot.start }}</label>
-                    </div>
-                  {% endfor %}
-                {% endif %}
-
+                {% for slot in slots %}
+                  <div class="nhsuk-radios__item">
+                    <input class="nhsuk-radios__input" id="time-{{ loop.index }}" name="time" type="radio" value="{{ slot.start }}">
+                    <label class="nhsuk-label nhsuk-radios__label" for="time-{{ loop.index }}">{{ slot.start }}</label>
+                  </div>
+                {% endfor %}
               </div>
             </fieldset>
           </div>
