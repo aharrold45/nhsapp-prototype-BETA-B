@@ -10,16 +10,17 @@
     <div class="nhsuk-grid-column-full">
 
       <!-- Page title -->
-      <h1 class="app-dynamic-page-title__heading nhsuk-heading-l">Home2</h1>
+      <h1 class="app-dynamic-page-title__heading nhsuk-heading-l">Home</h1>
 
       {# We'll show small badge indicators to the left of the chevrons using the badgeLarge param on cards. #}
+      {% set apptBadgeCount = 1 if data.bookedAppointment else 2 %}
 
       <!-- Primary quick links (no H2 header) -->
       {{ nhsappCardGroup({
         stacked: true,
         cards: [
           { title: 'Prescriptions', href: '/pages/your-health/prescriptions-p9' },
-          { title: 'Appointments', href: '/pages/appointments-p9', badgeLarge: { count: 1, label: 'notifications' } },
+          { title: 'Appointments', href: '/pages/appointments-p9', badgeLarge: { count: apptBadgeCount, label: 'notifications' } },
           { title: 'Test results', href: '/pages/your-health/result-sensitive-information?next=/pages/your-health/tests-and-results' },
           { title: 'Vaccinations', href: '/pages/your-health/vaccinations-p9' },
           { title: 'Health conditions', href: '/pages/your-health/conditions-p9' },

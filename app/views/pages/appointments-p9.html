@@ -30,12 +30,14 @@
         ]
       }) }}
 
+      {% set apptBadgeCount = 1 if data.bookedAppointment else 2 %}
+
       <!-- Hospital -->
       {{ nhsappCardGroup({
         stacked: true,
         headingHtml: '<h2 class="nhsuk-heading-m nhsuk-u-margin-top-6 nhsuk-u-margin-bottom-20">Hospital</h2>',
         cards: [
-          { title: 'Hospital and specialist appointments', href: '/pages/hospital-and-specialist-appointments', badgeLarge: { count: 1, label: 'notifications' } },
+          { title: 'Hospital and specialist appointments', href: '/pages/hospital-and-specialist-appointments', badgeLarge: { count: apptBadgeCount, label: 'notifications' } },
           { title: 'Referrals', href: '/pages/your-health/referrals' },
           { title: 'Waiting lists', href: '/pages/your-health/waiting-lists' },
           { title: 'Patient initiated follow up (PIFU) requests', href: '/pages/your-health/pifu-requests' }
