@@ -7,7 +7,7 @@
       "address": "12 Station Road, SE7 7HX",
       "openingHours": "8:00am - 6:00pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Tests are expected to start within times shown and last 30 minutes."
+      "durationDesc": "Please allow 40 minutes for your appointment."
     },
     "greenwich": {
       "id": "greenwich",
@@ -16,7 +16,7 @@
       "address": "45 Church Street, SE7 7HJ",
       "openingHours": "8:00am - 6:00pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Tests are expected to start within times shown and last 30 minutes."
+      "durationDesc": "Please allow 30-45 minutes for your appointment."
     },
     "blackheath": {
       "id": "blackheath",
@@ -25,7 +25,7 @@
       "address": "3 High Street, SE7 7HL",
       "openingHours": "8:00am - 6:00pm Monday to Friday",
       "cqcRating": "Requires improvement",
-      "durationDesc": "Next availability shown — times typically last 30 minutes."
+      "durationDesc": "Please allow 30 minutes for your appointment."
     },
     "charlton": {
       "id": "charlton",
@@ -34,7 +34,7 @@
       "address": "88 Market Road, SE7 7HM",
       "openingHours": "9:00am - 5:00pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Tests are expected to start within times shown and last 30 minutes."
+      "durationDesc": "Please allow 20-30 minutes for your appointment."
     },
     "woolwich": {
       "id": "woolwich",
@@ -44,7 +44,7 @@
       "address": "7 Dockside, SE7 7HN",
       "openingHours": "Monday - Friday 8:00am - 6:00pm",
       "cqcRating": "Outstanding",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30 minutes.",
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30-60 minutes.",
       "busyPeriods": "Busy periods are: 8:00 am - 10:00 am, 12:00 pm - 2:00pm and 4:30 pm - 6:00pm."
     },
     "herts-county": {
@@ -54,7 +54,7 @@
       "address": "North Road, Hertford, SG14 1LP",
       "openingHours": "8:00am - 6:00pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Tests are expected to start within times shown and last 30 minutes."
+      "durationDesc": "Please allow 40 minutes for your appointment."
     },
     "qeii": {
       "id": "qeii",
@@ -63,7 +63,7 @@
       "address": "Howlands, Welwyn Garden City, AL7 4HQ",
       "openingHours": "8:00am - 6:00pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Tests are expected to start within times shown and last 30 minutes."
+      "durationDesc": "Please allow 30-45 minutes for your appointment."
     },
     "princess-alexandra": {
       "id": "princess-alexandra",
@@ -72,7 +72,7 @@
       "address": "Hamstel Road, Harlow, CM20 1QX",
       "openingHours": "8:00am - 6:00pm Monday to Friday",
       "cqcRating": "Requires improvement",
-      "durationDesc": "Next availability shown — times typically last 30 minutes."
+      "durationDesc": "Please allow 30 minutes for your appointment."
     },
     "st-margarets": {
       "id": "st-margarets",
@@ -82,7 +82,7 @@
       "address": "The Plain, Epping, CM16 6TN",
       "openingHours": "9:00am - 5:00pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Tests are expected to start within times shown and last 30 minutes."
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30-60 minutes."
     },
     "chase-farm": {
       "id": "chase-farm",
@@ -91,7 +91,7 @@
       "address": "The Ridgeway, Enfield, EN2 8JL",
       "openingHours": "8:00am - 6:00pm Monday to Friday",
       "cqcRating": "Outstanding",
-      "durationDesc": "Tests are expected to start within times shown and last 30 minutes."
+      "durationDesc": "Please allow 20-30 minutes for your appointment."
     }
   }
 }
