@@ -236,6 +236,54 @@
       "openingHours": "8:00am - 6:00pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 40 minutes for your appointment."
+    },
+
+    "ashford-health-centre": {
+      "id": "ashford-health-centre",
+      "name": "Ashford Health Centre",
+      "type": "walk-in",
+      "distance": "0.4 miles away",
+      "address": "Church Road, Ashford, TW15 2TS",
+      "openingHours": "8:00am - 7:00pm Monday to Saturday",
+      "cqcRating": "Good",
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 20-40 minutes.",
+      "busyPeriods": "Busy periods are: 8:00 am - 10:00 am and 12:00 pm - 2:00 pm."
+    },
+    "ashford-hospital": {
+      "id": "ashford-hospital",
+      "name": "Ashford Hospital",
+      "distance": "0.8 miles away",
+      "address": "London Road, Ashford, TW15 3AA",
+      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 40 minutes for your appointment."
+    },
+    "studholme-medical": {
+      "id": "studholme-medical",
+      "name": "Studholme Medical Centre",
+      "distance": "1.6 miles away",
+      "address": "Woodthorpe Road, Ashford, TW15 3ND",
+      "openingHours": "8:00am - 6:30pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30 minutes for your appointment."
+    },
+    "st-peters-hospital": {
+      "id": "st-peters-hospital",
+      "name": "St. Peters Hospital",
+      "distance": "3.8 miles away",
+      "address": "Guildford Road, Chertsey, KT16 0PZ",
+      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 40-50 minutes for your appointment."
+    },
+    "st-davids-health": {
+      "id": "st-davids-health",
+      "name": "St Davids Health Center",
+      "distance": "4.2 miles away",
+      "address": "Kingston Road, Staines, TW18 1PG",
+      "openingHours": "8:30am - 5:30pm Monday to Friday",
+      "cqcRating": "Requires improvement",
+      "durationDesc": "Please allow 30 minutes for your appointment."
     }
   }
 }
