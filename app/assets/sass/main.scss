@@ -69,3 +69,99 @@
 .app-icon--tick {
   fill: $nhsuk-success-colour;
 }
+
+// ── Prototype mobile frame (iPhone 15: 393 × 852) ─────────────────────────
+// Flex column on body: top nav and bottom nav are flex items that stay put;
+// the content container is the only scrollable area in between.
+// The transform trick on body doesn't work in Chromium for position:fixed.
+html {
+  background-color: #4c4c4c !important; // grey surround outside the frame
+}
+
+body.nhs-app-native {
+  display: flex;
+  flex-direction: column;
+  width: 393px;
+  max-width: 100vw;
+  height: 852px;
+  max-height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #f0f4f5;
+}
+
+// Top nav: remove fixed positioning so it's a proper flex-column header
+.nhs-app-native .app-global-navigation-native {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+// Content area: grows to fill remaining space and scrolls
+.nhs-app-native .app-width-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 0; // no longer offsetting a fixed header
+}
+
+.nhs-app-native .app-main-wrapper {
+  padding-bottom: 0; // no longer offsetting a fixed footer
+}
+
+// Bottom nav: remove fixed positioning so it's a proper flex-column footer
+.nhs-app-native .app-bottom-navigation {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+// 16px content padding — navs are full-width flex items so unaffected
+.nhs-app-native .nhsuk-width-container {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+// Force nhsuk-summary-list to always use the mobile stacked layout.
+// At viewport >= 641px the tablet rules switch to display:table-row/table-cell;
+// those media queries fire on the real viewport, not our 393px body.
+.nhs-app-native .nhsuk-summary-list {
+  display: block;
+}
+.nhs-app-native .nhsuk-summary-list__row {
+  display: block;
+  margin-bottom: 16px;
+}
+.nhs-app-native .nhsuk-summary-list__key,
+.nhs-app-native .nhsuk-summary-list__value,
+.nhs-app-native .nhsuk-summary-list__actions {
+  display: block;
+  padding: 0;
+  width: auto;
+}
+.nhs-app-native .nhsuk-summary-list__key {
+  margin-bottom: 4px;
+}
+.nhs-app-native .nhsuk-summary-list__value {
+  margin-bottom: 8px;
+}
+.nhs-app-native .nhsuk-summary-list__row--no-actions::after {
+  display: none;
+}
+
+// Force the image/media card to stay stacked at all viewport widths.
+// The desktop breakpoint (min-width: 769px) fires on the real viewport even
+// though the body is only 393px, causing a side-by-side squashed layout.
+.nhs-app-native .nhsapp-card--with-media {
+  display: block;
+}
+.nhs-app-native .nhsapp-card--with-media .nhsapp-card__media {
+  display: block;
+}
+.nhs-app-native .nhsapp-card--with-media .nhsapp-card__img {
+  border-radius: 8px 8px 0 0;
+  width: 100%;
+  height: auto;
+  display: block;
+}
