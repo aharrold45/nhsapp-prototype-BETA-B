@@ -15,14 +15,11 @@ const availability = require('../lib/availability');
 // routes so the same postcode always seeds the same (matching) times.
 function resolvePostcodeKey(rawPostcode) {
 	const raw = (rawPostcode || '').toUpperCase().replace(/\s+/g, '');
-	let key = raw;
-	if (!key || !postcodeMap[key]) {
-		key = raw.slice(0, 5);
-		if (!postcodeMap[key]) key = raw.slice(0, 3);
-		if (!postcodeMap[key]) key = raw.slice(0, 2);
-		if (!postcodeMap[key]) key = 'DEFAULT';
+	for (let len = raw.length; len >= 2; len--) {
+		const key = raw.slice(0, len);
+		if (postcodeMap[key]) return key;
 	}
-	return key;
+	return 'DEFAULT';
 }
 
 // Read clinics.json fresh each call so edits are reflected without a restart.

@@ -5,5 +5,8 @@
   "EN11 0RX": ["herts-county","qeii","princess-alexandra","st-margarets","chase-farm"],
   "SE77": ["vanburgh","greenwich","blackheath","charlton","woolwich"],
   "SW1A": ["greenwich","vanburgh","charlton","blackheath","woolwich"],
+  "SW12": ["balham-health-centre","wandsworth-medical-centre","tooting-south-medical","st-georges-hospital","kings-college-hospital"],
+  "CV8": ["castle-medical-centre","coventry-walk-in","uhcw","warwick-hospital","hospital-st-cross"],
+  "IP18": ["sole-bay-health","aldeburgh-community","saxmundham-health","carlton-court","norfolk-suffolk-nhs"],
   "DEFAULT": ["vanburgh","greenwich","blackheath","charlton","woolwich"]
 }

@@ -92,6 +92,150 @@
       "openingHours": "8:00am - 6:00pm Monday to Friday",
       "cqcRating": "Outstanding",
       "durationDesc": "Please allow 20-30 minutes for your appointment."
+    },
+
+    "balham-health-centre": {
+      "id": "balham-health-centre",
+      "name": "Balham Health Centre",
+      "distance": "0.4 miles away",
+      "address": "120 Bedford Hill, London, SW12 9HP",
+      "openingHours": "8:00am - 6:30pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30-40 minutes for your appointment."
+    },
+    "wandsworth-medical-centre": {
+      "id": "wandsworth-medical-centre",
+      "name": "Wandsworth Medical Centre",
+      "distance": "1.2 miles away",
+      "address": "4 Mitcham Road, London, SW17 9NA",
+      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30 minutes for your appointment."
+    },
+    "tooting-south-medical": {
+      "id": "tooting-south-medical",
+      "name": "Tooting South Medical Centre",
+      "type": "walk-in",
+      "distance": "1.8 miles away",
+      "address": "52 Longmead Road, London, SW17 9LA",
+      "openingHours": "8:00am - 7:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30-60 minutes.",
+      "busyPeriods": "Busy periods are: 8:00 am - 10:00 am and 4:30 pm - 7:00 pm."
+    },
+    "st-georges-hospital": {
+      "id": "st-georges-hospital",
+      "name": "St George's Hospital",
+      "distance": "2.1 miles away",
+      "address": "Blackshaw Road, London, SW17 0QT",
+      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 40 minutes for your appointment."
+    },
+    "kings-college-hospital": {
+      "id": "kings-college-hospital",
+      "name": "King's College Hospital",
+      "distance": "3.2 miles away",
+      "address": "Denmark Hill, London, SE5 9RS",
+      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "cqcRating": "Outstanding",
+      "durationDesc": "Please allow 40-50 minutes for your appointment."
+    },
+
+    "castle-medical-centre": {
+      "id": "castle-medical-centre",
+      "name": "Castle Medical Centre",
+      "distance": "0.8 miles away",
+      "address": "6 Castle Hill, Kenilworth, CV8 1RG",
+      "openingHours": "8:00am - 6:30pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30 minutes for your appointment."
+    },
+    "coventry-walk-in": {
+      "id": "coventry-walk-in",
+      "name": "Coventry NHS Walk In Centre",
+      "type": "walk-in",
+      "distance": "4.1 miles away",
+      "address": "Lower Precinct, Coventry, CV1 1DX",
+      "openingHours": "7:00am - 7:00pm Monday to Sunday",
+      "cqcRating": "Good",
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30-60 minutes.",
+      "busyPeriods": "Busy periods are: 8:00 am - 10:00 am, 12:00 pm - 2:00 pm and 5:00 pm - 7:00 pm."
+    },
+    "uhcw": {
+      "id": "uhcw",
+      "name": "University Hospital Coventry & Warwickshire",
+      "distance": "5.2 miles away",
+      "address": "Clifford Bridge Road, Coventry, CV2 2DX",
+      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 40-50 minutes for your appointment."
+    },
+    "warwick-hospital": {
+      "id": "warwick-hospital",
+      "name": "Warwick Hospital",
+      "distance": "6.8 miles away",
+      "address": "Lakin Road, Warwick, CV34 5BW",
+      "openingHours": "8:00am - 5:30pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30-45 minutes for your appointment."
+    },
+    "hospital-st-cross": {
+      "id": "hospital-st-cross",
+      "name": "Hospital of St Cross",
+      "distance": "9.3 miles away",
+      "address": "Barby Road, Rugby, CV22 5PX",
+      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "cqcRating": "Requires improvement",
+      "durationDesc": "Please allow 30 minutes for your appointment."
+    },
+
+    "sole-bay-health": {
+      "id": "sole-bay-health",
+      "name": "Sole Bay Health Centre",
+      "distance": "0.3 miles away",
+      "address": "Blyburgate, Southwold, IP18 6AX",
+      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30-40 minutes for your appointment."
+    },
+    "aldeburgh-community": {
+      "id": "aldeburgh-community",
+      "name": "Aldeburgh Community Hospital",
+      "distance": "5.4 miles away",
+      "address": "Park Road, Aldeburgh, IP15 5ES",
+      "openingHours": "8:30am - 5:30pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30 minutes for your appointment."
+    },
+    "saxmundham-health": {
+      "id": "saxmundham-health",
+      "name": "Saxmundham Health",
+      "type": "walk-in",
+      "distance": "7.1 miles away",
+      "address": "1 Saxon Place, Saxmundham, IP17 1XE",
+      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30-60 minutes.",
+      "busyPeriods": "Busy periods are: 8:00 am - 10:00 am and 12:00 pm - 2:00 pm."
+    },
+    "carlton-court": {
+      "id": "carlton-court",
+      "name": "Carlton Court Hospital",
+      "distance": "7.8 miles away",
+      "address": "Carlton Road, Saxmundham, IP17 2QN",
+      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "cqcRating": "Requires improvement",
+      "durationDesc": "Please allow 30-45 minutes for your appointment."
+    },
+    "norfolk-suffolk-nhs": {
+      "id": "norfolk-suffolk-nhs",
+      "name": "Norfolk & Suffolk NHS Foundation Trust",
+      "distance": "24.6 miles away",
+      "address": "Ipswich Hospital, Heath Road, Ipswich, IP4 5PD",
+      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 40 minutes for your appointment."
     }
   }
 }
