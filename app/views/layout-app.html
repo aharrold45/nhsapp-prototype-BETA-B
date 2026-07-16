@@ -16,7 +16,7 @@
 
 {% else %}
 
-  {% set bodyClasses = "nhs-app-native" %}
+  {% set bodyClasses = "nhs-app-native" + (" nhs-app-no-frame" if data['noframe'] === '1' else "") %}
 
   {% if containerFullWidth === true %}
     {% set containerClasses = "app-width-container app-width-container--full" %}

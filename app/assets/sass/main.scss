@@ -165,3 +165,27 @@ body.nhs-app-native {
   height: auto;
   display: block;
 }
+
+// Add ?noframe=1 to any URL to remove the 393×852 iPhone frame constraints
+body.nhs-app-native.nhs-app-no-frame {
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  margin: 0;
+}
+
+body.nhs-app-native.nhs-app-no-frame .app-global-navigation-native,
+body.nhs-app-native.nhs-app-no-frame .app-bottom-navigation {
+  position: fixed;
+}
+
+body.nhs-app-native.nhs-app-no-frame .app-width-container {
+  overflow: visible;
+  flex: none;
+}
+
+html:has(body.nhs-app-no-frame) {
+  background-color: #fff !important;
+}
