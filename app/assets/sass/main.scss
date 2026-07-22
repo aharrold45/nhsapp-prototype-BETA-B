@@ -166,8 +166,12 @@ body.nhs-app-native {
   display: block;
 }
 
-// Add ?noframe=1 to any URL to remove the 393×852 iPhone frame constraints
+// Add ?noframe=1 to any URL to remove the 393×852 iPhone frame constraints.
+// The base frame uses display:flex on body with a fixed 852px height and
+// overflow:hidden — scrolling happens only inside .app-width-container.
+// No-frame mode switches to a normal block layout so the page scrolls naturally.
 body.nhs-app-native.nhs-app-no-frame {
+  display: block;
   width: auto;
   max-width: none;
   height: auto;
@@ -176,14 +180,26 @@ body.nhs-app-native.nhs-app-no-frame {
   margin: 0;
 }
 
-body.nhs-app-native.nhs-app-no-frame .app-global-navigation-native,
+body.nhs-app-native.nhs-app-no-frame .app-global-navigation-native {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: unset;
+}
+
 body.nhs-app-native.nhs-app-no-frame .app-bottom-navigation {
   position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  flex-shrink: unset;
 }
 
 body.nhs-app-native.nhs-app-no-frame .app-width-container {
-  overflow: visible;
   flex: none;
+  overflow: visible;
+  padding-bottom: 72px; // clear fixed bottom nav
 }
 
 html:has(body.nhs-app-no-frame) {
