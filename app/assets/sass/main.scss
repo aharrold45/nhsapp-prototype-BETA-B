@@ -205,3 +205,14 @@ body.nhs-app-native.nhs-app-no-frame .app-width-container {
 html:has(body.nhs-app-no-frame) {
   background-color: #fff !important;
 }
+
+body.nhs-app-no-frame .appointment-action-button {
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  width: fit-content;
+}
+
+body.nhs-app-no-frame .ask-to-cancel {
+  text-align: left;
+}
