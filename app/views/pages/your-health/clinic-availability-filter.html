@@ -1,0 +1,64 @@
+{% extends 'layout-app.html' %}
+
+{% set hub = "Your health" %}
+
+{% set backLink = true %}
+{% set backLinkURL = backUrl %}
+
+{% set pageHeading = "Filter availability by" %}
+
+{% block content %}
+
+  <style>
+    .filter-section-label { display:block; font-size:18px; font-weight:700; color:#212b32; margin-bottom:0; }
+    .filter-check-list { list-style:none; padding:0; margin:0 0 28px; border-top:1px solid #d8dde0; }
+    .filter-check-label { display:flex; align-items:center; gap:16px; font-size:18px; color:#212b32; padding:14px 0; cursor:pointer; border-bottom:1px solid #d8dde0; }
+    .filter-checkbox { width:40px; height:40px; border:2px solid #4c6272; border-radius:4px; flex:0 0 40px; appearance:none; -webkit-appearance:none; cursor:pointer; background:#fff; position:relative; margin:0; }
+    .filter-checkbox:checked { background:#005eb8; border-color:#005eb8; }
+    .filter-checkbox:checked::after { content:''; position:absolute; left:11px; top:4px; width:10px; height:18px; border:3px solid #fff; border-top:none; border-left:none; transform:rotate(45deg); }
+    .filter-apply-btn { display:block; width:100%; background:#007f3b; color:#fff; border:none; padding:16px; font-size:18px; font-weight:700; cursor:pointer; font-family:inherit; margin-top:8px; }
+    .filter-apply-btn:hover { background:#005e2b; }
+  </style>
+
+  <h1 class="nhsuk-heading-l">Filter availability by</h1>
+
+  <form method="post">
+    <input type="hidden" name="clinic" value="{{ clinic }}">
+    <input type="hidden" name="postcode" value="{{ postcode }}">
+
+    <span class="filter-section-label">Days</span>
+    <ul class="filter-check-list">
+      {% set days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] %}
+      {% for day in days %}
+        <li>
+          <label class="filter-check-label">
+            <input type="checkbox" class="filter-checkbox" name="filter-days" value="{{ day }}"{% if day in filterDays %} checked{% endif %}>
+            {{ day }}
+          </label>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <span class="filter-section-label">Times</span>
+    <ul class="filter-check-list">
+      {% set timeOptions = [
+        { value: 'before9',        label: 'Before 9:00am' },
+        { value: 'morning',        label: '9:00am – 11:59am' },
+        { value: 'early-afternoon',label: '12:00pm – 1:59pm' },
+        { value: 'late-afternoon', label: '2:00pm – 5:00pm' },
+        { value: 'evening',        label: 'After 5:00pm' }
+      ] %}
+      {% for opt in timeOptions %}
+        <li>
+          <label class="filter-check-label">
+            <input type="checkbox" class="filter-checkbox" name="filter-times" value="{{ opt.value }}"{% if opt.value in filterTimes %} checked{% endif %}>
+            {{ opt.label }}
+          </label>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <button type="submit" class="filter-apply-btn">Apply filters</button>
+  </form>
+
+{% endblock %}

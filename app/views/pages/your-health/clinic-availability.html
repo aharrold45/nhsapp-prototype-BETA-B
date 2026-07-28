@@ -9,78 +9,73 @@
 {% block content %}
 
   <style>
-    .ca-section-break { border:0; border-top:1px solid #d8dde0; margin:20px 0; }
-    .ca-meta-label { font-weight:700; margin:0 0 4px 0; }
-    .ca-address { margin:0 0 8px 0; }
-    .ca-cqc-rating { display:flex; align-items:center; gap:10px; margin:8px 0; }
-    .ca-cqc-dot { width:18px; height:18px; border-radius:50%; flex:0 0 auto; }
-    .ca-cqc-dot--good { background:#007f3b; }
-    .ca-cqc-dot--improve { background:#ffb81c; }
-    .ca-cqc-dot--outstanding { background:#330072; }
-    .ca-cqc-dot--inadequate { background:#d5281b; }
+    .clinic-availability { --ca-blue:#005eb8; --ca-green:#007f3b; }
+    .clinic-availability .ca-section-break { border:0; border-top:1px solid #d8dde0; margin:20px 0; }
+    .clinic-availability .ca-meta-label { font-weight:700; margin:0 0 4px 0; }
+    .clinic-availability .ca-address { margin:0 0 8px 0; }
+    .clinic-availability .ca-cqc-rating { display:flex; align-items:center; gap:10px; margin:8px 0; }
+    .clinic-availability .ca-cqc-dot { width:18px; height:18px; border-radius:50%; flex:0 0 auto; }
+    .clinic-availability .ca-cqc-dot--good { background:#007f3b; }
+    .clinic-availability .ca-cqc-dot--improve { background:#ffb81c; }
+    .clinic-availability .ca-cqc-dot--outstanding { background:#330072; }
+    .clinic-availability .ca-cqc-dot--inadequate { background:#d5281b; }
 
-    .dates-list { border:1px solid #aeb7bd; margin-bottom:16px; }
-    .date-card { display:flex; align-items:center; text-decoration:none; color:inherit; padding:16px; border-bottom:1px solid #aeb7bd; background:#fff; }
-    .date-card:last-child { border-bottom:none; }
-    .date-card:hover, .date-card:active { background:#fff; }
-    .date-card__body { flex:1; min-width:0; }
-    .date-card__date { display:block; color:#005eb8; font-size:1.125rem; font-weight:700; margin-bottom:4px; }
-    .date-card__slots { font-weight:700; margin:0 0 2px; font-size:1rem; color:#212b32; }
-    .date-card__period { margin:0; font-size:1rem; color:#212b32; }
-    .date-card__chev { flex:0 0 24px; font-size:1.5rem; color:#005eb8; margin-left:12px; line-height:1; }
-    .ca-phone { font-size:1.5rem; font-weight:700; color:#005eb8; display:block; margin-bottom:4px; text-decoration:none; }
-    .ca-phone:hover { text-decoration:underline; }
+    /* Week navigation */
+    .week-nav { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+    .week-nav-btn { background:none; border:none; font-size:36px; color:#212b32; cursor:pointer; padding:0; line-height:1; flex:0 0 auto; width:36px; }
+    .week-nav-btn:disabled { color:#b1b4b6; cursor:default; }
+    .week-nav-center { flex:1; text-align:center; }
+    .week-month { font-size:22px; font-weight:700; color:#212b32; margin:0 0 2px; }
+    .week-range { font-size:17px; font-weight:700; color:#212b32; margin:0 0 4px; }
+    .week-counter { font-size:14px; color:#005eb8; margin:0; }
+
+    .filter-row { display:flex; align-items:center; justify-content:space-between; background:#f0f4f5; margin:0 -16px 8px; padding:0 16px; }
+    .filter-row:hover { background:#e8edee; }
+    .filter-bar { display:flex; align-items:center; gap:10px; background:none; border:none; padding:14px 0; color:#005eb8; font-size:16px; font-weight:700; cursor:pointer; text-align:left; font-family:inherit; }
+    .clear-filters-btn { display:none; background:none; border:none; color:#005eb8; font-size:16px; cursor:pointer; text-decoration:underline; padding:14px 0; font-family:inherit; white-space:nowrap; }
+
+    .day-heading { font-size:20px; font-weight:700; margin:20px 0 12px; color:#212b32; }
+    .period-label { font-size:16px; color:#212b32; margin:0 0 8px; }
+    .slots-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:16px; }
+    .slot-btn { display:block; text-align:center; text-decoration:none; background:#fff; border:2px solid #0b5a3b; color:#0b5a3b; padding:12px 4px; border-radius:4px; font-weight:700; font-size:14px; }
+    .slot-btn:hover { background:#f0fff4; }
+    .day-divider { border:none; border-top:1px solid #d8dde0; margin:4px 0 0; }
+    .no-days-msg { color:#4c6272; text-align:center; padding:40px 0; font-style:italic; }
+    .ca-slot-button { display:block; text-align:center; text-decoration:none; background:#fff; border:2px solid #0b5a3b; color:#0b5a3b; padding:12px 18px; border-radius:8px; font-weight:700; font-size:16px; }
+    .ca-walk-in-select { display:inline-block; margin-top:16px; }
+
   </style>
 
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-full">
+  <div class="clinic-availability">
 
-      <h1 class="nhsapp-page-heading nhsuk-heading-l">{{ clinic.name }}</h1>
+    <h1 class="nhsapp-page-heading nhsuk-heading-l">{{ clinic.name }}</h1>
 
-      <h2 class="nhsuk-heading-s">Care Quality Commission inspection rating.</h2>
-      <div class="ca-cqc-rating">
-        {% set rating = clinic.cqcRating | lower %}
-        {% if rating == 'good' %}
-          {% set dotClass = 'ca-cqc-dot--good' %}
-        {% elif 'improve' in rating %}
-          {% set dotClass = 'ca-cqc-dot--improve' %}
-        {% elif rating == 'outstanding' %}
-          {% set dotClass = 'ca-cqc-dot--outstanding' %}
-        {% else %}
-          {% set dotClass = 'ca-cqc-dot--inadequate' %}
-        {% endif %}
-        <span class="ca-cqc-dot {{ dotClass }}" aria-hidden="true"></span>
-        <span>Overall: <strong>{{ clinic.cqcRating }}</strong></span>
-      </div>
-      <p><a class="nhsuk-link" href="#">Visit the CQC site for more information</a></p>
+    {% if clinic.distance %}
+      <p class="ca-meta-label">Location {{ clinic.distance }}</p>
+    {% endif %}
+    {% if clinic.address %}
+      <p class="ca-address nhsuk-body">{{ clinic.address }}</p>
+    {% endif %}
+    <p><a class="nhsuk-link" href="#">Get directions</a></p>
 
-      <hr class="ca-section-break" />
+    <hr class="ca-section-break" />
 
-      <p class="ca-meta-label">Location</p>
-      {% if clinic.address %}
-        <p class="ca-address nhsuk-body">{{ clinic.address }}</p>
-      {% endif %}
-      <p><a class="nhsuk-link" href="#">Map and directions</a></p>
+    <h2 class="nhsuk-heading-s">Opening hours</h2>
+    <p class="nhsuk-body">{{ clinic.openingHours }}</p>
 
-      <hr class="ca-section-break" />
+    <hr class="ca-section-break" />
 
-      {% if clinic.type == 'walk-in' %}
-
-        <h2 class="nhsuk-heading-m">Availability</h2>
-        <p class="nhsuk-body">{{ clinic.durationDesc }}</p>
-        {% if clinic.busyPeriods %}
-          <p class="nhsuk-body">{{ clinic.busyPeriods }}</p>
-        {% endif %}
-        <a class="nhsuk-button" style="background:#007f3b; display:inline-block; text-decoration:none; padding:14px 20px; color:#fff; font-weight:700; box-shadow:0 4px 0 #003d20;" href="/pages/your-health/check?clinic={{ clinic.id | urlencode }}&postcode={{ postcode | urlencode }}&date={{ 'Walk in' | urlencode }}&time={{ 'Walk in' | urlencode }}">Select walk in</a>
-
+    <h2 class="nhsuk-heading-s">Care Quality Commission inspection rating.</h2>
+    <div class="ca-cqc-rating">
+      {% set rating = clinic.cqcRating | lower %}
+      {% if rating == 'good' %}
+        {% set dotClass = 'ca-cqc-dot--good' %}
+      {% elif 'improve' in rating %}
+        {% set dotClass = 'ca-cqc-dot--improve' %}
+      {% elif rating == 'outstanding' %}
+        {% set dotClass = 'ca-cqc-dot--outstanding' %}
       {% else %}
-
-        <h2 class="nhsuk-heading-m">Select a date</h2>
-        <div class="dates-list" id="dates-container"></div>
-        <p id="load-more-wrap" style="display:none; margin-bottom:24px">
-          <a class="nhsuk-link" href="#" id="load-more-btn">Load more days</a>
-        </p>
-
+        {% set dotClass = 'ca-cqc-dot--inadequate' %}
       {% endif %}
 
       <hr class="ca-section-break" />
@@ -107,9 +102,63 @@
       <p class="nhsuk-body">9:00am - 5:00pm Monday to Friday</p>
 
     </div>
+    <p><a class="nhsuk-link" href="#">Visit the CQC site for more information</a></p>
+
+    <hr class="ca-section-break" />
+
+    {% if clinic.type == 'walk-in' %}
+
+      <h2 class="nhsuk-heading-m">Availability</h2>
+      <p class="nhsuk-body">{{ clinic.durationDesc }}</p>
+      {% if clinic.busyPeriods %}
+        <p class="nhsuk-body">{{ clinic.busyPeriods }}</p>
+      {% endif %}
+      <a class="ca-slot-button ca-walk-in-select" href="/pages/your-health/check?clinic={{ clinic.id | urlencode }}&postcode={{ postcode | urlencode }}&date={{ 'Walk in' | urlencode }}&time={{ 'Walk in' | urlencode }}">Select walk in</a>
+
+    {% else %}
+
+      <div class="week-nav">
+        <button class="week-nav-btn" id="prev-week" aria-label="Previous week" disabled>&#8249;</button>
+        <div class="week-nav-center">
+          <p class="week-month" id="week-month"></p>
+          <p class="week-range" id="week-range-label"></p>
+          <p class="week-counter" id="week-counter"></p>
+        </div>
+        <button class="week-nav-btn" id="next-week" aria-label="Next week">&#8250;</button>
+      </div>
+
+      <p class="nhsuk-body" style="margin-bottom:16px">Times shown are expected start times. Please leave an hour for your appointments.</p>
+
+      <div class="filter-row">
+        <a class="filter-bar" href="{{ filterPageUrl }}" aria-label="Filter availability">
+          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" stroke-width="2"/>
+            <line x1="3" y1="7" x2="15" y2="7" stroke="currentColor" stroke-width="2"/>
+            <line x1="6" y1="13" x2="12" y2="13" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          Filter{% if filterCount > 0 %} ({{ filterCount }}){% endif %}
+        </a>
+        {% if filterCount > 0 %}
+          <a class="clear-filters-btn" style="display:block" href="{{ clearFiltersUrl }}">Clear filters</a>
+        {% endif %}
+      </div>
+
+      <div id="days-container"></div>
+
+    {% endif %}
+
+    <div style="height: 40px;"></div>
+    <h2 class="nhsuk-heading-m">Can I book this test over the phone?</h2>
+      <p>The easisest way to book and mange a test is through this app but if you'd prefer to speak to some call:</p>
+    <p>
+      <a class="nhsuk-link nhsuk-link--no-visited-state nhsuk-heading-m" href="tel:0800123456">0800 123 456</a>
+      <span class="nhsuk-body-m">9:00am - 5:00pm Monday to Friday</span>
+    </p>
+
   </div>
 
-  <script type="application/json" id="days-data">{{ daysJson | safe }}</script>
+
+<script type="application/json" id="days-data">{{ daysJson | safe }}</script>
   <script type="application/json" id="clinic-meta">{"clinicId":"{{ clinic.id | urlencode }}","postcode":"{{ postcode | urlencode }}"}</script>
 
   <script>
@@ -120,20 +169,35 @@
       var meta = JSON.parse(document.getElementById('clinic-meta').textContent);
       var clinicId = meta.clinicId;
       var postcode = meta.postcode;
-      var BATCH = 7;
-      var shown = 0;
 
-      var availDays = daysData.filter(function (d) { return d.hasSlots; });
+      var TODAY = new Date();
+      TODAY.setHours(0, 0, 0, 0);
+
+      var MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      var MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var DAYS_LONG = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
       function ordinal(n) {
-        var s = ['th', 'st', 'nd', 'rd'], v = n % 100;
+        var s = ['th','st','nd','rd'], v = n % 100;
         return n + (s[(v - 20) % 10] || s[v] || s[0]);
       }
-
-      function formatDate(dateLabel) {
-        return dateLabel.replace(/(\w+) (\d+) (\w+)/, function (m, dow, day, month) {
-          return dow + ' ' + ordinal(parseInt(day, 10)) + ' ' + month;
-        });
+      function isoDate(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+      function fmtWeekRange(mon, sun) {
+        return ordinal(mon.getDate()) + ' ' + MONTHS_SHORT[mon.getMonth()] + ' – ' + ordinal(sun.getDate()) + ' ' + MONTHS_SHORT[sun.getMonth()];
+      }
+      function fmtMonthYear(mon, sun) {
+        if (mon.getMonth() === sun.getMonth()) return MONTHS_LONG[mon.getMonth()] + ' ' + mon.getFullYear();
+        return MONTHS_LONG[mon.getMonth()] + ' / ' + MONTHS_LONG[sun.getMonth()] + ' ' + sun.getFullYear();
+      }
+      function fmtDayHeading(date) {
+        return DAYS_LONG[date.getDay()] + ' ' + ordinal(date.getDate()) + ' ' + MONTHS_LONG[date.getMonth()];
+      }
+      function getMondayOf(date) {
+        var d = new Date(date);
+        var dow = d.getDay();
+        d.setDate(d.getDate() + (dow === 0 ? -6 : 1 - dow));
+        d.setHours(0, 0, 0, 0);
+        return d;
       }
 
       function periodLabel(slots) {
@@ -203,17 +267,110 @@
         if (loadMoreWrap) {
           loadMoreWrap.style.display = shown < availDays.length ? 'block' : 'none';
         }
-      }
 
-      renderBatch();
-
-      var loadMoreBtn = document.getElementById('load-more-btn');
-      if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          renderBatch();
+        weeks.push({
+          days: weekDays,
+          range: fmtWeekRange(monDate, sunDate),
+          monthLabel: fmtMonthYear(monDate, sunDate)
         });
       }
+
+      var current = 0;
+      var activeFilters = {{ activeFiltersJson | safe }};
+
+      function parseHour(timeStr) {
+        var m = (timeStr || '').match(/(\d+):(\d+)\s*(am|pm)/i);
+        if (!m) return 0;
+        var h = parseInt(m[1]);
+        var p = m[3].toLowerCase();
+        if (p === 'pm' && h !== 12) h += 12;
+        if (p === 'am' && h === 12) h = 0;
+        return h;
+      }
+
+      function filterSlots(slots) {
+        if (!activeFilters.times.length) return slots;
+        return slots.filter(function(slot) {
+          var h = parseHour(slot.start);
+          return activeFilters.times.some(function(f) {
+            if (f === 'before9') return h < 9;
+            if (f === 'morning') return h >= 9 && h < 12;
+            if (f === 'early-afternoon') return h >= 12 && h < 14;
+            if (f === 'late-afternoon') return h >= 14 && h < 17;
+            if (f === 'evening') return h >= 17;
+            return false;
+          });
+        });
+      }
+
+      function slotHref(dayData, slot) {
+        return '/pages/your-health/check?clinic=' + clinicId +
+          '&postcode=' + postcode +
+          '&date=' + encodeURIComponent(dayData.dateLabel) +
+          '&time=' + encodeURIComponent(slot.start);
+      }
+
+      function renderPeriod(label, slots, dayData) {
+        var html = '<p class="period-label">' + label + '</p>';
+        if (!slots || !slots.length) {
+          html += '<p style="color:#4c6272; font-size:14px; margin:0 0 16px">None available</p>';
+        } else {
+          html += '<div class="slots-grid">';
+          for (var i = 0; i < slots.length; i++) {
+            html += '<a class="slot-btn" href="' + slotHref(dayData, slots[i]) + '">' + slots[i].start + '</a>';
+          }
+          html += '</div>';
+        }
+        return html;
+      }
+
+      function render(wi) {
+        var week = weeks[wi];
+        document.getElementById('week-month').textContent = week.monthLabel;
+        document.getElementById('week-range-label').textContent = week.range;
+        document.getElementById('week-counter').textContent = 'Week ' + (wi + 1) + ' of 8';
+        document.getElementById('prev-week').disabled = wi === 0;
+        document.getElementById('next-week').disabled = wi === 7;
+
+        var filteredDays = week.days.filter(function(day) {
+          if (activeFilters.days.length && activeFilters.days.indexOf(day.dayName) === -1) return false;
+          var m = filterSlots(day.data.morning);
+          var a = filterSlots(day.data.afternoon);
+          var e = filterSlots(day.data.evening);
+          return m.length || a.length || e.length;
+        });
+
+        var html = '';
+        if (!filteredDays.length) {
+          html = '<p class="no-days-msg">No availability matching your filters this week.</p>';
+        } else {
+          for (var i = 0; i < filteredDays.length; i++) {
+            var day = filteredDays[i];
+            var isLast = i === filteredDays.length - 1;
+            var morning = filterSlots(day.data.morning);
+            var afternoon = filterSlots(day.data.afternoon);
+            var evening = filterSlots(day.data.evening);
+            html += '<div class="day-section">';
+            html += '<h2 class="day-heading">' + day.heading + '</h2>';
+            html += renderPeriod('Morning', morning, day.data);
+            html += renderPeriod('Afternoon', afternoon, day.data);
+            html += renderPeriod('Evening', evening, day.data);
+            if (!isLast) html += '<hr class="day-divider">';
+            html += '</div>';
+          }
+        }
+
+        document.getElementById('days-container').innerHTML = html;
+      }
+
+      document.getElementById('prev-week').addEventListener('click', function () {
+        if (current > 0) { current--; render(current); }
+      });
+      document.getElementById('next-week').addEventListener('click', function () {
+        if (current < 7) { current++; render(current); }
+      });
+
+      render(0);
     })();
   </script>
 
