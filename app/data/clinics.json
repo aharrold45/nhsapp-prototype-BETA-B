@@ -284,6 +284,52 @@
       "openingHours": "8:30am - 5:30pm Monday to Friday",
       "cqcRating": "Requires improvement",
       "durationDesc": "Please allow 30 minutes for your appointment."
+    },
+    "stow-lodge": {
+      "id": "stow-lodge",
+      "name": "Stow Lodge Centre",
+      "type": "walk-in",
+      "distance": "0.8 miles away",
+      "address": "Milton Road South, Stowmarket, IP14 1EE",
+      "openingHours": "8:00am - 6:00pm Monday to Saturday",
+      "cqcRating": "Good",
+      "durationDesc": "Walk-in blood tests are available during opening hours. No appointment needed."
+    },
+    "ipswich-hospital": {
+      "id": "ipswich-hospital",
+      "name": "Ipswich Hospital",
+      "distance": "12.4 miles away",
+      "address": "Heath Road, Ipswich, IP4 5PD",
+      "openingHours": "7:30am - 5:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30-45 minutes for your appointment."
+    },
+    "nuffield-ipswich": {
+      "id": "nuffield-ipswich",
+      "name": "Nuffield Health Ipswich Hospital",
+      "distance": "13.1 miles away",
+      "address": "Sproughton Road, Ipswich, IP1 5BE",
+      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30 minutes for your appointment."
+    },
+    "west-suffolk-hospital": {
+      "id": "west-suffolk-hospital",
+      "name": "West Suffolk Hospital",
+      "distance": "15.6 miles away",
+      "address": "Hardwick Lane, Bury St Edmunds, IP33 2QZ",
+      "openingHours": "7:30am - 4:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30-45 minutes for your appointment."
+    },
+    "colchester-hospital": {
+      "id": "colchester-hospital",
+      "name": "Colchester Hospital",
+      "distance": "21.3 miles away",
+      "address": "Turner Road, Colchester, CO4 5JL",
+      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30-45 minutes for your appointment."
     }
   }
 }
