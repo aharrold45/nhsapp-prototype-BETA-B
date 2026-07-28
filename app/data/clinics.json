@@ -242,48 +242,48 @@
       "id": "ashford-health-centre",
       "name": "Ashford Health Centre",
       "type": "walk-in",
-      "distance": "0.4 miles away",
+      "distance": "1.2 miles away",
       "address": "Church Road, Ashford, TW15 2TS",
-      "openingHours": "8:00am - 7:00pm Monday to Saturday",
+      "openingHours": "8:00am - 6:30pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 20-40 minutes.",
-      "busyPeriods": "Busy periods are: 8:00 am - 10:00 am and 12:00 pm - 2:00 pm."
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30-60 minutes.",
+      "busyPeriods": "Busy periods are: 8:00 am - 10:00 am and 4:00 pm - 6:30 pm."
     },
     "ashford-hospital": {
       "id": "ashford-hospital",
       "name": "Ashford Hospital",
-      "distance": "0.8 miles away",
+      "distance": "1.8 miles away",
       "address": "London Road, Ashford, TW15 3AA",
       "openingHours": "8:00am - 6:00pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 40 minutes for your appointment."
     },
-    "studholme-medical": {
-      "id": "studholme-medical",
+    "studholme-medical-centre": {
+      "id": "studholme-medical-centre",
       "name": "Studholme Medical Centre",
-      "distance": "1.6 miles away",
-      "address": "Woodthorpe Road, Ashford, TW15 3ND",
-      "openingHours": "8:00am - 6:30pm Monday to Friday",
+      "distance": "2.3 miles away",
+      "address": "Fordbridge Road, Ashford, TW15 2SW",
+      "openingHours": "8:00am - 6:00pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 30 minutes for your appointment."
     },
     "st-peters-hospital": {
       "id": "st-peters-hospital",
-      "name": "St. Peters Hospital",
-      "distance": "3.8 miles away",
+      "name": "St Peter's Hospital",
+      "distance": "7.4 miles away",
       "address": "Guildford Road, Chertsey, KT16 0PZ",
-      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "openingHours": "8:00am - 5:30pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 40-50 minutes for your appointment."
     },
-    "st-davids-health": {
-      "id": "st-davids-health",
-      "name": "St Davids Health Center",
-      "distance": "4.2 miles away",
-      "address": "Kingston Road, Staines, TW18 1PG",
-      "openingHours": "8:30am - 5:30pm Monday to Friday",
+    "st-davids-health-centre": {
+      "id": "st-davids-health-centre",
+      "name": "St David's Health Centre",
+      "distance": "8.1 miles away",
+      "address": "Lysons Avenue, Ash Vale, GU12 5QH",
+      "openingHours": "8:00am - 6:00pm Monday to Friday",
       "cqcRating": "Requires improvement",
-      "durationDesc": "Please allow 30 minutes for your appointment."
+      "durationDesc": "Please allow 30-45 minutes for your appointment."
     },
     "stow-lodge": {
       "id": "stow-lodge",
@@ -328,7 +328,7 @@
       "distance": "21.3 miles away",
       "address": "Turner Road, Colchester, CO4 5JL",
       "openingHours": "8:00am - 5:00pm Monday to Friday",
-      "cqcRating": "Good",
+      "cqcRating": "Great",
       "durationDesc": "Please allow 30-45 minutes for your appointment."
     }
   }
