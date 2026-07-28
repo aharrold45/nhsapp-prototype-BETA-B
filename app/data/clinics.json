@@ -330,6 +330,54 @@
       "openingHours": "8:00am - 5:00pm Monday to Friday",
       "cqcRating": "Great",
       "durationDesc": "Please allow 30-45 minutes for your appointment."
+    },
+
+    "pinderfields-hospital": {
+      "id": "pinderfields-hospital",
+      "name": "Pinderfields Hospital",
+      "distance": "2.8 miles away",
+      "address": "Aberford Road, Wakefield, WF1 4DG",
+      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 40 minutes for your appointment."
+    },
+    "fieldhead-hospital": {
+      "id": "fieldhead-hospital",
+      "name": "Fieldhead Hospital",
+      "distance": "3.5 miles away",
+      "address": "Ouchthorpe Lane, Wakefield, WF1 3SP",
+      "openingHours": "8:00am - 5:30pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30-40 minutes for your appointment."
+    },
+    "dewsbury-district-hospital": {
+      "id": "dewsbury-district-hospital",
+      "name": "Dewsbury District Hospital",
+      "distance": "5.1 miles away",
+      "address": "Halifax Road, Dewsbury, WF13 4HS",
+      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30-45 minutes for your appointment."
+    },
+    "newton-lodge": {
+      "id": "newton-lodge",
+      "name": "Newton Lodge",
+      "type": "walk-in",
+      "distance": "3.6 miles away",
+      "address": "Ouchthorpe Lane, Wakefield, WF1 3SP",
+      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30-60 minutes.",
+      "busyPeriods": "Busy periods are: 8:00 am - 10:00 am and 12:00 pm - 2:00 pm."
+    },
+    "pontefract-hospital": {
+      "id": "pontefract-hospital",
+      "name": "Pontefract Hospital",
+      "distance": "7.9 miles away",
+      "address": "Friarwood Lane, Pontefract, WF8 1PL",
+      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 30 minutes for your appointment."
     }
   }
 }
