@@ -76,17 +76,6 @@ router.get('/pages/your-health/view-availability-results', (req, res) => {
 	});
 });
 
-// Builds a URL with query params, appending repeated keys for arrays.
-function buildUrl(base, obj) {
-	const parts = [];
-	Object.entries(obj).forEach(([k, v]) => {
-		[].concat(v).filter(x => x !== '' && x !== undefined).forEach(val => {
-			parts.push(encodeURIComponent(k) + '=' + encodeURIComponent(val));
-		});
-	});
-	return base + (parts.length ? '?' + parts.join('&') : '');
-}
-
 // Full availability for a single clinic (reached from the "See full clinic
 // availability" CTA on the results page). Times for the first 5 days match
 // the suggested times shown on the results page for the same postcode.
@@ -107,27 +96,11 @@ router.get('/pages/your-health/clinic-availability', (req, res) => {
 	const clinicIndex = clinicIds.indexOf(clinicId);
 	const days = availability.generateFullAvailability(key, clinicId, clinic.openingHours, 56, clinicIndex < 0 ? 1 : clinicIndex);
 
-	const postcode = req.query.postcode || '';
-	const filterDays = [].concat(req.query['filter-days'] || []).filter(v => v !== '_unchecked');
-	const filterTimes = [].concat(req.query['filter-times'] || []).filter(v => v !== '_unchecked');
-	const filterCount = filterDays.length + filterTimes.length;
-
-	const filterPageUrl = buildUrl('/pages/your-health/clinic-availability-filter', {
-		clinic: clinicId, postcode, 'filter-days': filterDays, 'filter-times': filterTimes
-	});
-	const clearFiltersUrl = buildUrl('/pages/your-health/clinic-availability', {
-		clinic: clinicId, postcode
-	});
-
 	res.render('pages/your-health/clinic-availability', {
 		clinic,
 		days,
 		daysJson: JSON.stringify(days),
-		postcode,
-		activeFiltersJson: JSON.stringify({ days: filterDays, times: filterTimes }),
-		filterCount,
-		filterPageUrl,
-		clearFiltersUrl
+		postcode: req.query.postcode || ''
 	});
 });
 
@@ -175,37 +148,6 @@ router.get('/pages/your-health/select-time', (req, res) => {
 		dateHeading,
 		postcode: req.query.postcode || ''
 	});
-});
-
-// Filter page for clinic availability.
-router.get('/pages/your-health/clinic-availability-filter', (req, res) => {
-	const clinicId = req.query.clinic || '';
-	const postcode = req.query.postcode || '';
-	const filterDays = [].concat(req.query['filter-days'] || []).filter(v => v !== '_unchecked');
-	const filterTimes = [].concat(req.query['filter-times'] || []).filter(v => v !== '_unchecked');
-
-	const backUrl = buildUrl('/pages/your-health/clinic-availability', {
-		clinic: clinicId, postcode, 'filter-days': filterDays, 'filter-times': filterTimes
-	});
-
-	res.render('pages/your-health/clinic-availability-filter', {
-		clinic: clinicId,
-		postcode,
-		filterDays,
-		filterTimes,
-		backUrl
-	});
-});
-
-router.post('/pages/your-health/clinic-availability-filter', (req, res) => {
-	const clinicId = req.body.clinic || '';
-	const postcode = req.body.postcode || '';
-	const filterDays = [].concat(req.body['filter-days'] || []).filter(v => v !== '_unchecked');
-	const filterTimes = [].concat(req.body['filter-times'] || []).filter(v => v !== '_unchecked');
-
-	res.redirect(buildUrl('/pages/your-health/clinic-availability', {
-		clinic: clinicId, postcode, 'filter-days': filterDays, 'filter-times': filterTimes
-	}));
 });
 
 // Build the shared appointment context (clinic record plus the chosen
