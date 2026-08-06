@@ -56,6 +56,8 @@
         </div>
       </div>
 
+      <h2 class="nhsuk-heading-m">Select a clinic</h2>
+
       {% for clinic in clinics %}
         {% set clinicUrl = "/pages/your-health/clinic-availability?clinic=" + (clinic.id | urlencode) + "&postcode=" + (postcode | urlencode) %}
 
