@@ -18,26 +18,33 @@
       
 
 
+      {% set apptBadgeCount = 1 if data.bookedAppointment else 2 %}
+
+      <!-- Book an appointment -->
+      {{ nhsappCardGroup({
+        stacked: true,
+        cards: [
+          { title: 'Book an appointment', href: '/pages/appointments/book-an-appointment', badgeLarge: { count: apptBadgeCount, label: 'notifications' } }
+        ]
+      }) }}
+
       <!-- GP Surgery -->
       {{ nhsappCardGroup({
         stacked: true,
         headingHtml: '<h2 class="nhsuk-heading-m nhsuk-u-margin-top-6 nhsuk-u-margin-bottom-20">GP Surgery</h2>',
         cards: [
-          { title: 'Book an appointment', href: '/pages/appointments/pause' },
           { title: 'Manage GP appointments', href: '/pages/appointments/pause' },
           { title: 'Appointment notes and other updates', href: '/pages/appointments/pause' },
           { title: 'Request a letter or information', href: '/pages/appointments/pause' }
         ]
       }) }}
 
-      {% set apptBadgeCount = 1 if data.bookedAppointment else 2 %}
-
       <!-- Hospital -->
       {{ nhsappCardGroup({
         stacked: true,
         headingHtml: '<h2 class="nhsuk-heading-m nhsuk-u-margin-top-6 nhsuk-u-margin-bottom-20">Hospital</h2>',
         cards: [
-          { title: 'Hospital and specialist appointments', href: '/pages/hospital-and-specialist-appointments', badgeLarge: { count: apptBadgeCount, label: 'notifications' } },
+          { title: 'Hospital and specialist appointments', href: '/pages/hospital-and-specialist-appointments' },
           { title: 'Referrals', href: '/pages/appointments/pause' },
           { title: 'Waiting lists', href: '/pages/appointments/pause' },
           { title: 'Patient initiated follow up (PIFU) requests', href: '/pages/appointments/pause' }

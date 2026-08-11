@@ -25,10 +25,12 @@
 
       <h1 class="nhsapp-page-heading nhsuk-heading-l">Your Blood test appointment</h1>
 
+      {% if clinic.type != 'walk-in' %}
       <a class="add-to-calendar" href="#">
         {{ nhsappIcon('calendar') }}
         Add to calendar
       </a>
+      {% endif %}
 
       <div class="nhsuk-warning-callout">
         <h2 class="nhsuk-warning-callout__label">
@@ -69,60 +71,65 @@
         <div class="nhsuk-summary-list__row">
           <dt class="nhsuk-summary-list__key">Location</dt>
           <dd class="nhsuk-summary-list__value">{{ clinic.address }}</dd>
-          <p><a class="nhsuk-link" href="#">Get directions</a></p>
         </div>
       </dl>
+      <p class="nhsuk-u-margin-top-3"><a class="nhsuk-link" href="#">Get directions</a></p>
 
 
+      {% if clinic.type != 'walk-in' %}
       {{ button({
         text: "Ask to reschedule appointment",
         classes: "appointment-action-button",
         href: "/pages/your-health/edit-appointment?clinic=" + (clinic.id | urlencode) + "&postcode=" + (postcode | urlencode) + "&date=" + (date | urlencode) + "&time=" + (time | urlencode)
       }) }}
 
-      <a class="nhsuk-link nhsuk-link--no-visited-state ask-to-cancel" href="/pages/your-health/cancel-appointment?clinic={{ clinic.id | urlencode }}&postcode={{ postcode | urlencode }}&date={{ date | urlencode }}&time={{ time | urlencode }}">Ask to cancel appointment</a><BR>
+      <a class="nhsuk-link nhsuk-link--no-visited-state ask-to-cancel" href="/pages/your-health/cancel-appointment?clinic={{ clinic.id | urlencode }}&postcode={{ postcode | urlencode }}&date={{ date | urlencode }}&time={{ time | urlencode }}">Ask to cancel appointment</a><br>
+      {% endif %}
 
-      <h2 class="nhsuk-heading-m">Action required</h2>
+      <h2 class="nhsuk-heading-m">Clinician information</h2>
+
+      <details class="nhsuk-expander" style="margin-bottom: 20px;">
+        <summary class="nhsuk-details__summary">
+          <span class="nhsuk-details__summary-text">Patient details</span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p><strong>Name</strong><br>SURNAME, First name</p>
+          <p><strong>MRN</strong><br>AAA-1234567</p>
+          <p><strong>NHS Number</strong><br>123 456 7890</p>
+          <p><strong>Date of Birth</strong><br>03 / 01 / 1982</p>
+          <p><strong>Sex</strong><br>M</p>
+        </div>
+      </details>
+
+      <details class="nhsuk-expander" style="margin-bottom: 20px;">
+        <summary class="nhsuk-details__summary">
+          <span class="nhsuk-details__summary-text">Order details</span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p><strong>Accession</strong><br>22-CS-1234567S</p>
+          <p><strong>Test codes</strong><br>C209<br>C8<br>E208<br>F50<br>F207<br>F221<br>F268<br>F340<br>F36<br>F55<br>G3<br>IF3<br>IM2<br>I206<br>I207<br>I6<br>K85<br>W13</p>
+          <p><strong>Specimen type</strong><br>Blood</p>
+          <p><strong>Container size</strong><br>4.00ml</p>
+          <p><strong>Container type</strong><br>Yellow</p>
+          <p><strong>Collection class</strong><br>Immunology</p>
+        </div>
+      </details>
+
+      <h2 class="nhsuk-heading-m" style="margin-top: 36px;">Action required</h2>
 
       {{ nhsappCardGroup({
         stacked: true,
         cards: [
           {
             href: "#",
-            aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--red">Not read</strong>' },
-            title: "A letter",
-            descriptionHtml: '<p class="nhsuk-u-secondary-text-color nhsuk-u-margin-bottom-0">Received 30th April 2026</p>'
-          },
-          {
-            href: "#",
-            aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--red">Not submitted</strong>' },
-            title: "Request for document upload",
-            descriptionHtml: '<p class="nhsuk-u-secondary-text-color nhsuk-u-margin-bottom-0">Received 30th April 2026</p>'
-          },
-          {
-            href: "#",
-            aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--red">Not submitted</strong>' },
-            title: "Pre appointment survey 2",
-            descriptionHtml: '<p class="nhsuk-u-secondary-text-color nhsuk-u-margin-bottom-0">Received 30th April 2026</p>'
+            aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--red">Action required</strong>' },
+            title: "Please book a faecal immunochemical test",
+            description: "Because of some of the symptoms you have discussed with your GP a faecal immunochemical test is required to assess you for Iron deficiency anaemia."
           }
         ]
       }) }}
 
-      <h2 class="nhsuk-heading-m nhsuk-u-margin-top-6">Finished</h2>
-
-      {{ nhsappCardGroup({
-        stacked: true,
-        cards: [
-          {
-            href: "#",
-            aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--green">Finished</strong>' },
-            title: "Pre appointment survey 1",
-            descriptionHtml: '<p class="nhsuk-u-secondary-text-color nhsuk-u-margin-bottom-0">Received 30th April 2026</p>'
-          }
-        ]
-      }) }}
-
-      <h2 class="nhsuk-heading-l nhsuk-u-margin-top-6">More information</h2>
+      <h2 class="nhsuk-heading-m nhsuk-u-margin-top-6">More information</h2>
 
       {{ nhsappCardGroup({
         cards: [
@@ -135,21 +142,50 @@
 
       <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-section-break--l">
 
-      <details class="nhsuk-details">
+      <h2 class="nhsuk-heading-m">Useful information</h2>
+
+      <details class="nhsuk-expander" style="margin-bottom: 20px;">
         <summary class="nhsuk-details__summary">
-          <span class="nhsuk-details__summary-text">About blood test</span>
+          <span class="nhsuk-details__summary-text">What do I need to do to prepare?</span>
         </summary>
         <div class="nhsuk-details__text">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>There is no required preparation (e.g., fasting) for an NHS full blood count and iron test.</p>
         </div>
       </details>
 
-      <details class="nhsuk-details">
+      <details class="nhsuk-expander" style="margin-bottom: 20px;">
         <summary class="nhsuk-details__summary">
-          <span class="nhsuk-details__summary-text">An FAQ about test</span>
+          <span class="nhsuk-details__summary-text">What happens at a blood test?</span>
         </summary>
         <div class="nhsuk-details__text">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>A healthcare professional will take a small amount of blood, usually from the inside of your elbow, using a needle. Sometimes blood may be taken from your wrist, or your finger (called a finger-prick test).</p>
+        </div>
+      </details>
+
+      <details class="nhsuk-expander" style="margin-bottom: 20px;">
+        <summary class="nhsuk-details__summary">
+          <span class="nhsuk-details__summary-text">What if I'm worried about needles?</span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p>Tell the healthcare professional doing your blood test if you're worried about needles. They can help you feel more comfortable during the test. You can also bring someone with you to the blood test to support you.</p>
+        </div>
+      </details>
+
+      <details class="nhsuk-expander" style="margin-bottom: 20px;">
+        <summary class="nhsuk-details__summary">
+          <span class="nhsuk-details__summary-text">What is this test about?</span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p>The objective of the blood test to find out if the number of red blood cells you have is normal. This is called a full blood count (FBC) test, which also looks at other types of cells in your blood.</p>
+        </div>
+      </details>
+
+      <details class="nhsuk-expander" style="margin-bottom: 20px;">
+        <summary class="nhsuk-details__summary">
+          <span class="nhsuk-details__summary-text">What is Iron deficiency anaemia?</span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p>Iron deficiency anaemia is caused by lack of iron, often because of blood loss or pregnancy. It's treated with iron tablets and by eating iron-rich foods. <a href="https://www.nhs.uk/conditions/iron-deficiency-anaemia/" class="nhsuk-link">Read more about Iron deficiency anaemia</a>.</p>
         </div>
       </details>
 

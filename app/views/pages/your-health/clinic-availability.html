@@ -3,6 +3,7 @@
 {% set hub = "Your health" %}
 
 {% set backLink = true %}
+{% set backLinkURL = backUrl %}
 
 {% set pageHeading = clinic.name %}
 
@@ -30,6 +31,10 @@
     .date-card__chev { flex:0 0 24px; font-size:1.5rem; color:#005eb8; margin-left:12px; line-height:1; }
     .ca-phone { font-size:1.5rem; font-weight:700; color:#005eb8; display:block; margin-bottom:4px; text-decoration:none; }
     .ca-phone:hover { text-decoration:underline; }
+    .filter-row { display:flex; align-items:center; justify-content:space-between; background:#f0f4f5; margin:0 -16px 16px; padding:0 16px; }
+    .filter-row:hover { background:#e8edee; }
+    .filter-bar { display:flex; align-items:center; gap:10px; background:none; border:none; padding:14px 0; color:#005eb8; font-size:16px; font-weight:700; cursor:pointer; text-align:left; font-family:inherit; text-decoration:none; }
+    .clear-filters-btn { background:none; border:none; color:#005eb8; font-size:16px; cursor:pointer; text-decoration:underline; padding:14px 0; font-family:inherit; white-space:nowrap; }
   </style>
 
   <div class="nhsuk-grid-row">
@@ -75,6 +80,20 @@
 
       {% else %}
 
+        <div class="filter-row">
+          <a class="filter-bar" href="{{ filterPageUrl }}" aria-label="Filter by time and day">
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" stroke-width="2"/>
+              <line x1="3" y1="7" x2="15" y2="7" stroke="currentColor" stroke-width="2"/>
+              <line x1="6" y1="13" x2="12" y2="13" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            Filter: Time &amp; day{% if filterCount > 0 %} ({{ filterCount }}){% endif %}
+          </a>
+          {% if filterCount > 0 %}
+            <a class="clear-filters-btn" href="{{ clearFiltersUrl }}">Clear filters</a>
+          {% endif %}
+        </div>
+
         <h2 class="nhsuk-heading-m">Select a date</h2>
         <div class="dates-list" id="dates-container"></div>
         <p id="load-more-wrap" style="display:none; margin-bottom:24px">
@@ -111,6 +130,7 @@
 
   <script type="application/json" id="days-data">{{ daysJson | safe }}</script>
   <script type="application/json" id="clinic-meta">{"clinicId":"{{ clinic.id | urlencode }}","postcode":"{{ postcode | urlencode }}"}</script>
+  <script type="application/json" id="active-filters">{{ activeFiltersJson | safe }}</script>
 
   <script>
     (function () {
@@ -118,12 +138,12 @@
       if (!el) return;
       var daysData = JSON.parse(el.textContent);
       var meta = JSON.parse(document.getElementById('clinic-meta').textContent);
+      var activeFilters = JSON.parse(document.getElementById('active-filters').textContent);
       var clinicId = meta.clinicId;
       var postcode = meta.postcode;
+      var hasFilters = activeFilters.days.length > 0 || activeFilters.times.length > 0;
       var BATCH = 7;
       var shown = 0;
-
-      var availDays = daysData.filter(function (d) { return d.hasSlots; });
 
       function ordinal(n) {
         var s = ['th', 'st', 'nd', 'rd'], v = n % 100;
@@ -136,17 +156,37 @@
         });
       }
 
-      function periodLabel(slots) {
-        var times = slots.map(function (s) { return s.start; });
-        var has = function (t) { return times.indexOf(t) !== -1; };
-        var parts = [];
-        if (has('8:00 am') || has('9:00 am')) parts.push('Early morning');
-        if (has('12:00 pm') || has('1:00 pm')) parts.push('Lunchtime');
-        if (has('5:00 pm') || has('6:00 pm')) parts.push('Evening');
-        if (!parts.length) return '';
-        if (parts.length === 1) return parts[0] + ' available';
-        var last = parts.pop();
-        return parts.join(', ') + ' and ' + last + ' available';
+      function parseHour(timeStr) {
+        var m = (timeStr || '').match(/(\d+):(\d+)\s*(am|pm)/i);
+        if (!m) return 0;
+        var h = parseInt(m[1]);
+        var p = m[3].toLowerCase();
+        if (p === 'pm' && h !== 12) h += 12;
+        if (p === 'am' && h === 12) h = 0;
+        return h;
+      }
+
+      function slotMatchesTimeFilter(slot) {
+        if (!activeFilters.times.length) return true;
+        var h = parseHour(slot.start);
+        return activeFilters.times.some(function(f) {
+          if (f === 'before9') return h < 9;
+          if (f === 'morning') return h >= 9 && h < 12;
+          if (f === 'early-afternoon') return h >= 12 && h < 14;
+          if (f === 'late-afternoon') return h >= 14 && h < 17;
+          if (f === 'evening') return h >= 17;
+          return false;
+        });
+      }
+
+      function dayMatchesFilters(day) {
+        if (activeFilters.days.length) {
+          var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+          var d = new Date(day.iso);
+          if (activeFilters.days.indexOf(DAYS[d.getDay()]) === -1) return false;
+        }
+        var allSlots = (day.morning || []).concat(day.afternoon || []).concat(day.evening || []);
+        return allSlots.some(slotMatchesTimeFilter);
       }
 
       function hashSeed(str) {
@@ -172,47 +212,75 @@
         return min + Math.floor(rng * (max - min + 1));
       }
 
-      function renderBatch() {
-        var batch = availDays.slice(shown, shown + BATCH);
-        var container = document.getElementById('dates-container');
-        batch.forEach(function (day) {
-          var dtCount = daytimeCount(day);
-          var dtSlots = (day.morning || []).concat(day.afternoon || []).slice(0, dtCount);
-          var evSlots = day.evening || [];
-          var shownSlots = dtSlots.concat(evSlots);
-          var count = shownSlots.length;
-          var url = '/pages/your-health/select-time?clinic=' + clinicId +
-                    '&postcode=' + postcode +
-                    '&iso=' + encodeURIComponent(day.iso) +
-                    '&date=' + encodeURIComponent(day.dateLabel) +
-                    '&count=' + dtCount;
-          var card = document.createElement('a');
-          card.className = 'date-card';
-          card.href = url;
-          card.innerHTML =
-            '<div class="date-card__body">' +
-              '<span class="date-card__date">' + formatDate(day.dateLabel) + '</span>' +
-              '<p class="date-card__slots">' + count + ' ' + (count === 1 ? 'slot' : 'slots') + '</p>' +
-              '<p class="date-card__period">' + periodLabel(shownSlots) + '</p>' +
-            '</div>' +
-            '<div class="date-card__chev">&#8250;</div>';
-          container.appendChild(card);
-        });
-        shown += batch.length;
-        var loadMoreWrap = document.getElementById('load-more-wrap');
-        if (loadMoreWrap) {
-          loadMoreWrap.style.display = shown < availDays.length ? 'block' : 'none';
-        }
+      function makeCard(day, label, url) {
+        var allSlots = (day.morning || []).concat(day.afternoon || []).concat(day.evening || []);
+        var count = allSlots.length;
+        var card = document.createElement('a');
+        card.className = 'date-card';
+        card.href = url;
+        card.innerHTML =
+          '<div class="date-card__body">' +
+            '<span class="date-card__date">' + formatDate(day.dateLabel) + '</span>' +
+            '<p class="date-card__slots">' + count + ' ' + (count === 1 ? 'slot' : 'slots') + '</p>' +
+            (label ? '<p class="date-card__period">' + label + '</p>' : '') +
+          '</div>' +
+          '<div class="date-card__chev">&#8250;</div>';
+        return card;
       }
 
-      renderBatch();
+      var availDays = daysData.filter(function(d) { return d.hasSlots; });
+      var container = document.getElementById('dates-container');
 
-      var loadMoreBtn = document.getElementById('load-more-btn');
-      if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          renderBatch();
-        });
+      if (hasFilters) {
+        // Filters active: show ALL matching days with "Preferences available" label
+        var matchingDays = availDays.filter(dayMatchesFilters);
+        if (!matchingDays.length) {
+          var msg = document.createElement('p');
+          msg.style.cssText = 'color:#4c6272; padding:20px 0; font-style:italic;';
+          msg.textContent = 'No availability matching your preferences.';
+          container.appendChild(msg);
+        } else {
+          matchingDays.forEach(function(day) {
+            var url = '/pages/your-health/select-time?clinic=' + clinicId +
+                      '&postcode=' + postcode +
+                      '&iso=' + encodeURIComponent(day.iso) +
+                      '&date=' + encodeURIComponent(day.dateLabel) +
+                      '&count=0';
+            container.appendChild(makeCard(day, 'Preferences available', url));
+          });
+        }
+        var loadMoreWrap = document.getElementById('load-more-wrap');
+        if (loadMoreWrap) loadMoreWrap.style.display = 'none';
+
+      } else {
+        // No filters: show batches of days, no period label
+        function renderBatch() {
+          var batch = availDays.slice(shown, shown + BATCH);
+          batch.forEach(function(day) {
+            var dtCount = daytimeCount(day);
+            var url = '/pages/your-health/select-time?clinic=' + clinicId +
+                      '&postcode=' + postcode +
+                      '&iso=' + encodeURIComponent(day.iso) +
+                      '&date=' + encodeURIComponent(day.dateLabel) +
+                      '&count=' + dtCount;
+            container.appendChild(makeCard(day, '', url));
+          });
+          shown += batch.length;
+          var loadMoreWrap = document.getElementById('load-more-wrap');
+          if (loadMoreWrap) {
+            loadMoreWrap.style.display = shown < availDays.length ? 'block' : 'none';
+          }
+        }
+
+        renderBatch();
+
+        var loadMoreBtn = document.getElementById('load-more-btn');
+        if (loadMoreBtn) {
+          loadMoreBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            renderBatch();
+          });
+        }
       }
     })();
   </script>

@@ -1,0 +1,53 @@
+{% extends 'layout-app.html' %}
+
+{% set hub = "Appointments" %}
+
+{% set backLink = true %}
+{% set backLinkURL = "/pages/appointments-p9" %}
+
+{% set pageHeading = "Book an appointment" %}
+
+{% block content %}
+
+  <style>
+    .nhsapp-card__above { padding-bottom: 10px; }
+  </style>
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+
+      <h1 class="app-dynamic-page-title__heading nhsuk-heading-l">Book an appointment</h1>
+
+      <h2 class="nhsuk-heading-m">Appointments to book</h2>
+
+      {{ nhsappCardGroup({
+        stacked: true,
+        cards: [
+          {
+            href: '/pages/your-health/arrange-test',
+            aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--red">Action required</strong>' },
+            title: 'Please arrange a blood test in the next few days',
+            description: 'Because of some of the symptoms you have discussed with your GP a blood test is required to assess you for Iron deficiency anaemia.'
+          },
+          {
+            href: '/pages/appointments/pause',
+            aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--red">Action required</strong>' },
+            title: 'Please book a faecal immunochemical test',
+            description: 'Because of some of the symptoms you have discussed with your GP a faecal immunochemical test is required to assess you for Iron deficiency anaemia.'
+          }
+        ]
+      }) }}
+
+      <h2 class="nhsuk-heading-m nhsuk-u-margin-top-6">GP Surgery</h2>
+
+      {{ nhsappCardGroup({
+        stacked: true,
+        cards: [
+          { title: 'Book a GP appointment', href: '/pages/appointments/pause' }
+        ]
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

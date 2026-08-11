@@ -77,12 +77,14 @@
           <dd class="nhsuk-summary-list__value">{{ clinic.address }}</dd>
         </div>
       </dl>
-
       <p class="nhsuk-u-margin-top-3"><a class="nhsuk-link" href="#">Get directions</a></p>
 
+
+
       <style>
-        .view-appointment-button:link,
-        .view-appointment-button:visited { background-color:#fff; color:#005eb8; box-shadow:0 4px 0 #003087; }
+        .view-appointment-button { display:block; width:100%; text-align:center; margin-bottom:40px; }
+        .view-appointment-button:link { background-color:#fff; color:#005eb8; box-shadow:0 4px 0 #003087; }
+        .view-appointment-button:visited { background-color:#fff; color:#005eb8; }
         .view-appointment-button:hover { background-color:#f0f4f5; color:#005eb8; }
         .view-appointment-button:active { background-color:#e8edee; }
         .confirm-beta-banner { background-color:#d4e5f3; padding:16px 20px; margin:24px 0; }
@@ -93,7 +95,7 @@
       {{ button({
         text: "View appointment",
         classes: "view-appointment-button",
-        href: "/pages/your-health/your-appointment?clinic=" + (clinic.id | urlencode) + "&postcode=" + (postcode | urlencode) + "&date=" + (date | urlencode) + "&time=" + (time | urlencode)
+        href: "/pages/your-health/your-appointment?clinic=" + (clinic.id | urlencode) + "&postcode=" + (postcode | urlencode) + ("&date=" + (date | urlencode) + "&time=" + (time | urlencode) if clinic.type != 'walk-in' else "")
       }) }}
 
       <div class="confirm-beta-banner">
