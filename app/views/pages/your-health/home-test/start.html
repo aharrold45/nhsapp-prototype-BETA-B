@@ -1,0 +1,71 @@
+{% extends 'layout-app.html' %}
+
+{% set hub = "Your health" %}
+
+{% set backLink = true %}
+{% set backLinkURL = "/pages/your-health/arrange-test" %}
+
+{% set pageHeading = "Order a home blood test kit" %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+
+      <h1>Order a home blood test kit for iron deficiency anaemia</h1>
+
+      <p>You can use this service if:</p>
+      <ul class="nhsuk-list nhsuk-list--bullet">
+        <li>you're aged 18 or over</li>
+        <li>the kit's available in your area</li>
+        <li>you're ordering for yourself</li>
+      </ul>
+
+      {{ insetText({
+        html: "<p>Your clinician has requested this test to help assess you for iron deficiency anaemia. If you have recently given a blood sample at a clinic for this referral, you do not need to order this kit.</p>"
+      }) }}
+
+      <h2>How it works</h2>
+      <p>The free kit will be delivered in plain packaging to the address you choose. This does not have to be your usual address. It can take up to 7 days to arrive but is usually quicker. Aim to do the test soon after receiving it.</p>
+      <p>
+        <a href="/pages/your-health/home-test/step-by-step-guide" class="nhsuk-link--no-visited-state">Blood sample step-by-step guide</a>
+      </p>
+      <p>You'll need to prick your finger and fill a tube with blood. Then send it to the address on the box with pre-paid postage.</p>
+
+      <details class="nhsuk-details">
+        <summary class="nhsuk-details__summary">
+          <span class="nhsuk-details__summary-text">Results and timescales</span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p>The supplier will contact you within 72 hours with your result, which will show one of the following:</p>
+          <ul>
+            <li><span class="nhsuk-u-font-weight-bold">Normal</span>: your iron levels are within the expected range.</li>
+            <li><span class="nhsuk-u-font-weight-bold">Low (iron deficiency)</span>: your result will be passed to the clinician who requested this test to discuss next steps with you.</li>
+          </ul>
+          <p>Sometimes the lab will not be able to get a clear result from a blood sample. If this happens, you'll be advised to do another self-test or visit a clinic.</p>
+        </div>
+      </details>
+
+      <details class="nhsuk-details">
+        <summary class="nhsuk-details__summary">
+          <span class="nhsuk-details__summary-text">Who my information is shared with</span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p>Your contact details will only be shared with the kit supplier, who is a trusted NHS partner. Your test result will be shared with the clinician who requested this test.</p>
+        </div>
+      </details>
+
+      <a class="nhsuk-button" data-module="nhsuk-button" href="/pages/your-health/home-test/find-delivery-address" role="button" draggable="false">
+        Start now
+      </a>
+
+      <h2>About using this service</h2>
+      <p>By using this service, you agree to our <a href="#" class="nhsuk-link--no-visited-state">terms of use</a> and <a href="#" class="nhsuk-link--no-visited-state">privacy policy</a>.</p>
+
+      <h2>Other options</h2>
+      <p>Instead of doing the test at home, you can <a href="/pages/your-health/view-availability" class="nhsuk-link--no-visited-state">search for a clinic near you</a> to get tested.</p>
+
+    </div>
+  </div>
+
+{% endblock %}

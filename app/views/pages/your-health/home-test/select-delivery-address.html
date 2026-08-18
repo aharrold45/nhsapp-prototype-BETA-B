@@ -1,0 +1,61 @@
+{% extends 'layout-app.html' %}
+
+{% set hub = "Your health" %}
+
+{% set backLink = true %}
+{% set backLinkURL = "/pages/your-health/home-test/find-delivery-address" %}
+
+{% set pageHeading = "Select delivery address" %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+
+      <h1 class="nhsuk-heading-l nhsuk-u-margin-bottom-4">3 addresses found</h1>
+      <p>Showing results for <strong>{{ data['ht-postcode'] or 'LS1 1AB' }}</strong>
+        <a href="/pages/your-health/home-test/find-delivery-address" class="nhsuk-link--no-visited-state">Search again</a>
+      </p>
+
+      <form action="/pages/your-health/home-test/how-comfortable" method="post" novalidate>
+
+        <div class="nhsuk-form-group">
+          <fieldset class="nhsuk-fieldset">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--s">
+              Select your delivery address
+            </legend>
+            <div class="nhsuk-radios" data-module="nhsuk-radios">
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="ht-address" name="ht-address" type="radio" value="1 New Street, {{ data['ht-postcode'] or 'LS1 1AB' }}" {% if data['ht-address'] == '1 New Street, ' + (data['ht-postcode'] or 'LS1 1AB') %}checked{% endif %}>
+                <label class="nhsuk-label nhsuk-radios__label" for="ht-address">
+                  1 New Street, Leeds, {{ data['ht-postcode'] or 'LS1 1AB' }}
+                </label>
+              </div>
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="ht-address-2" name="ht-address" type="radio" value="2 New Street, {{ data['ht-postcode'] or 'LS1 1AB' }}" {% if data['ht-address'] == '2 New Street, ' + (data['ht-postcode'] or 'LS1 1AB') %}checked{% endif %}>
+                <label class="nhsuk-label nhsuk-radios__label" for="ht-address-2">
+                  2 New Street, Leeds, {{ data['ht-postcode'] or 'LS1 1AB' }}
+                </label>
+              </div>
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="ht-address-3" name="ht-address" type="radio" value="3 New Street, {{ data['ht-postcode'] or 'LS1 1AB' }}" {% if data['ht-address'] == '3 New Street, ' + (data['ht-postcode'] or 'LS1 1AB') %}checked{% endif %}>
+                <label class="nhsuk-label nhsuk-radios__label" for="ht-address-3">
+                  3 New Street, Leeds, {{ data['ht-postcode'] or 'LS1 1AB' }}
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">Use this address</button>
+
+      </form>
+
+      <p class="nhsuk-body">
+        <a href="#" class="nhsuk-link--no-visited-state">Enter address manually</a>
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

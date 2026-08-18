@@ -1,0 +1,96 @@
+{% extends 'layout-app.html' %}
+
+{% set hub = "Your health" %}
+
+{% set backLink = true %}
+{% set backLinkURL = "/pages/your-health/home-test/email-address" %}
+
+{% set pageHeading = "Check your answers" %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+
+      <h1 class="nhsuk-heading-l">Check your answers before submitting your order</h1>
+
+      <p>You'll receive updates through the NHS App to help you keep track of your order, so make sure your notifications are on.</p>
+      <p>The kit should arrive within 7 days, though it's usually quicker.</p>
+
+      <dl class="nhsuk-summary-list">
+        <div class="nhsuk-summary-list__row nhsuk-summary-list__row--no-actions">
+          <dt class="nhsuk-summary-list__key">Name</dt>
+          <dd class="nhsuk-summary-list__value">John Smith</dd>
+        </div>
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">Delivery address</dt>
+          <dd class="nhsuk-summary-list__value">
+            {% if data['ht-address'] %}
+              {{ data['ht-address'] }}
+            {% else %}
+              1 New Street<br>Leeds<br>LS1 1AB
+            {% endif %}
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a class="nhsuk-link" href="/pages/your-health/home-test/find-delivery-address">Change<span class="nhsuk-u-visually-hidden"> delivery address</span></a>
+          </dd>
+        </div>
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">Are you comfortable collecting a blood sample?</dt>
+          <dd class="nhsuk-summary-list__value">Yes I'm comfortable, send me the free kit</dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a class="nhsuk-link" href="/pages/your-health/home-test/how-comfortable">Change<span class="nhsuk-u-visually-hidden"> comfort with blood sample</span></a>
+          </dd>
+        </div>
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">Mobile phone number</dt>
+          <dd class="nhsuk-summary-list__value">
+            {% if data['ht-selectNum'] == 'another' and data['ht-newMobile'] %}
+              {{ data['ht-newMobile'] }}
+            {% else %}
+              07402 123 456
+            {% endif %}
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a class="nhsuk-link" href="/pages/your-health/home-test/mobile-phone">Change<span class="nhsuk-u-visually-hidden"> mobile phone number</span></a>
+          </dd>
+        </div>
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">Email address</dt>
+          <dd class="nhsuk-summary-list__value">
+            {% if data['ht-selectEmail'] == 'another' and data['ht-newEmail'] %}
+              {{ data['ht-newEmail'] }}
+            {% elif data['ht-selectEmail'] == 'no' %}
+              Not provided
+            {% else %}
+              jane.doe@email.com
+            {% endif %}
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a class="nhsuk-link" href="/pages/your-health/home-test/email-address">Change<span class="nhsuk-u-visually-hidden"> email address</span></a>
+          </dd>
+        </div>
+      </dl>
+
+      <div class="nhsuk-form-group">
+        <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m">Your consent</legend>
+          <div class="nhsuk-checkboxes" data-module="nhsuk-checkboxes">
+            <div class="nhsuk-checkboxes__item">
+              <input class="nhsuk-checkboxes__input" id="ht-consent" name="ht-consent" type="checkbox" value="consent">
+              <label class="nhsuk-label nhsuk-checkboxes__label" for="ht-consent">
+                I understand that the kit supplier, a trusted partner of the NHS, will provide the free self-test kit. I agree to their <a href="#" class="nhsuk-link--no-visited-state">terms of use</a> and <a href="#" class="nhsuk-link--no-visited-state">privacy policy</a>.
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <form action="/pages/your-health/home-test/confirmation" method="post" novalidate>
+        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">Submit order</button>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

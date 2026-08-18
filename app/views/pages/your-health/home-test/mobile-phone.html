@@ -1,0 +1,52 @@
+{% extends 'layout-app.html' %}
+
+{% set hub = "Your health" %}
+
+{% set backLink = true %}
+{% set backLinkURL = "/pages/your-health/home-test/how-comfortable" %}
+
+{% set pageHeading = "Mobile phone number" %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+
+      <form action="/pages/your-health/home-test/email-address" method="post" novalidate>
+
+        <div class="nhsuk-form-group">
+          <fieldset class="nhsuk-fieldset" aria-describedby="selectNum-hint">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+              <h1 class="nhsuk-fieldset__heading">What's your mobile phone number?</h1>
+            </legend>
+            <div class="nhsuk-hint" id="selectNum-hint">
+              The kit supplier will send updates to this number. It must be your own number. If you use a different number, it will not change your saved number.
+            </div>
+            <div class="nhsuk-radios" data-module="nhsuk-radios">
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="selectNum" name="ht-selectNum" type="radio" value="07402 123 456" {% if data['ht-selectNum'] != 'another' and data['ht-selectNum'] %}checked{% elif not data['ht-selectNum'] %}checked{% endif %}>
+                <label class="nhsuk-label nhsuk-radios__label" for="selectNum">07402 123 456</label>
+              </div>
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="selectNum-2" name="ht-selectNum" type="radio" value="another" data-aria-controls="conditional-selectNum-2" {% if data['ht-selectNum'] == 'another' %}checked{% endif %}>
+                <label class="nhsuk-label nhsuk-radios__label" for="selectNum-2">Use another mobile phone number</label>
+              </div>
+              <div class="nhsuk-radios__conditional nhsuk-radios__conditional--hidden" id="conditional-selectNum-2">
+                <div class="nhsuk-form-group">
+                  <label class="nhsuk-label" for="newMobile">UK mobile phone number</label>
+                  <div class="nhsuk-hint" id="newMobile-hint">For example, 07700 900 000 or +44 7700 900 000</div>
+                  <input class="nhsuk-input nhsuk-input--width-10" id="newMobile" name="ht-newMobile" type="text" aria-describedby="newMobile-hint" value="{{ data['ht-newMobile'] }}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

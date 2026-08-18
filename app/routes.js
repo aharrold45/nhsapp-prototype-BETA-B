@@ -104,6 +104,15 @@ router.post('/pages/your-health/arrange-test', (req, res) => {
 	if (req.body['test-type'] === 'clinic') {
 		res.redirect('/pages/your-health/view-availability');
 	} else {
+		res.redirect('/pages/your-health/home-test/start');
+	}
+});
+
+// Home test — comfortable-answer branch: yes → mobile-phone, no → back to arrange-test
+router.post('/pages/your-health/home-test/comfortable-answer', (req, res) => {
+	if (req.body.comfortable === 'Yes') {
+		res.redirect('/pages/your-health/home-test/mobile-phone');
+	} else {
 		res.redirect('/pages/your-health/arrange-test');
 	}
 });

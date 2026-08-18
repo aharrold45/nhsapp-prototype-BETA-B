@@ -1,0 +1,62 @@
+{% extends 'layout-app.html' %}
+
+{% set hub = "Your health" %}
+
+{% set backLink = true %}
+{% set backLinkURL = "/pages/your-health/home-test/mobile-phone" %}
+
+{% set pageHeading = "Email address" %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+
+      <form action="/pages/your-health/home-test/confirm-details" method="post" novalidate>
+
+        <div class="nhsuk-form-group">
+          <fieldset class="nhsuk-fieldset" aria-describedby="selectEmail-hint">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+              <h1 class="nhsuk-fieldset__heading">What's your email address?</h1>
+            </legend>
+            <div class="nhsuk-hint" id="selectEmail-hint">
+              The kit supplier may contact you by email. It must be your own email address. If you use a different email, it will not change your saved email address.
+            </div>
+            <div class="nhsuk-radios" data-module="nhsuk-radios">
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="selectEmail" name="ht-selectEmail" type="radio" value="loginEmail" {% if data['ht-selectEmail'] == 'loginEmail' or not data['ht-selectEmail'] %}checked{% endif %}>
+                <label class="nhsuk-label nhsuk-radios__label" for="selectEmail">
+                  jane.doe@email.com
+                </label>
+              </div>
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="selectEmail-2" name="ht-selectEmail" type="radio" value="another" data-aria-controls="conditional-selectEmail-2" {% if data['ht-selectEmail'] == 'another' %}checked{% endif %}>
+                <label class="nhsuk-label nhsuk-radios__label" for="selectEmail-2">
+                  Use another email address
+                </label>
+              </div>
+              <div class="nhsuk-radios__conditional nhsuk-radios__conditional--hidden" id="conditional-selectEmail-2">
+                <div class="nhsuk-form-group">
+                  <label class="nhsuk-label" for="newEmail">Email address</label>
+                  <input class="nhsuk-input nhsuk-input--width-20" id="newEmail" name="ht-newEmail" type="text" value="{{ data['ht-newEmail'] }}">
+                </div>
+              </div>
+              <div class="nhsuk-radios__divider">or</div>
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="selectEmail-4" name="ht-selectEmail" type="radio" value="no" {% if data['ht-selectEmail'] == 'no' %}checked{% endif %}>
+                <label class="nhsuk-label nhsuk-radios__label" for="selectEmail-4">
+                  I do not want to use email
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

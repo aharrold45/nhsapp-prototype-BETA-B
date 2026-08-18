@@ -1,0 +1,68 @@
+{% extends 'layout-app.html' %}
+
+{% set hub = "Your health" %}
+
+{% set backLink = true %}
+{% set backLinkURL = "/pages/your-health/home-test/select-delivery-address" %}
+
+{% set pageHeading = "Are you comfortable?" %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+
+      <form action="/pages/your-health/home-test/comfortable-answer" method="post" novalidate>
+
+        <h1 class="nhsuk-heading-l nhsuk-u-margin-bottom-4">This is what you'll need to do to give a blood sample</h1>
+
+        <div style="background:#f0f4f5; border:1px dashed #aeb7bd; height:200px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+          <span style="color:#425563;">[Image: finger-prick blood collection illustration]</span>
+        </div>
+
+        <p class="nhsuk-body">To give a sample of blood, you'll need to:</p>
+        <ul class="nhsuk-list nhsuk-list--bullet">
+          <li>prick your finger</li>
+          <li>fill a tube with blood</li>
+        </ul>
+
+        <p>
+          <a href="/pages/your-health/home-test/step-by-step-guide" class="nhsuk-link--no-visited-state">Blood sample step-by-step guide</a>
+        </p>
+
+        <div class="nhsuk-form-group">
+          <fieldset class="nhsuk-fieldset">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m">
+              Are you comfortable collecting a blood sample?
+            </legend>
+            <div class="nhsuk-radios" data-module="nhsuk-radios">
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="comfortable" name="comfortable" type="radio" value="Yes" aria-describedby="comfortable-item-hint" {% if data['comfortable'] == 'Yes' %}checked{% endif %}>
+                <label class="nhsuk-label nhsuk-radios__label" for="comfortable">
+                  Yes I'm comfortable, send me the free kit
+                </label>
+                <div class="nhsuk-hint nhsuk-radios__hint" id="comfortable-item-hint">
+                  The test is supplied by a trusted partner of the NHS
+                </div>
+              </div>
+              <div class="nhsuk-radios__item">
+                <input class="nhsuk-radios__input" id="comfortable-2" name="comfortable" type="radio" value="No" aria-describedby="comfortable-2-item-hint" {% if data['comfortable'] == 'No' %}checked{% endif %}>
+                <label class="nhsuk-label nhsuk-radios__label" for="comfortable-2">
+                  No, I'd prefer to book with a clinic instead
+                </label>
+                <div class="nhsuk-hint nhsuk-radios__hint" id="comfortable-2-item-hint">
+                  A healthcare professional will take a blood sample for you
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

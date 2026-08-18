@@ -1,0 +1,42 @@
+{% extends 'layout-app.html' %}
+
+{% set hub = "Your health" %}
+
+{% set backLink = true %}
+{% set backLinkURL = "/pages/your-health/home-test/start" %}
+
+{% set pageHeading = "Find delivery address" %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+
+      <form action="/pages/your-health/home-test/select-delivery-address" method="post" novalidate>
+
+        <h1 class="nhsuk-heading-l nhsuk-u-margin-bottom-4">Enter your delivery address and we'll check if the kit's available in your area</h1>
+
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label nhsuk-label--s" for="postcode">Postcode</label>
+          <div class="nhsuk-hint" id="postcode-hint">For example, LS1 1AB</div>
+          <input class="nhsuk-input nhsuk-input--width-10" id="postcode" name="ht-postcode" type="text" spellcheck="false" aria-describedby="postcode-hint" inputmode="text" value="{{ data['ht-postcode'] }}">
+        </div>
+
+        <div class="nhsuk-form-group">
+          <label class="nhsuk-label nhsuk-label--s" for="numName">Building number or name (optional)</label>
+          <div class="nhsuk-hint" id="numName-hint">For example, 15 or Prospect Cottage</div>
+          <input class="nhsuk-input nhsuk-input--width-full" id="numName" name="ht-numName" type="text" spellcheck="false" aria-describedby="numName-hint" inputmode="text" value="{{ data['ht-numName'] }}">
+        </div>
+
+        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">Find address</button>
+
+        <p class="nhsuk-body">
+          <a href="#" class="nhsuk-link--no-visited-state">Enter address manually</a>
+        </p>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'layout-app.html' %}
+
+{% set hub = "Your health" %}
+
+{% set backLink = true %}
+{% set backLinkURL = "/pages/your-health/home-test/start" %}
+
+{% set pageHeading = "Blood sample step-by-step guide" %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+
+      <h1>Blood sample step-by-step guide</h1>
+
+      <p>This is an example guide to give you an idea of what's involved. Follow the instructions in the kit when it arrives.</p>
+
+      <details class="nhsuk-details">
+        <summary class="nhsuk-details__summary">
+          <span class="nhsuk-details__summary-text">What's in the kit</span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p>The test kit normally includes:</p>
+          <ul class="nhsuk-list nhsuk-list--bullet">
+            <li>Instructions</li>
+            <li>Blood sample tube</li>
+            <li>Alcohol wipe</li>
+            <li>Lancets</li>
+            <li>Plaster</li>
+            <li>Transport bag</li>
+            <li>Security seal sticker</li>
+            <li>Box with pre-paid return postage</li>
+          </ul>
+          <div style="background:#f0f4f5; border:1px dashed #aeb7bd; height:180px; display:flex; align-items:center; justify-content:center; margin-top:8px;">
+            <span style="color:#425563;">[Image: kit contents]</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="nhsuk-details">
+        <summary class="nhsuk-details__summary">
+          <span class="nhsuk-details__summary-text">Tips before you start</span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p>These tips can help you collect your blood sample:</p>
+          <ul class="nhsuk-list nhsuk-list--bullet">
+            <li>Drink a big glass of water at least 30 minutes before you do the test</li>
+            <li>Do the test after a shower or bath</li>
+            <li>Put your hand into a bowl of warm water a few minutes before doing the test</li>
+            <li>Swing your arms in a circular motion, or clench your hands into a fist a few times</li>
+            <li>Read the instructions in full before starting</li>
+          </ul>
+        </div>
+      </details>
+
+      <h2 class="nhsuk-heading-m">Step 1: Get ready</h2>
+      <div style="background:#f0f4f5; border:1px dashed #aeb7bd; height:180px; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+        <span style="color:#425563;">[Image: Step 1 illustration]</span>
+      </div>
+      <p class="nhsuk-body-s nhsuk-u-secondary-text-color nhsuk-u-margin-bottom-6">Step 1. Wash and dry your hands with warm water and soap. Take the lid off the blood sample tube and stand it upright.</p>
+
+      <h2 class="nhsuk-heading-m">Step 2: Prepare your finger</h2>
+      <div style="background:#f0f4f5; border:1px dashed #aeb7bd; height:180px; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+        <span style="color:#425563;">[Image: Step 2 illustration]</span>
+      </div>
+      <p class="nhsuk-body-s nhsuk-u-secondary-text-color nhsuk-u-margin-bottom-6">Step 2. Decide which finger to prick and open the alcohol wipe. Rub your fingertip with the wipe and wait for it to dry.</p>
+
+      <h2 class="nhsuk-heading-m">Step 3: Prick your finger</h2>
+      <div style="background:#f0f4f5; border:1px dashed #aeb7bd; height:180px; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+        <span style="color:#425563;">[Image: Step 3 illustration]</span>
+      </div>
+      <p class="nhsuk-body-s nhsuk-u-secondary-text-color nhsuk-u-margin-bottom-6">Step 3. Remove the cap from the lancet and prick your finger. Use a tissue to dab off the first drop of blood.</p>
+
+      <h2 class="nhsuk-heading-m">Step 4: Collect the blood</h2>
+      <div style="background:#f0f4f5; border:1px dashed #aeb7bd; height:180px; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+        <span style="color:#425563;">[Image: Step 4 illustration]</span>
+      </div>
+      <p class="nhsuk-body-s nhsuk-u-secondary-text-color nhsuk-u-margin-bottom-6">Step 4. Hold your hand below waist level and gently massage the finger so blood drops fall into the tube.</p>
+
+      <h2 class="nhsuk-heading-m">Step 5: Fill the tube</h2>
+      <div style="background:#f0f4f5; border:1px dashed #aeb7bd; height:180px; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+        <span style="color:#425563;">[Image: Step 5 illustration]</span>
+      </div>
+      <p class="nhsuk-body-s nhsuk-u-secondary-text-color nhsuk-u-margin-bottom-6">Step 5. The kit instructions will tell you how much blood to collect in the tube. There are more lancets in the kit if you need to prick another finger.</p>
+
+      <h2 class="nhsuk-heading-m">Step 6: Seal and mix the tube</h2>
+      <div style="background:#f0f4f5; border:1px dashed #aeb7bd; height:180px; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+        <span style="color:#425563;">[Image: Step 6 illustration]</span>
+      </div>
+      <p class="nhsuk-body-s nhsuk-u-secondary-text-color nhsuk-u-margin-bottom-6">Step 6. Put the lid firmly back on the tube. Turn the tube upside down and back a few times to mix the blood, but do not shake the tube.</p>
+
+      <h2 class="nhsuk-heading-m">Step 7: Pack and post</h2>
+      <div style="background:#f0f4f5; border:1px dashed #aeb7bd; height:180px; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+        <span style="color:#425563;">[Image: Step 7 illustration]</span>
+      </div>
+      <p class="nhsuk-body-s nhsuk-u-secondary-text-color nhsuk-u-margin-bottom-6">Step 7. Follow the kit instructions about how to pack the blood sample. Post it to the lab using the box with pre-paid postage.</p>
+
+      <button class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" type="button" onclick="history.back(); return false;">
+        Back
+      </button>
+
+    </div>
+  </div>
+
+{% endblock %}
