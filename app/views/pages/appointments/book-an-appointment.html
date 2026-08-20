@@ -29,16 +29,10 @@
 
       <h2 class="nhsuk-heading-m nhsuk-u-margin-top-6">Appointments to book</h2>
 
-      {% if data['homeTestOrdered'] %}
+      {% if data.bookedAppointment or data['homeTestOrdered'] %}
         {{ nhsappCardGroup({
           stacked: true,
           cards: [
-            {
-              href: '/pages/your-health/home-test/confirmation',
-              aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--green">Ordered</strong>' },
-              title: 'Blood test kit',
-              description: 'Home test kit ordered. Delivery within 7 days.'
-            },
             {
               href: '/pages/appointments/pause',
               aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--red">Action required</strong>' },
