@@ -117,6 +117,14 @@ router.post('/pages/your-health/home-test/comfortable-answer', (req, res) => {
 	}
 });
 
+// Home test confirmation — store order in session so book-an-appointment card updates
+router.post('/pages/your-health/home-test/confirmation', (req, res) => {
+	if (req.session && req.session.data) {
+		req.session.data.homeTestOrdered = true;
+	}
+	res.redirect('/pages/your-health/home-test/confirmation');
+});
+
 // View availability search results
 router.get('/pages/your-health/view-availability-results', (req, res) => {
 	const postcode = req.query.postcode || '';
@@ -316,6 +324,7 @@ router.get('/reset', (req, res) => {
 		delete req.session.data.bookedAppointment;
 		delete req.session.data.cancelledAppointment;
 		delete req.session.data.reschedulingFrom;
+		delete req.session.data.homeTestOrdered;
 	}
 	const returnTo = req.headers.referer || '/';
 	res.redirect(returnTo);

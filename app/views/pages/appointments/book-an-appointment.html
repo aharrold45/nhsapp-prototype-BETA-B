@@ -29,23 +29,43 @@
 
       <h2 class="nhsuk-heading-m nhsuk-u-margin-top-6">Appointments to book</h2>
 
-      {{ nhsappCardGroup({
-        stacked: true,
-        cards: [
-          {
-            href: '/pages/your-health/arrange-test',
-            aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--red">Action required</strong>' },
-            title: 'Please arrange a blood test in the next few days',
-            description: 'Because of some of the symptoms you have discussed with a Clinician a blood test is required to assess you for Iron deficiency anaemia.'
-          },
-          {
-            href: '/pages/appointments/pause',
-            aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--red">Action required</strong>' },
-            title: 'Please book a faecal immunochemical test',
-            description: 'Because of some of the symptoms you have discussed with your GP a faecal immunochemical test is required to assess you for Iron deficiency anaemia.'
-          }
-        ]
-      }) }}
+      {% if data['homeTestOrdered'] %}
+        {{ nhsappCardGroup({
+          stacked: true,
+          cards: [
+            {
+              href: '/pages/your-health/home-test/confirmation',
+              aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--green">Ordered</strong>' },
+              title: 'Blood test kit',
+              description: 'Home test kit ordered. Delivery within 7 days.'
+            },
+            {
+              href: '/pages/appointments/pause',
+              aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--red">Action required</strong>' },
+              title: 'Please book a faecal immunochemical test',
+              description: 'Because of some of the symptoms you have discussed with your GP a faecal immunochemical test is required to assess you for Iron deficiency anaemia.'
+            }
+          ]
+        }) }}
+      {% else %}
+        {{ nhsappCardGroup({
+          stacked: true,
+          cards: [
+            {
+              href: '/pages/your-health/arrange-test',
+              aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--red">Action required</strong>' },
+              title: 'Please arrange a blood test in the next few days',
+              description: 'Because of some of the symptoms you have discussed with a Clinician a blood test is required to assess you for Iron deficiency anaemia.'
+            },
+            {
+              href: '/pages/appointments/pause',
+              aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--red">Action required</strong>' },
+              title: 'Please book a faecal immunochemical test',
+              description: 'Because of some of the symptoms you have discussed with your GP a faecal immunochemical test is required to assess you for Iron deficiency anaemia.'
+            }
+          ]
+        }) }}
+      {% endif %}
 
     </div>
   </div>

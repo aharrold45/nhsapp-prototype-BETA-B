@@ -18,7 +18,13 @@
       
 
 
-      {% set apptBadgeCount = 1 if data.bookedAppointment else 2 %}
+      {% if data.bookedAppointment and data['homeTestOrdered'] %}
+        {% set apptBadgeCount = 0 %}
+      {% elif data.bookedAppointment or data['homeTestOrdered'] %}
+        {% set apptBadgeCount = 1 %}
+      {% else %}
+        {% set apptBadgeCount = 2 %}
+      {% endif %}
 
       <!-- Book an appointment -->
       {{ nhsappCardGroup({
