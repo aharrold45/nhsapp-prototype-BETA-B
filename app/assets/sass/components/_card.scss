@@ -56,6 +56,11 @@
   }
 }
 
+// Force 16px padding on nhsapp-card at all screen sizes
+.nhsapp-card__container {
+  padding: nhsuk-spacing(3) !important; // 16px — prevents responsive upscale to 24px at tablet+
+}
+
 // Removes border from a card
 .app-card--no-border {
   border: 0;
