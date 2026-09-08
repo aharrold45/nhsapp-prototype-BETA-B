@@ -35,11 +35,11 @@
           <legend class="nhsuk-fieldset__legend filter-section-label">Times</legend>
           <ul class="filter-check-list">
             {% set timeOptions = [
-              { value: 'before9',         label: 'Before 9:00am' },
-              { value: 'morning',         label: '9:00am – 11:59am' },
-              { value: 'early-afternoon', label: '12:00pm – 1:59pm' },
-              { value: 'late-afternoon',  label: '2:00pm – 4:59pm' },
-              { value: 'evening',         label: '5:00pm and later' }
+              { value: 'before9',         label: 'Before 9am' },
+              { value: 'morning',         label: '9am to 11:59am' },
+              { value: 'early-afternoon', label: 'midday to 1:59pm' },
+              { value: 'late-afternoon',  label: '2pm to 4:59pm' },
+              { value: 'evening',         label: '5pm and later' }
             ] %}
             {% for opt in timeOptions %}
               <li>

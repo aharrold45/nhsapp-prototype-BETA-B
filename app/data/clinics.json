@@ -5,7 +5,7 @@
       "name": "Vanburgh Clinic",
       "distance": "0.3 miles away",
       "address": "12 Station Road, SE7 7HX",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 40 minutes for your appointment."
     },
@@ -14,16 +14,16 @@
       "name": "Greenwich Health Clinic",
       "distance": "1.1 miles away",
       "address": "45 Church Street, SE7 7HJ",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30-45 minutes for your appointment."
+      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
     },
     "blackheath": {
       "id": "blackheath",
       "name": "Blackheath Health Clinic",
       "distance": "2.1 miles away",
       "address": "3 High Street, SE7 7HL",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Requires improvement",
       "durationDesc": "Please allow 30 minutes for your appointment."
     },
@@ -32,25 +32,25 @@
       "name": "Charlton Clinic",
       "distance": "2.2 miles away",
       "address": "88 Market Road, SE7 7HM",
-      "openingHours": "9:00am - 5:00pm Monday to Friday",
+      "openingHours": "9am - 5pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 20-30 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "woolwich": {
       "id": "woolwich",
       "name": "Woolwich Health Clinic",
       "distance": "3.2 miles away",
       "address": "7 Dockside, SE7 7HN",
-      "openingHours": "Monday - Friday 8:00am - 6:00pm",
+      "openingHours": "Monday - Friday 8am - 6pm",
       "cqcRating": "Outstanding",
-      "durationDesc": "Please allow 20-30 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "herts-county": {
       "id": "herts-county",
       "name": "Hertford County Hospital",
       "distance": "3.1 miles away",
       "address": "North Road, Hertford, SG14 1LP",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 40 minutes for your appointment."
     },
@@ -59,16 +59,16 @@
       "name": "Queen Elizabeth II Hospital",
       "distance": "6.2 miles away",
       "address": "Howlands, Welwyn Garden City, AL7 4HQ",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30-45 minutes for your appointment."
+      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
     },
     "princess-alexandra": {
       "id": "princess-alexandra",
       "name": "Princess Alexandra Hospital",
       "distance": "8.4 miles away",
       "address": "Hamstel Road, Harlow, CM20 1QX",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Requires improvement",
       "durationDesc": "Please allow 30 minutes for your appointment."
     },
@@ -78,18 +78,18 @@
       "type": "walk-in",
       "distance": "10.1 miles away",
       "address": "The Plain, Epping, CM16 6TN",
-      "openingHours": "9:00am - 5:00pm Monday to Friday",
+      "openingHours": "9am - 5pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30-60 minutes."
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30 to 60 minutes."
     },
     "chase-farm": {
       "id": "chase-farm",
       "name": "Chase Farm Hospital",
       "distance": "12.3 miles away",
       "address": "The Ridgeway, Enfield, EN2 8JL",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Outstanding",
-      "durationDesc": "Please allow 20-30 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
 
     "balham-health-centre": {
@@ -97,16 +97,16 @@
       "name": "Balham Health Centre",
       "distance": "0.4 miles away",
       "address": "120 Bedford Hill, London, SW12 9HP",
-      "openingHours": "8:00am - 6:30pm Monday to Friday",
+      "openingHours": "8am - 6:30pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30-40 minutes for your appointment."
+      "durationDesc": "Please allow 30 to 40 minutes for your appointment."
     },
     "wandsworth-medical-centre": {
       "id": "wandsworth-medical-centre",
       "name": "Wandsworth Medical Centre",
       "distance": "1.2 miles away",
       "address": "4 Mitcham Road, London, SW17 9NA",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 30 minutes for your appointment."
     },
@@ -116,17 +116,17 @@
       "type": "walk-in",
       "distance": "1.8 miles away",
       "address": "52 Longmead Road, London, SW17 9LA",
-      "openingHours": "8:00am - 7:00pm Monday to Friday",
+      "openingHours": "8am - 7pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30-60 minutes.",
-      "busyPeriods": "Busy periods are: 8:00 am - 10:00 am and 4:30 pm - 7:00 pm."
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30 to 60 minutes.",
+      "busyPeriods": "Busy periods are: 8am - 10am and 4:30pm - 7pm."
     },
     "st-georges-hospital": {
       "id": "st-georges-hospital",
       "name": "St George's Hospital",
       "distance": "2.1 miles away",
       "address": "Blackshaw Road, London, SW17 0QT",
-      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 40 minutes for your appointment."
     },
@@ -135,9 +135,9 @@
       "name": "King's College Hospital",
       "distance": "3.2 miles away",
       "address": "Denmark Hill, London, SE5 9RS",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Outstanding",
-      "durationDesc": "Please allow 40-50 minutes for your appointment."
+      "durationDesc": "Please allow 40 to 50 minutes for your appointment."
     },
 
     "castle-medical-centre": {
@@ -145,7 +145,7 @@
       "name": "Castle Medical Centre",
       "distance": "0.8 miles away",
       "address": "6 Castle Hill, Kenilworth, CV8 1RG",
-      "openingHours": "8:00am - 6:30pm Monday to Friday",
+      "openingHours": "8am - 6:30pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 30 minutes for your appointment."
     },
@@ -155,35 +155,35 @@
       "type": "walk-in",
       "distance": "4.1 miles away",
       "address": "Lower Precinct, Coventry, CV1 1DX",
-      "openingHours": "7:00am - 7:00pm Monday to Sunday",
+      "openingHours": "7am - 7pm Monday to Sunday",
       "cqcRating": "Good",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30-60 minutes.",
-      "busyPeriods": "Busy periods are: 8:00 am - 10:00 am, 12:00 pm - 2:00 pm and 5:00 pm - 7:00 pm."
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30 to 60 minutes.",
+      "busyPeriods": "Busy periods are: 8am - 10am, midday - 2pm and 5pm - 7pm."
     },
     "uhcw": {
       "id": "uhcw",
       "name": "University Hospital Coventry & Warwickshire",
       "distance": "5.2 miles away",
       "address": "Clifford Bridge Road, Coventry, CV2 2DX",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 40-50 minutes for your appointment."
+      "durationDesc": "Please allow 40 to 50 minutes for your appointment."
     },
     "warwick-hospital": {
       "id": "warwick-hospital",
       "name": "Warwick Hospital",
       "distance": "6.8 miles away",
       "address": "Lakin Road, Warwick, CV34 5BW",
-      "openingHours": "8:00am - 5:30pm Monday to Friday",
+      "openingHours": "8am - 5:30pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30-45 minutes for your appointment."
+      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
     },
     "hospital-st-cross": {
       "id": "hospital-st-cross",
       "name": "Hospital of St Cross",
       "distance": "9.3 miles away",
       "address": "Barby Road, Rugby, CV22 5PX",
-      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Requires improvement",
       "durationDesc": "Please allow 30 minutes for your appointment."
     },
@@ -193,9 +193,9 @@
       "name": "Sole Bay Health Centre",
       "distance": "0.3 miles away",
       "address": "Blyburgate, Southwold, IP18 6AX",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30-40 minutes for your appointment."
+      "durationDesc": "Please allow 30 to 40 minutes for your appointment."
     },
     "aldeburgh-community": {
       "id": "aldeburgh-community",
@@ -212,26 +212,26 @@
       "type": "walk-in",
       "distance": "7.1 miles away",
       "address": "1 Saxon Place, Saxmundham, IP17 1XE",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30-60 minutes.",
-      "busyPeriods": "Busy periods are: 8:00 am - 10:00 am and 12:00 pm - 2:00 pm."
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30 to 60 minutes.",
+      "busyPeriods": "Busy periods are: 8am - 10am and midday - 2pm."
     },
     "carlton-court": {
       "id": "carlton-court",
       "name": "Carlton Court Hospital",
       "distance": "7.8 miles away",
       "address": "Carlton Road, Saxmundham, IP17 2QN",
-      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Requires improvement",
-      "durationDesc": "Please allow 30-45 minutes for your appointment."
+      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
     },
     "norfolk-suffolk-nhs": {
       "id": "norfolk-suffolk-nhs",
       "name": "Norfolk & Suffolk NHS Foundation Trust",
       "distance": "24.6 miles away",
       "address": "Ipswich Hospital, Heath Road, Ipswich, IP4 5PD",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 40 minutes for your appointment."
     },
@@ -242,17 +242,17 @@
       "type": "walk-in",
       "distance": "1.2 miles away",
       "address": "Church Road, Ashford, TW15 2TS",
-      "openingHours": "8:00am - 6:30pm Monday to Friday",
+      "openingHours": "8am - 6:30pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30-60 minutes.",
-      "busyPeriods": "Busy periods are: 8:00 am - 10:00 am and 4:00 pm - 6:30 pm."
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30 to 60 minutes.",
+      "busyPeriods": "Busy periods are: 8am - 10am and 4pm - 6:30pm."
     },
     "ashford-hospital": {
       "id": "ashford-hospital",
       "name": "Ashford Hospital",
       "distance": "1.8 miles away",
       "address": "London Road, Ashford, TW15 3AA",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 40 minutes for your appointment."
     },
@@ -261,7 +261,7 @@
       "name": "Studholme Medical Centre",
       "distance": "2.3 miles away",
       "address": "Fordbridge Road, Ashford, TW15 2SW",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 30 minutes for your appointment."
     },
@@ -270,18 +270,18 @@
       "name": "St Peter's Hospital",
       "distance": "7.4 miles away",
       "address": "Guildford Road, Chertsey, KT16 0PZ",
-      "openingHours": "8:00am - 5:30pm Monday to Friday",
+      "openingHours": "8am - 5:30pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 40-50 minutes for your appointment."
+      "durationDesc": "Please allow 40 to 50 minutes for your appointment."
     },
     "st-davids-health-centre": {
       "id": "st-davids-health-centre",
       "name": "St David's Health Centre",
       "distance": "8.1 miles away",
       "address": "Lysons Avenue, Ash Vale, GU12 5QH",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Requires improvement",
-      "durationDesc": "Please allow 30-45 minutes for your appointment."
+      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
     },
     "stow-lodge": {
       "id": "stow-lodge",
@@ -289,7 +289,7 @@
       "type": "walk-in",
       "distance": "0.8 miles away",
       "address": "Milton Road South, Stowmarket, IP14 1EE",
-      "openingHours": "8:00am - 6:00pm Monday to Saturday",
+      "openingHours": "8am - 6pm Monday to Saturday",
       "cqcRating": "Good",
       "durationDesc": "Walk-in blood tests are available during opening hours. No appointment needed."
     },
@@ -298,16 +298,16 @@
       "name": "Ipswich Hospital",
       "distance": "12.4 miles away",
       "address": "Heath Road, Ipswich, IP4 5PD",
-      "openingHours": "7:30am - 5:00pm Monday to Friday",
+      "openingHours": "7:30am - 5pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30-45 minutes for your appointment."
+      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
     },
     "nuffield-ipswich": {
       "id": "nuffield-ipswich",
       "name": "Nuffield Health Ipswich Hospital",
       "distance": "13.1 miles away",
       "address": "Sproughton Road, Ipswich, IP1 5BE",
-      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 30 minutes for your appointment."
     },
@@ -316,18 +316,18 @@
       "name": "West Suffolk Hospital",
       "distance": "15.6 miles away",
       "address": "Hardwick Lane, Bury St Edmunds, IP33 2QZ",
-      "openingHours": "7:30am - 4:00pm Monday to Friday",
+      "openingHours": "7:30am - 4pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30-45 minutes for your appointment."
+      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
     },
     "colchester-hospital": {
       "id": "colchester-hospital",
       "name": "Colchester Hospital",
       "distance": "21.3 miles away",
       "address": "Turner Road, Colchester, CO4 5JL",
-      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Great",
-      "durationDesc": "Please allow 30-45 minutes for your appointment."
+      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
     },
 
     "pinderfields-hospital": {
@@ -335,7 +335,7 @@
       "name": "Pinderfields Hospital",
       "distance": "2.8 miles away",
       "address": "Aberford Road, Wakefield, WF1 4DG",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 40 minutes for your appointment."
     },
@@ -344,18 +344,18 @@
       "name": "Fieldhead Hospital",
       "distance": "3.5 miles away",
       "address": "Ouchthorpe Lane, Wakefield, WF1 3SP",
-      "openingHours": "8:00am - 5:30pm Monday to Friday",
+      "openingHours": "8am - 5:30pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30-40 minutes for your appointment."
+      "durationDesc": "Please allow 30 to 40 minutes for your appointment."
     },
     "dewsbury-district-hospital": {
       "id": "dewsbury-district-hospital",
       "name": "Dewsbury District Hospital",
       "distance": "5.1 miles away",
       "address": "Halifax Road, Dewsbury, WF13 4HS",
-      "openingHours": "8:00am - 6:00pm Monday to Friday",
+      "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30-45 minutes for your appointment."
+      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
     },
     "newton-lodge": {
       "id": "newton-lodge",
@@ -363,17 +363,17 @@
       "type": "walk-in",
       "distance": "3.6 miles away",
       "address": "Ouchthorpe Lane, Wakefield, WF1 3SP",
-      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30-60 minutes.",
-      "busyPeriods": "Busy periods are: 8:00 am - 10:00 am and 12:00 pm - 2:00 pm."
+      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30 to 60 minutes.",
+      "busyPeriods": "Busy periods are: 8am - 10am and midday - 2pm."
     },
     "pontefract-hospital": {
       "id": "pontefract-hospital",
       "name": "Pontefract Hospital",
       "distance": "7.9 miles away",
       "address": "Friarwood Lane, Pontefract, WF8 1PL",
-      "openingHours": "8:00am - 5:00pm Monday to Friday",
+      "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 30 minutes for your appointment."
     }
