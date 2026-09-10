@@ -12,5 +12,8 @@
   "IP14": ["stow-lodge","ipswich-hospital","nuffield-ipswich","west-suffolk-hospital","colchester-hospital"],
   "IP15": ["stow-lodge","ipswich-hospital","nuffield-ipswich","west-suffolk-hospital","colchester-hospital"],
   "WF4": ["pinderfields-hospital","fieldhead-hospital","dewsbury-district-hospital","newton-lodge","pontefract-hospital"],
+  "NE110DP": ["bensham-hospital","bensham-family-practice","bridges-medical-practice","westerhope-medical-centre","cobalt-hospital"],
+  "NE11 0DP": ["bensham-hospital","bensham-family-practice","bridges-medical-practice","westerhope-medical-centre","cobalt-hospital"],
+  "NE11": ["bensham-hospital","bensham-family-practice","bridges-medical-practice","westerhope-medical-centre","cobalt-hospital"],
   "DEFAULT": ["vanburgh","greenwich","blackheath","charlton","woolwich"]
 }

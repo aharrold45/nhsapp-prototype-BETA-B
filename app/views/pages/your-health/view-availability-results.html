@@ -9,7 +9,6 @@
   <style>
     .search-summary { margin-bottom: 24px }
     .search-summary__row { padding: 12px 0; border-bottom: 1px solid #aeb7bd }
-    .search-summary__row:first-child { border-top: 1px solid #aeb7bd }
     .search-summary__label { font-weight: 700; margin: 0 0 2px }
     .search-summary__value { margin: 0 0 4px; color: #212b32 }
     .provider-card { display: flex; align-items: center; text-decoration: none; color: inherit; background: #fff; border: 1px solid #aeb7bd; border-radius: 4px; padding: 16px; margin-bottom: 16px }
@@ -30,7 +29,7 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-full">
 
-      <h1 class="nhsapp-page-heading nhsuk-heading-l">Available blood test providers</h1>
+  <h1 class="app-dynamic-page-title__heading nhsuk-heading-l">Clinic results</h1>
 
       {% if debug == '1' %}
         <h2 class="nhsuk-heading-m">Debug: clinics payload</h2>
@@ -39,25 +38,11 @@
 
       <div class="search-summary">
         <div class="search-summary__row">
-          <p class="search-summary__label">Near</p>
+          <p class="search-summary__label">5 clinics near</p>
           <p class="search-summary__value">{{ postcode }}</p>
           <a class="nhsuk-link" href="/pages/your-health/view-availability">Change</a>
         </div>
-        <div class="search-summary__row">
-          <p class="search-summary__label">Access needs</p>
-          <p class="search-summary__value">
-            {%- if data['access'] == 'yes' and data['access-needs'] -%}
-              {%- if data['access-needs'] is string -%}
-                {{ data['access-needs'] }}
-              {%- else -%}
-                {{ data['access-needs'] | join(', ') }}
-              {%- endif -%}
-            {%- else -%}
-              No access needs
-            {%- endif -%}
-          </p>
-          <a class="nhsuk-link" href="/pages/your-health/view-availability">Change</a>
-        </div>
+
       </div>
 
       <div class="filter-row">

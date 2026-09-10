@@ -7,7 +7,7 @@
       "address": "12 Station Road, SE7 7HX",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 40 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "greenwich": {
       "id": "greenwich",
@@ -16,7 +16,7 @@
       "address": "45 Church Street, SE7 7HJ",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "blackheath": {
       "id": "blackheath",
@@ -25,7 +25,7 @@
       "address": "3 High Street, SE7 7HL",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Requires improvement",
-      "durationDesc": "Please allow 30 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "charlton": {
       "id": "charlton",
@@ -52,7 +52,7 @@
       "address": "North Road, Hertford, SG14 1LP",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 40 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "qeii": {
       "id": "qeii",
@@ -61,7 +61,7 @@
       "address": "Howlands, Welwyn Garden City, AL7 4HQ",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "princess-alexandra": {
       "id": "princess-alexandra",
@@ -70,7 +70,7 @@
       "address": "Hamstel Road, Harlow, CM20 1QX",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Requires improvement",
-      "durationDesc": "Please allow 30 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "st-margarets": {
       "id": "st-margarets",
@@ -80,7 +80,7 @@
       "address": "The Plain, Epping, CM16 6TN",
       "openingHours": "9am - 5pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30 to 60 minutes."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "chase-farm": {
       "id": "chase-farm",
@@ -91,7 +91,6 @@
       "cqcRating": "Outstanding",
       "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
-
     "balham-health-centre": {
       "id": "balham-health-centre",
       "name": "Balham Health Centre",
@@ -99,7 +98,7 @@
       "address": "120 Bedford Hill, London, SW12 9HP",
       "openingHours": "8am - 6:30pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 to 40 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "wandsworth-medical-centre": {
       "id": "wandsworth-medical-centre",
@@ -108,7 +107,7 @@
       "address": "4 Mitcham Road, London, SW17 9NA",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "tooting-south-medical": {
       "id": "tooting-south-medical",
@@ -118,7 +117,7 @@
       "address": "52 Longmead Road, London, SW17 9LA",
       "openingHours": "8am - 7pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30 to 60 minutes.",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment.",
       "busyPeriods": "Busy periods are: 8am - 10am and 4:30pm - 7pm."
     },
     "st-georges-hospital": {
@@ -128,7 +127,7 @@
       "address": "Blackshaw Road, London, SW17 0QT",
       "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 40 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "kings-college-hospital": {
       "id": "kings-college-hospital",
@@ -137,9 +136,8 @@
       "address": "Denmark Hill, London, SE5 9RS",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Outstanding",
-      "durationDesc": "Please allow 40 to 50 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
-
     "castle-medical-centre": {
       "id": "castle-medical-centre",
       "name": "Castle Medical Centre",
@@ -147,7 +145,7 @@
       "address": "6 Castle Hill, Kenilworth, CV8 1RG",
       "openingHours": "8am - 6:30pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "coventry-walk-in": {
       "id": "coventry-walk-in",
@@ -157,7 +155,7 @@
       "address": "Lower Precinct, Coventry, CV1 1DX",
       "openingHours": "7am - 7pm Monday to Sunday",
       "cqcRating": "Good",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30 to 60 minutes.",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment.",
       "busyPeriods": "Busy periods are: 8am - 10am, midday - 2pm and 5pm - 7pm."
     },
     "uhcw": {
@@ -167,7 +165,7 @@
       "address": "Clifford Bridge Road, Coventry, CV2 2DX",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 40 to 50 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "warwick-hospital": {
       "id": "warwick-hospital",
@@ -176,7 +174,7 @@
       "address": "Lakin Road, Warwick, CV34 5BW",
       "openingHours": "8am - 5:30pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "hospital-st-cross": {
       "id": "hospital-st-cross",
@@ -185,9 +183,8 @@
       "address": "Barby Road, Rugby, CV22 5PX",
       "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Requires improvement",
-      "durationDesc": "Please allow 30 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
-
     "sole-bay-health": {
       "id": "sole-bay-health",
       "name": "Sole Bay Health Centre",
@@ -195,7 +192,7 @@
       "address": "Blyburgate, Southwold, IP18 6AX",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 to 40 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "aldeburgh-community": {
       "id": "aldeburgh-community",
@@ -204,7 +201,7 @@
       "address": "Park Road, Aldeburgh, IP15 5ES",
       "openingHours": "8:30am - 5:30pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "saxmundham-health": {
       "id": "saxmundham-health",
@@ -214,7 +211,7 @@
       "address": "1 Saxon Place, Saxmundham, IP17 1XE",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30 to 60 minutes.",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment.",
       "busyPeriods": "Busy periods are: 8am - 10am and midday - 2pm."
     },
     "carlton-court": {
@@ -224,7 +221,7 @@
       "address": "Carlton Road, Saxmundham, IP17 2QN",
       "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Requires improvement",
-      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "norfolk-suffolk-nhs": {
       "id": "norfolk-suffolk-nhs",
@@ -233,9 +230,8 @@
       "address": "Ipswich Hospital, Heath Road, Ipswich, IP4 5PD",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 40 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
-
     "ashford-health-centre": {
       "id": "ashford-health-centre",
       "name": "Ashford Health Centre",
@@ -244,7 +240,7 @@
       "address": "Church Road, Ashford, TW15 2TS",
       "openingHours": "8am - 6:30pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30 to 60 minutes.",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment.",
       "busyPeriods": "Busy periods are: 8am - 10am and 4pm - 6:30pm."
     },
     "ashford-hospital": {
@@ -254,7 +250,7 @@
       "address": "London Road, Ashford, TW15 3AA",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 40 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "studholme-medical-centre": {
       "id": "studholme-medical-centre",
@@ -263,7 +259,7 @@
       "address": "Fordbridge Road, Ashford, TW15 2SW",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "st-peters-hospital": {
       "id": "st-peters-hospital",
@@ -272,7 +268,7 @@
       "address": "Guildford Road, Chertsey, KT16 0PZ",
       "openingHours": "8am - 5:30pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 40 to 50 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "st-davids-health-centre": {
       "id": "st-davids-health-centre",
@@ -281,7 +277,7 @@
       "address": "Lysons Avenue, Ash Vale, GU12 5QH",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Requires improvement",
-      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "stow-lodge": {
       "id": "stow-lodge",
@@ -291,7 +287,7 @@
       "address": "Milton Road South, Stowmarket, IP14 1EE",
       "openingHours": "8am - 6pm Monday to Saturday",
       "cqcRating": "Good",
-      "durationDesc": "Walk-in blood tests are available during opening hours. No appointment needed."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "ipswich-hospital": {
       "id": "ipswich-hospital",
@@ -300,7 +296,7 @@
       "address": "Heath Road, Ipswich, IP4 5PD",
       "openingHours": "7:30am - 5pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "nuffield-ipswich": {
       "id": "nuffield-ipswich",
@@ -309,7 +305,7 @@
       "address": "Sproughton Road, Ipswich, IP1 5BE",
       "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "west-suffolk-hospital": {
       "id": "west-suffolk-hospital",
@@ -318,7 +314,7 @@
       "address": "Hardwick Lane, Bury St Edmunds, IP33 2QZ",
       "openingHours": "7:30am - 4pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "colchester-hospital": {
       "id": "colchester-hospital",
@@ -327,9 +323,8 @@
       "address": "Turner Road, Colchester, CO4 5JL",
       "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Great",
-      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
-
     "pinderfields-hospital": {
       "id": "pinderfields-hospital",
       "name": "Pinderfields Hospital",
@@ -337,7 +332,7 @@
       "address": "Aberford Road, Wakefield, WF1 4DG",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 40 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "fieldhead-hospital": {
       "id": "fieldhead-hospital",
@@ -346,7 +341,7 @@
       "address": "Ouchthorpe Lane, Wakefield, WF1 3SP",
       "openingHours": "8am - 5:30pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 to 40 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "dewsbury-district-hospital": {
       "id": "dewsbury-district-hospital",
@@ -355,7 +350,7 @@
       "address": "Halifax Road, Dewsbury, WF13 4HS",
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 to 45 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "newton-lodge": {
       "id": "newton-lodge",
@@ -365,7 +360,7 @@
       "address": "Ouchthorpe Lane, Wakefield, WF1 3SP",
       "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "This clinic operates a walk in only service with tests expected to take 30 to 60 minutes.",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment.",
       "busyPeriods": "Busy periods are: 8am - 10am and midday - 2pm."
     },
     "pontefract-hospital": {
@@ -375,7 +370,52 @@
       "address": "Friarwood Lane, Pontefract, WF8 1PL",
       "openingHours": "8am - 5pm Monday to Friday",
       "cqcRating": "Good",
-      "durationDesc": "Please allow 30 minutes for your appointment."
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "bensham-hospital": {
+      "id": "bensham-hospital",
+      "name": "Bensham Hospital",
+      "distance": "0.4 miles away",
+      "address": "Saltwell Road, Gateshead, NE8 4YL",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "bensham-family-practice": {
+      "id": "bensham-family-practice",
+      "name": "Bensham Family Practice",
+      "distance": "0.9 miles away",
+      "address": "9 Bensham Road, Gateshead, NE8 1AA",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "bridges-medical-practice": {
+      "id": "bridges-medical-practice",
+      "name": "Bridges Medical Practice",
+      "distance": "2.1 miles away",
+      "address": "57 High Street, Gateshead, NE8 2AP",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "westerhope-medical-centre": {
+      "id": "westerhope-medical-centre",
+      "name": "Westerhope Medical Centre",
+      "distance": "5.3 miles away",
+      "address": "Hillhead Road, Newcastle upon Tyne, NE5 1DP",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "cobalt-hospital": {
+      "id": "cobalt-hospital",
+      "name": "Cobalt Hospital",
+      "distance": "7.8 miles away",
+      "address": "Homepaddock House, Cobalt Business Park, Newcastle upon Tyne, NE27 0QJ",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     }
   }
 }

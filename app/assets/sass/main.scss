@@ -60,11 +60,9 @@
 // This is used to ensure the content does not stretch too wide on larger screens
 // and to maintain a consistent look with the NHS App design.
 .nhs-app-native .nhsuk-width-container {
-  max-width: 704px; // 768px - 64px (32px padding on each side)
-
-  @include nhsuk-media-query($from: desktop) {
-    margin: 0 auto;
-  }
+  max-width: 704px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .app-icon--tick {
