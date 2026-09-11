@@ -416,6 +416,96 @@
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "basildon-university-hospital": {
+      "id": "basildon-university-hospital",
+      "name": "Basildon University Hospital",
+      "distance": "0.6 miles away",
+      "address": "Nethermayne, Basildon, SS16 5NL",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "noak-bridge-medical-centre": {
+      "id": "noak-bridge-medical-centre",
+      "name": "Noak Bridge Medical Centre",
+      "distance": "1.4 miles away",
+      "address": "Noak Bridge, Basildon, SS15 4HY",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "fryerns-medical-centre": {
+      "id": "fryerns-medical-centre",
+      "name": "Fryerns Medical Centre",
+      "distance": "2.1 miles away",
+      "address": "Fryerns, Basildon, SS14 3PG",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "aegis-medical-centre": {
+      "id": "aegis-medical-centre",
+      "name": "Aegis Medical Centre",
+      "distance": "3.7 miles away",
+      "address": "Pitsea, Basildon, SS13 3BQ",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "clayhill-medical-practice": {
+      "id": "clayhill-medical-practice",
+      "name": "Clayhill Medical Practice",
+      "distance": "5.2 miles away",
+      "address": "Clay Hill Road, Basildon, SS16 5AU",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "the-ash-surgery": {
+      "id": "the-ash-surgery",
+      "name": "The Ash Surgery",
+      "distance": "0.3 miles away",
+      "address": "Ashfield Road, Liverpool, L17 0BX",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "woolton-house-medical-centre": {
+      "id": "woolton-house-medical-centre",
+      "name": "Woolton House Medical Centre",
+      "distance": "1.8 miles away",
+      "address": "Woolton Road, Liverpool, L25 5JA",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "lance-lane-medical-centre": {
+      "id": "lance-lane-medical-centre",
+      "name": "Lance Lane Medical Centre",
+      "distance": "2.4 miles away",
+      "address": "Lance Lane, Liverpool, L15 6TW",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "broadgreen-hospital": {
+      "id": "broadgreen-hospital",
+      "name": "Broadgreen Hospital",
+      "distance": "3.1 miles away",
+      "address": "Thomas Drive, Liverpool, L14 3LB",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "royal-liverpool-university-hospital": {
+      "id": "royal-liverpool-university-hospital",
+      "name": "Royal Liverpool University Hospital",
+      "distance": "4.9 miles away",
+      "address": "Prescot Street, Liverpool, L7 8XP",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     }
   }
 }

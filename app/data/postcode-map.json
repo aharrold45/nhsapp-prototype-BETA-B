@@ -15,5 +15,11 @@
   "NE110DP": ["bensham-hospital","bensham-family-practice","bridges-medical-practice","westerhope-medical-centre","cobalt-hospital"],
   "NE11 0DP": ["bensham-hospital","bensham-family-practice","bridges-medical-practice","westerhope-medical-centre","cobalt-hospital"],
   "NE11": ["bensham-hospital","bensham-family-practice","bridges-medical-practice","westerhope-medical-centre","cobalt-hospital"],
+  "SS131QL": ["basildon-university-hospital","noak-bridge-medical-centre","fryerns-medical-centre","aegis-medical-centre","clayhill-medical-practice"],
+  "SS13 1QL": ["basildon-university-hospital","noak-bridge-medical-centre","fryerns-medical-centre","aegis-medical-centre","clayhill-medical-practice"],
+  "SS13": ["basildon-university-hospital","noak-bridge-medical-centre","fryerns-medical-centre","aegis-medical-centre","clayhill-medical-practice"],
+  "L189UQ": ["the-ash-surgery","woolton-house-medical-centre","lance-lane-medical-centre","broadgreen-hospital","royal-liverpool-university-hospital"],
+  "L18 9UQ": ["the-ash-surgery","woolton-house-medical-centre","lance-lane-medical-centre","broadgreen-hospital","royal-liverpool-university-hospital"],
+  "L18": ["the-ash-surgery","woolton-house-medical-centre","lance-lane-medical-centre","broadgreen-hospital","royal-liverpool-university-hospital"],
   "DEFAULT": ["vanburgh","greenwich","blackheath","charlton","woolwich"]
 }
