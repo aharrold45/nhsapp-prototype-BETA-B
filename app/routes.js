@@ -53,10 +53,13 @@ function buildUrl(base, obj) {
 }
 
 function parseSlotHour(slot) {
-	const m = (slot || '').match(/(\d+):(\d+)\s*(am|pm)/i);
+	const s = (slot || '').toLowerCase().trim();
+	if (s === 'midnight') return 0;
+	if (s === 'midday') return 12;
+	const m = s.match(/^(\d{1,2})(?::\d{2})?\s*(am|pm)$/);
 	if (!m) return 0;
 	let h = parseInt(m[1]);
-	const p = m[3].toLowerCase();
+	const p = m[2];
 	if (p === 'pm' && h !== 12) h += 12;
 	if (p === 'am' && h === 12) h = 0;
 	return h;
@@ -137,18 +140,13 @@ router.get('/pages/your-health/view-availability-results', (req, res) => {
 
 	const clinics = clinicIds.slice(0, 5).map((id, clinicIndex) => {
 		const c = clinicsList.find(x => x.id === id) || { id, name: id };
-		let times;
-		if (filterCount > 0) {
-			const fullDays = availability.generateFullAvailability(key, id, c.openingHours, 56, clinicIndex);
-			times = filteredSlotsFromFull(fullDays, filterDays, filterTimes);
-		} else {
-			times = (c && c.times) ? c.times : availability.generateTimes(key, id, c.openingHours, clinicIndex);
-		}
+		const fullDays = availability.generateFullAvailability(key, id, c.openingHours, 56, clinicIndex);
+		const times = filteredSlotsFromFull(fullDays, filterDays, filterTimes);
 		const clinicUrl = buildUrl('/pages/your-health/clinic-availability', {
 			clinic: id, postcode, 'filter-days': filterDays, 'filter-times': filterTimes
 		});
 		return Object.assign({}, c, { times, clinicUrl });
-	});
+	}).filter(c => filterCount === 0 || c.times.length > 0);
 
 	const filterPageUrl = buildUrl('/pages/your-health/clinic-availability-filter', {
 		postcode, 'filter-days': filterDays, 'filter-times': filterTimes, returnTo: 'results'
@@ -274,12 +272,16 @@ router.get('/pages/your-health/select-time', (req, res) => {
 	const ord = n + (ordSuffixes[(v - 20) % 10] || ordSuffixes[v] || ordSuffixes[0]);
 	const dateHeading = dayNames[d.getDay()] + ' ' + ord + ' ' + day.month;
 
+	const filterTimes = [].concat(req.query['filter-times'] || []).filter(v => v !== '_unchecked');
 	const daytime = [...(day.morning || []), ...(day.afternoon || [])];
 	const dtCount = parseInt(req.query.count, 10);
-	const slots = [
+	let slots = [
 		...(dtCount > 0 ? daytime.slice(0, dtCount) : daytime),
 		...(day.evening || [])
 	];
+	if (filterTimes.length) {
+		slots = slots.filter(s => slotMatchesTimeFilter(s.start, filterTimes));
+	}
 
 	res.render('pages/your-health/select-time', {
 		clinic,

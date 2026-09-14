@@ -157,10 +157,13 @@
       }
 
       function parseHour(timeStr) {
-        var m = (timeStr || '').match(/(\d+):(\d+)\s*(am|pm)/i);
+        var s = (timeStr || '').toLowerCase().trim();
+        if (s === 'midnight') return 0;
+        if (s === 'midday') return 12;
+        var m = s.match(/^(\d{1,2})(?::\d{2})?\s*(am|pm)$/);
         if (!m) return 0;
         var h = parseInt(m[1]);
-        var p = m[3].toLowerCase();
+        var p = m[2];
         if (p === 'pm' && h !== 12) h += 12;
         if (p === 'am' && h === 12) h = 0;
         return h;
@@ -212,9 +215,8 @@
         return min + Math.floor(rng * (max - min + 1));
       }
 
-      function makeCard(day, label, url) {
-        var allSlots = (day.morning || []).concat(day.afternoon || []).concat(day.evening || []);
-        var count = allSlots.length;
+      function makeCard(day, label, url, dtCount) {
+        var count = dtCount !== undefined ? dtCount : (day.morning || []).concat(day.afternoon || []).concat(day.evening || []).length;
         var card = document.createElement('a');
         card.className = 'date-card';
         card.href = url;
@@ -240,13 +242,17 @@
           msg.textContent = 'No availability matching your preferences.';
           container.appendChild(msg);
         } else {
+          var filterQs = activeFilters.times.map(function(t) { return '&filter-times=' + encodeURIComponent(t); }).join('') +
+                         activeFilters.days.map(function(d) { return '&filter-days=' + encodeURIComponent(d); }).join('');
           matchingDays.forEach(function(day) {
             var url = '/pages/your-health/select-time?clinic=' + clinicId +
                       '&postcode=' + postcode +
                       '&iso=' + encodeURIComponent(day.iso) +
                       '&date=' + encodeURIComponent(day.dateLabel) +
-                      '&count=0';
-            container.appendChild(makeCard(day, 'Preferences available', url));
+                      '&count=0' + filterQs;
+            var allSlots = (day.morning || []).concat(day.afternoon || []).concat(day.evening || []);
+            var filteredCount = allSlots.filter(slotMatchesTimeFilter).length;
+            container.appendChild(makeCard(day, 'Preferences available', url, filteredCount));
           });
         }
         var loadMoreWrap = document.getElementById('load-more-wrap');
@@ -258,12 +264,13 @@
           var batch = availDays.slice(shown, shown + BATCH);
           batch.forEach(function(day) {
             var dtCount = daytimeCount(day);
+            var totalCount = dtCount + (day.evening || []).length;
             var url = '/pages/your-health/select-time?clinic=' + clinicId +
                       '&postcode=' + postcode +
                       '&iso=' + encodeURIComponent(day.iso) +
                       '&date=' + encodeURIComponent(day.dateLabel) +
                       '&count=' + dtCount;
-            container.appendChild(makeCard(day, '', url));
+            container.appendChild(makeCard(day, '', url, totalCount));
           });
           shown += batch.length;
           var loadMoreWrap = document.getElementById('load-more-wrap');
