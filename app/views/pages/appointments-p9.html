@@ -26,12 +26,18 @@
         {% set apptBadgeCount = 2 %}
       {% endif %}
 
+      {{ nhsappCardGroup({
+        stacked: true,
+        cards: [
+          { title: 'Book an appointment', href: '/pages/appointments/book-an-appointment', badgeLarge: { count: apptBadgeCount, label: 'notifications' } }
+        ]
+      }) }}
+
       <!-- GP Surgery -->
       {{ nhsappCardGroup({
         stacked: true,
         headingHtml: '<h2 class="nhsuk-heading-m nhsuk-u-margin-top-6 nhsuk-u-margin-bottom-20">GP Surgery</h2>',
         cards: [
-          { title: 'Book an appointment', href: '/pages/appointments/pause' },
           { title: 'Manage GP appointments', href: '/pages/appointments/pause' },
           { title: 'Appointment notes and other updates', href: '/pages/appointments/pause' },
           { title: 'Request a letter or information', href: '/pages/appointments/pause' }
