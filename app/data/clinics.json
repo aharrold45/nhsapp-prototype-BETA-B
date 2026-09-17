@@ -506,6 +506,51 @@
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "tower-bridge-hospital": {
+      "id": "tower-bridge-hospital",
+      "name": "Tower Bridge Hospital",
+      "distance": "0.4 miles away",
+      "address": "Prescot Street, London, E1 8BB",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "spitalfields-community-health": {
+      "id": "spitalfields-community-health",
+      "name": "Spitalfields Community Health Centre",
+      "distance": "0.9 miles away",
+      "address": "Commercial Street, London, E1 6LP",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "jubilee-street-practice": {
+      "id": "jubilee-street-practice",
+      "name": "The Jubilee Street Practice",
+      "distance": "1.5 miles away",
+      "address": "Jubilee Street, London, E1 3BP",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "palm-medical-centre": {
+      "id": "palm-medical-centre",
+      "name": "PALM Medical Centre",
+      "distance": "2.1 miles away",
+      "address": "Mile End Road, London, E1 4TP",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "albion-health-centre": {
+      "id": "albion-health-centre",
+      "name": "Albion Health Centre",
+      "distance": "2.8 miles away",
+      "address": "Albion Street, London, E1 5PQ",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     }
   }
 }
