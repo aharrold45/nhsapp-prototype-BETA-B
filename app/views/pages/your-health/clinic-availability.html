@@ -13,13 +13,6 @@
     .ca-section-break { border:0; border-top:1px solid #d8dde0; margin:20px 0; }
     .ca-meta-label { font-weight:700; margin:0 0 4px 0; }
     .ca-address { margin:0 0 8px 0; }
-    .ca-cqc-rating { display:flex; align-items:center; gap:10px; margin:8px 0; }
-    .ca-cqc-dot { width:18px; height:18px; border-radius:50%; flex:0 0 auto; }
-    .ca-cqc-dot--good { background:#007f3b; }
-    .ca-cqc-dot--improve { background:#ffb81c; }
-    .ca-cqc-dot--outstanding { background:#330072; }
-    .ca-cqc-dot--inadequate { background:#d5281b; }
-
     .dates-list { border:1px solid #aeb7bd; margin-bottom:16px; }
     .date-card { display:flex; align-items:center; text-decoration:none; color:inherit; padding:16px; border-bottom:1px solid #aeb7bd; background:#fff; }
     .date-card:last-child { border-bottom:none; }
@@ -42,22 +35,8 @@
 
       <h1 class="nhsapp-page-heading nhsuk-heading-l">{{ clinic.name }}</h1>
 
-      <h2 class="nhsuk-heading-s">Care Quality Commission inspection rating.</h2>
-      <div class="ca-cqc-rating">
-        {% set rating = clinic.cqcRating | lower %}
-        {% if rating == 'good' %}
-          {% set dotClass = 'ca-cqc-dot--good' %}
-        {% elif 'improve' in rating %}
-          {% set dotClass = 'ca-cqc-dot--improve' %}
-        {% elif rating == 'outstanding' %}
-          {% set dotClass = 'ca-cqc-dot--outstanding' %}
-        {% else %}
-          {% set dotClass = 'ca-cqc-dot--inadequate' %}
-        {% endif %}
-        <span class="ca-cqc-dot {{ dotClass }}" aria-hidden="true"></span>
-        <span>Overall: <strong>{{ clinic.cqcRating }}</strong></span>
-      </div>
-      <p><a class="nhsuk-link" href="#">Visit the CQC site for more information</a></p>
+      <p class="ca-meta-label">Opening hours</p>
+      <p class="nhsuk-body nhsuk-u-margin-bottom-4">{{ clinic.openingHours }}</p>
 
       <hr class="ca-section-break" />
 
