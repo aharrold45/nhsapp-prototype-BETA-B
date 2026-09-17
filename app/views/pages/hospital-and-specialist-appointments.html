@@ -16,18 +16,10 @@
       <h1 class="app-dynamic-page-title__heading nhsuk-heading-l">Hospital and specialist appointments</h1>
       <p>View and manage your upcoming and past hospital appointments.</p>
 
-      {% if data.bookedAppointment and data['homeTestOrdered'] %}
-        {% set apptBadgeCount = 0 %}
-      {% elif data.bookedAppointment or data['homeTestOrdered'] %}
-        {% set apptBadgeCount = 1 %}
-      {% else %}
-        {% set apptBadgeCount = 2 %}
-      {% endif %}
-
       {{ nhsappCardGroup({
         stacked: true,
         cards: [
-          { title: 'Appointment Invitations', href: '/pages/your-health/appointment-invitations', badgeLarge: { count: apptBadgeCount, label: 'notifications' } }
+          { title: 'Appointment Invitations', href: '/pages/your-health/appointment-invitations' }
         ]
       }) }}
 
