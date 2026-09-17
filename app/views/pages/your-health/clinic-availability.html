@@ -35,16 +35,16 @@
 
       <h1 class="nhsapp-page-heading nhsuk-heading-l">{{ clinic.name }}</h1>
 
-      <p class="ca-meta-label">Opening hours</p>
-      <p class="nhsuk-body nhsuk-u-margin-bottom-4">{{ clinic.openingHours }}</p>
-
-      <hr class="ca-section-break" />
-
       <p class="ca-meta-label">Location</p>
       {% if clinic.address %}
         <p class="ca-address nhsuk-body">{{ clinic.address }}</p>
       {% endif %}
       <p><a class="nhsuk-link" href="#">Map and directions</a></p>
+
+      <hr class="ca-section-break" />
+
+      <p class="ca-meta-label">Opening hours</p>
+      <p class="nhsuk-body nhsuk-u-margin-bottom-4">{{ clinic.openingHours }}</p>
 
       <hr class="ca-section-break" />
 
