@@ -102,6 +102,15 @@ router.get('/', (req, res) => {
 	res.render('pages/home-p9');
 });
 
+// Appointment invitations — pass expiry date 3 weeks from today
+router.get('/pages/your-health/appointment-invitations', (_req, res) => {
+	const expiry = new Date();
+	expiry.setDate(expiry.getDate() + 21);
+	const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+	const expiryDate = `${expiry.getDate()} ${months[expiry.getMonth()]} ${expiry.getFullYear()}`;
+	res.render('pages/your-health/appointment-invitations', { expiryDate });
+});
+
 // Arrange test — redirect Start button based on chosen test type
 router.post('/pages/your-health/arrange-test', (req, res) => {
 	if (req.body['test-type'] === 'clinic') {
