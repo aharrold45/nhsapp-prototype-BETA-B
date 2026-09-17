@@ -236,14 +236,9 @@
       if (hasFilters) {
         // Filters active: show ALL matching days with "Preferences available" label
         var matchingDays = availDays.filter(dayMatchesFilters);
-        if (!matchingDays.length) {
-          var msg = document.createElement('p');
-          msg.style.cssText = 'color:#4c6272; padding:20px 0; font-style:italic;';
-          msg.textContent = 'No availability matching your preferences.';
-          container.appendChild(msg);
-        } else {
           var filterQs = activeFilters.times.map(function(t) { return '&filter-times=' + encodeURIComponent(t); }).join('') +
                          activeFilters.days.map(function(d) { return '&filter-days=' + encodeURIComponent(d); }).join('');
+          var cardsAdded = 0;
           matchingDays.forEach(function(day) {
             var url = '/pages/your-health/select-time?clinic=' + clinicId +
                       '&postcode=' + postcode +
@@ -252,9 +247,17 @@
                       '&count=0' + filterQs;
             var allSlots = (day.morning || []).concat(day.afternoon || []).concat(day.evening || []);
             var filteredCount = allSlots.filter(slotMatchesTimeFilter).length;
-            container.appendChild(makeCard(day, 'Preferences available', url, filteredCount));
+            if (filteredCount > 0) {
+              container.appendChild(makeCard(day, 'Preferences available', url, filteredCount));
+              cardsAdded++;
+            }
           });
-        }
+          if (!cardsAdded) {
+            var msg = document.createElement('p');
+            msg.style.cssText = 'color:#4c6272; padding:20px 0; font-style:italic;';
+            msg.textContent = 'No availability matching your preferences.';
+            container.appendChild(msg);
+          }
         var loadMoreWrap = document.getElementById('load-more-wrap');
         if (loadMoreWrap) loadMoreWrap.style.display = 'none';
 
