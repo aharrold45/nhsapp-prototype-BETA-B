@@ -382,6 +382,11 @@ router.get('/pages/your-health/confirm', (req, res) => {
 		req.session.data.bookedAppointment = appointmentRecord(ctx);
 	}
 
+	const expiry = new Date();
+	expiry.setDate(expiry.getDate() + 21);
+	const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+	ctx.expiryDate = `${expiry.getDate()} ${months[expiry.getMonth()]} ${expiry.getFullYear()}`;
+
 	res.render('pages/your-health/confirm', ctx);
 });
 
