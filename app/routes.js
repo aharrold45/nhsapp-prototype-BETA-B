@@ -397,6 +397,10 @@ router.get('/pages/your-health/your-appointment', (req, res) => {
 	if (!ctx.clinic || !ctx.clinic.id) {
 		return res.redirect('/pages/hospital-and-specialist-appointments');
 	}
+	const expiry = new Date();
+	expiry.setDate(expiry.getDate() + 21);
+	const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+	ctx.expiryDate = `${expiry.getDate()} ${months[expiry.getMonth()]} ${expiry.getFullYear()}`;
 	res.render('pages/your-health/your-appointment', ctx);
 });
 

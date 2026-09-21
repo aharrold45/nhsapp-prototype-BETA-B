@@ -86,59 +86,28 @@
       <a class="nhsuk-link nhsuk-link--no-visited-state ask-to-cancel" href="/pages/your-health/cancel-appointment?clinic={{ clinic.id | urlencode }}&postcode={{ postcode | urlencode }}&date={{ date | urlencode }}&time={{ time | urlencode }}">Ask to cancel appointment</a><br>
       {% endif %}
 
-      <h2 class="nhsuk-heading-m">Clinician information</h2>
-
-      <details class="nhsuk-expander" style="margin-bottom: 20px;">
-        <summary class="nhsuk-details__summary">
-          <span class="nhsuk-details__summary-text">Patient details</span>
-        </summary>
-        <div class="nhsuk-details__text">
-          <p><strong>Name</strong><br>SURNAME, First name</p>
-          <p><strong>MRN</strong><br>AAA-1234567</p>
-          <p><strong>NHS Number</strong><br>123 456 7890</p>
-          <p><strong>Date of Birth</strong><br>03 / 01 / 1982</p>
-          <p><strong>Sex</strong><br>M</p>
-        </div>
-      </details>
-
-      <details class="nhsuk-expander" style="margin-bottom: 20px;">
-        <summary class="nhsuk-details__summary">
-          <span class="nhsuk-details__summary-text">Order details</span>
-        </summary>
-        <div class="nhsuk-details__text">
-          <p><strong>Accession</strong><br>22-CS-1234567S</p>
-          <p><strong>Test codes</strong><br>C209<br>C8<br>E208<br>F50<br>F207<br>F221<br>F268<br>F340<br>F36<br>F55<br>G3<br>IF3<br>IM2<br>I206<br>I207<br>I6<br>K85<br>W13</p>
-          <p><strong>Specimen type</strong><br>Blood</p>
-          <p><strong>Container size</strong><br>4.00ml</p>
-          <p><strong>Container type</strong><br>Yellow</p>
-          <p><strong>Collection class</strong><br>Immunology</p>
-        </div>
-      </details>
-
       <h2 class="nhsuk-heading-m" style="margin-top: 36px;">Action required</h2>
 
-      {{ nhsappCardGroup({
-        stacked: true,
-        cards: [
-          {
-            href: "#",
-            aboveContent: { html: '<strong class="nhsuk-tag nhsuk-tag--red">Action required</strong>' },
-            title: "Please book a faecal immunochemical test",
-            description: "Because of some of the symptoms you have discussed with your GP a faecal immunochemical test is required to assess you for Iron deficiency anaemia."
-          }
-        ]
-      }) }}
-
-      <h2 class="nhsuk-heading-m nhsuk-u-margin-top-6">More information</h2>
-
-      {{ nhsappCardGroup({
-        cards: [
-          {
-            href: "/pages/your-health/upcoming-and-past-appointments-p9",
-            title: "View upcoming appointments"
-          }
-        ]
-      }) }}
+      <ul class="nhsapp-cards">
+        <li class="nhsapp-card">
+          <div class="nhsapp-card__container">
+            <div class="nhsapp-card__content">
+              <div class="nhsapp-card__above">
+                <strong class="nhsuk-tag nhsuk-tag--red nhsuk-u-margin-bottom-2">Action needed</strong>
+              </div>
+              <a href="/pages/your-health/arrange-test-provider" class="nhsapp-card__link nhsuk-link--no-visited-state nhsuk-heading-m nhsuk-u-margin-top-1 nhsuk-u-margin-bottom-1">
+                Iron deficiency
+              </a>
+              <p class="nhsuk-body nhsuk-u-margin-bottom-0">Breath test</p>
+              <p class="nhsuk-body nhsuk-u-margin-bottom-3">NHS Online Trust</p>
+              <p class="nhsuk-body nhsuk-u-font-weight-bold nhsuk-u-margin-bottom-0">Appointment invitation expires on {{ expiryDate }}</p>
+            </div>
+            <svg class="nhsapp-icon nhsapp-icon--chevron-right" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" height="2rem" width="2rem" viewBox="0 0 24 24">
+              <path d="M8.82 19.11a.97.97 0 0 1-.72-.31.996.996 0 0 1 .03-1.41l5.61-5.38-5.6-5.25c-.4-.38-.42-1.01-.05-1.41.38-.4 1.01-.42 1.41-.05l6.37 5.97c.2.19.31.45.32.72s-.11.54-.31.73l-6.37 6.11c-.19.19-.44.28-.69.28Z" />
+            </svg>
+          </div>
+        </li>
+      </ul>
 
       <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-section-break--l">
 
@@ -186,6 +155,37 @@
         </summary>
         <div class="nhsuk-details__text">
           <p>Iron deficiency anaemia is caused by lack of iron, often because of blood loss or pregnancy. It's treated with iron tablets and by eating iron-rich foods. <a href="https://www.nhs.uk/conditions/iron-deficiency-anaemia/" class="nhsuk-link">Read more about Iron deficiency anaemia</a>.</p>
+        </div>
+      </details>
+
+      <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-section-break--l">
+
+      <h2 class="nhsuk-heading-m">Clinician information</h2>
+
+      <details class="nhsuk-expander" style="margin-bottom: 20px;">
+        <summary class="nhsuk-details__summary">
+          <span class="nhsuk-details__summary-text">Patient details</span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p><strong>Name</strong><br>SURNAME, First name</p>
+          <p><strong>MRN</strong><br>AAA-1234567</p>
+          <p><strong>NHS Number</strong><br>123 456 7890</p>
+          <p><strong>Date of Birth</strong><br>03 / 01 / 1982</p>
+          <p><strong>Sex</strong><br>M</p>
+        </div>
+      </details>
+
+      <details class="nhsuk-expander" style="margin-bottom: 20px;">
+        <summary class="nhsuk-details__summary">
+          <span class="nhsuk-details__summary-text">Order details</span>
+        </summary>
+        <div class="nhsuk-details__text">
+          <p><strong>Accession</strong><br>22-CS-1234567S</p>
+          <p><strong>Test codes</strong><br>C209<br>C8<br>E208<br>F50<br>F207<br>F221<br>F268<br>F340<br>F36<br>F55<br>G3<br>IF3<br>IM2<br>I206<br>I207<br>I6<br>K85<br>W13</p>
+          <p><strong>Specimen type</strong><br>Blood</p>
+          <p><strong>Container size</strong><br>4.00ml</p>
+          <p><strong>Container type</strong><br>Yellow</p>
+          <p><strong>Collection class</strong><br>Immunology</p>
         </div>
       </details>
 
