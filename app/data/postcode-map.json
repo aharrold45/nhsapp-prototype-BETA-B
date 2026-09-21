@@ -24,5 +24,8 @@
   "E16PU": ["tower-bridge-hospital","spitalfields-community-health","jubilee-street-practice","palm-medical-centre","albion-health-centre"],
   "E1 6PU": ["tower-bridge-hospital","spitalfields-community-health","jubilee-street-practice","palm-medical-centre","albion-health-centre"],
   "E1": ["tower-bridge-hospital","spitalfields-community-health","jubilee-street-practice","palm-medical-centre","albion-health-centre"],
+  "BS65RF": ["st-michaels-hospital","bristol-nhs-foundation-trust","broadmead-medical-centre","montpelier-health-centre","nuffield-health-bristol"],
+  "BS6 5RF": ["st-michaels-hospital","bristol-nhs-foundation-trust","broadmead-medical-centre","montpelier-health-centre","nuffield-health-bristol"],
+  "BS6": ["st-michaels-hospital","bristol-nhs-foundation-trust","broadmead-medical-centre","montpelier-health-centre","nuffield-health-bristol"],
   "DEFAULT": ["vanburgh","greenwich","blackheath","charlton","woolwich"]
 }

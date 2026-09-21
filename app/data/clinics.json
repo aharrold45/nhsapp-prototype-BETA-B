@@ -551,6 +551,51 @@
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "st-michaels-hospital": {
+      "id": "st-michaels-hospital",
+      "name": "St Michael's Hospital",
+      "distance": "0.3 miles away",
+      "address": "Southwell Street, Bristol, BS2 8EG",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "bristol-nhs-foundation-trust": {
+      "id": "bristol-nhs-foundation-trust",
+      "name": "Bristol NHS Foundation Trust",
+      "distance": "0.9 miles away",
+      "address": "Upper Maudlin Street, Bristol, BS2 8HW",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "broadmead-medical-centre": {
+      "id": "broadmead-medical-centre",
+      "name": "Broadmead Medical Centre",
+      "distance": "1.4 miles away",
+      "address": "Broadmead, Bristol, BS1 3DX",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "montpelier-health-centre": {
+      "id": "montpelier-health-centre",
+      "name": "Montpelier Health Centre",
+      "distance": "0.6 miles away",
+      "address": "Bath Buildings, Bristol, BS6 5PT",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "nuffield-health-bristol": {
+      "id": "nuffield-health-bristol",
+      "name": "Nuffield Health Bristol Hospital",
+      "distance": "2.1 miles away",
+      "address": "3 Clifton Hill, Bristol, BS8 1BN",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     }
   }
 }
