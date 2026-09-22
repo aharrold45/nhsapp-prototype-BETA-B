@@ -596,6 +596,141 @@
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "yardley-green-medical-centre": {
+      "id": "yardley-green-medical-centre",
+      "name": "Yardley Green Medical Centre",
+      "distance": "0.4 miles away",
+      "address": "Yardley Green Road, Birmingham, B9 5PU",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "hall-green-health": {
+      "id": "hall-green-health",
+      "name": "Hall Green Health",
+      "distance": "1.2 miles away",
+      "address": "Stratford Road, Birmingham, B28 9ES",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "highgate-medical-centre": {
+      "id": "highgate-medical-centre",
+      "name": "Highgate Medical Centre",
+      "distance": "1.8 miles away",
+      "address": "Moseley Road, Birmingham, B12 0HJ",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "heartlands-hospital": {
+      "id": "heartlands-hospital",
+      "name": "Heartlands Hospital",
+      "distance": "2.3 miles away",
+      "address": "Bordesley Green East, Birmingham, B9 5SS",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "moseley-hall-hospital": {
+      "id": "moseley-hall-hospital",
+      "name": "Moseley Hall Hospital",
+      "distance": "3.1 miles away",
+      "address": "Alcester Road, Birmingham, B13 8JL",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "st-bartholomews-hospital": {
+      "id": "st-bartholomews-hospital",
+      "name": "St Bartholomew's Hospital",
+      "distance": "0.5 miles away",
+      "address": "West Smithfield, London, EC1A 7BE",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "royal-london-hospital": {
+      "id": "royal-london-hospital",
+      "name": "The Royal London Hospital",
+      "distance": "1.1 miles away",
+      "address": "Whitechapel Road, London, E1 1FR",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "mile-end-hospital": {
+      "id": "mile-end-hospital",
+      "name": "Mile End Hospital",
+      "distance": "1.9 miles away",
+      "address": "Bancroft Road, London, E1 4DG",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "finsbury-health-centre": {
+      "id": "finsbury-health-centre",
+      "name": "Finsbury Health Centre",
+      "distance": "0.3 miles away",
+      "address": "Pine Street, London, EC1R 0JH",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "islington-central-medical": {
+      "id": "islington-central-medical",
+      "name": "Islington Central Medical Centre",
+      "distance": "2.5 miles away",
+      "address": "Upper Street, London, N1 2TX",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "horfield-health-centre": {
+      "id": "horfield-health-centre",
+      "name": "Horfield Health Centre",
+      "distance": "0.6 miles away",
+      "address": "Dorian Road, Bristol, BS7 0XL",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "southmead-hospital": {
+      "id": "southmead-hospital",
+      "name": "Southmead Hospital",
+      "distance": "1.3 miles away",
+      "address": "Southmead Road, Bristol, BS10 5NB",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "gloucester-road-medical": {
+      "id": "gloucester-road-medical",
+      "name": "Gloucester Road Medical Centre",
+      "distance": "2.0 miles away",
+      "address": "Gloucester Road, Bristol, BS7 8NT",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "north-bristol-nhs-trust": {
+      "id": "north-bristol-nhs-trust",
+      "name": "North Bristol NHS Trust",
+      "distance": "1.5 miles away",
+      "address": "Southmead Road, Bristol, BS10 5NB",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "inhealth-north-bristol": {
+      "id": "inhealth-north-bristol",
+      "name": "InHealth, North Bristol NHS Community Diagnostic Centre",
+      "distance": "1.7 miles away",
+      "address": "Brunel Building, Southmead Road, Bristol, BS10 5NB",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     }
   }
 }

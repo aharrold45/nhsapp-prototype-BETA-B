@@ -27,5 +27,14 @@
   "BS65RF": ["st-michaels-hospital","bristol-nhs-foundation-trust","broadmead-medical-centre","montpelier-health-centre","nuffield-health-bristol"],
   "BS6 5RF": ["st-michaels-hospital","bristol-nhs-foundation-trust","broadmead-medical-centre","montpelier-health-centre","nuffield-health-bristol"],
   "BS6": ["st-michaels-hospital","bristol-nhs-foundation-trust","broadmead-medical-centre","montpelier-health-centre","nuffield-health-bristol"],
+  "B100EQ": ["yardley-green-medical-centre","hall-green-health","highgate-medical-centre","heartlands-hospital","moseley-hall-hospital"],
+  "B10 0EQ": ["yardley-green-medical-centre","hall-green-health","highgate-medical-centre","heartlands-hospital","moseley-hall-hospital"],
+  "B10": ["yardley-green-medical-centre","hall-green-health","highgate-medical-centre","heartlands-hospital","moseley-hall-hospital"],
+  "EC11": ["st-bartholomews-hospital","royal-london-hospital","mile-end-hospital","finsbury-health-centre","islington-central-medical"],
+  "EC1 1": ["st-bartholomews-hospital","royal-london-hospital","mile-end-hospital","finsbury-health-centre","islington-central-medical"],
+  "EC1": ["st-bartholomews-hospital","royal-london-hospital","mile-end-hospital","finsbury-health-centre","islington-central-medical"],
+  "BS348DJ": ["horfield-health-centre","southmead-hospital","gloucester-road-medical","north-bristol-nhs-trust","inhealth-north-bristol"],
+  "BS34 8DJ": ["horfield-health-centre","southmead-hospital","gloucester-road-medical","north-bristol-nhs-trust","inhealth-north-bristol"],
+  "BS34": ["horfield-health-centre","southmead-hospital","gloucester-road-medical","north-bristol-nhs-trust","inhealth-north-bristol"],
   "DEFAULT": ["vanburgh","greenwich","blackheath","charlton","woolwich"]
 }
