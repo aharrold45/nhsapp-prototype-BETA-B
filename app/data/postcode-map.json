@@ -36,5 +36,8 @@
   "BS348DJ": ["horfield-health-centre","southmead-hospital","gloucester-road-medical","north-bristol-nhs-trust","inhealth-north-bristol"],
   "BS34 8DJ": ["horfield-health-centre","southmead-hospital","gloucester-road-medical","north-bristol-nhs-trust","inhealth-north-bristol"],
   "BS34": ["horfield-health-centre","southmead-hospital","gloucester-road-medical","north-bristol-nhs-trust","inhealth-north-bristol"],
+  "GL155LF": ["lydney-health-centre","severnbank-surgery","nuffield-health-bristol","vale-community-hospital","coleford-health-centre"],
+  "GL15 5LF": ["lydney-health-centre","severnbank-surgery","nuffield-health-bristol","vale-community-hospital","coleford-health-centre"],
+  "GL15": ["lydney-health-centre","severnbank-surgery","nuffield-health-bristol","vale-community-hospital","coleford-health-centre"],
   "DEFAULT": ["vanburgh","greenwich","blackheath","charlton","woolwich"]
 }

@@ -731,6 +731,42 @@
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "lydney-health-centre": {
+      "id": "lydney-health-centre",
+      "name": "Lydney Health Centre",
+      "distance": "0.2 miles away",
+      "address": "Grove Road, Lydney, GL15 5JE",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "severnbank-surgery": {
+      "id": "severnbank-surgery",
+      "name": "Severnbank Surgery",
+      "distance": "0.8 miles away",
+      "address": "Lydney, Gloucestershire, GL15 5RA",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "vale-community-hospital": {
+      "id": "vale-community-hospital",
+      "name": "Vale Community Hospital",
+      "distance": "1.6 miles away",
+      "address": "Station Road, Lydney, GL15 5LF",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "coleford-health-centre": {
+      "id": "coleford-health-centre",
+      "name": "Coleford Health Centre",
+      "distance": "4.2 miles away",
+      "address": "Bank Street, Coleford, GL16 8BA",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     }
   }
 }
