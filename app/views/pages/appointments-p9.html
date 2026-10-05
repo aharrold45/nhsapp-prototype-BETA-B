@@ -26,13 +26,6 @@
         {% set apptBadgeCount = 2 %}
       {% endif %}
 
-      {{ nhsappCardGroup({
-        stacked: true,
-        cards: [
-          { title: 'Book an appointment', href: '/pages/appointments/book-an-appointment', badgeLarge: { count: apptBadgeCount, label: 'notifications' } }
-        ]
-      }) }}
-
       <!-- GP Surgery -->
       {{ nhsappCardGroup({
         stacked: true,
@@ -49,7 +42,7 @@
         stacked: true,
         headingHtml: '<h2 class="nhsuk-heading-m nhsuk-u-margin-top-6 nhsuk-u-margin-bottom-20">Hospital</h2>',
         cards: [
-          { title: 'Hospital and specialist appointments', href: '/pages/hospital-and-specialist-appointments' },
+          { title: 'Hospital and specialist appointments', href: '/pages/hospital-and-specialist-appointments', badgeLarge: { count: apptBadgeCount, label: 'notifications' } },
           { title: 'Referrals', href: '/pages/appointments/pause' },
           { title: 'Waiting lists', href: '/pages/appointments/pause' },
           { title: 'Patient initiated follow up (PIFU) requests', href: '/pages/appointments/pause' }
