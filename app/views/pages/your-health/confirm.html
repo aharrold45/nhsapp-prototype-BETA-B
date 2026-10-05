@@ -20,18 +20,6 @@
         }) }}
       {% endif %}
 
-      {% if clinic.type != 'walk-in' %}
-        <style>
-          .add-to-calendar { display:inline-flex; align-items:center; gap:12px; color:#005eb8; font-size:20px; text-decoration:underline; margin:20px 0 20px 0; }
-          .add-to-calendar:hover { color:#7c2855; }
-          .add-to-calendar svg { flex:0 0 auto; }
-        </style> 
-        <a class="add-to-calendar" href="#">
-          {{ nhsappIcon('calendar') }}
-          Add to calendar
-        </a>
-      {% endif %}
-
       <div class="nhsuk-warning-callout">
         <h2 class="nhsuk-warning-callout__label">
           <span role="text">
@@ -61,7 +49,13 @@
         {% else %}
         <div class="nhsuk-summary-list__row">
           <dt class="nhsuk-summary-list__key">Date and time</dt>
-          <dd class="nhsuk-summary-list__value">{{ date }} at {{ time }}</dd>
+          <dd class="nhsuk-summary-list__value">
+            {{ date }} at {{ time }}<br>
+            <a class="nhsuk-link" href="#" style="font-size:16px; display:inline-flex; align-items:center; gap:8px; margin-top:8px;">
+              {{ nhsappIcon('calendar') }}
+              Add to calendar
+            </a>
+          </dd>
         </div>
         {% endif %}
         <div class="nhsuk-summary-list__row">
