@@ -768,48 +768,48 @@
       "cqcRating": "Good",
       "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
-    "grace-swan-health-clinic": {
-      "id": "grace-swan-health-clinic",
-      "name": "Grace Swan Health Clinic",
-      "distance": "0.3 miles away",
-      "address": "Victoria Road, Mablethorpe, LN12 1AT",
-      "openingHours": "8am - 6pm Monday to Friday",
-      "cqcRating": "Good",
-      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
-    },
     "county-hospital-louth": {
       "id": "county-hospital-louth",
       "name": "County Hospital Louth",
-      "distance": "8.2 miles away",
+      "distance": "13.1 miles away",
       "address": "High Holme Road, Louth, LN11 0EU",
-      "openingHours": "8am - 6pm Monday to Friday",
+      "openingHours": "8am to 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "skegness-district-general": {
       "id": "skegness-district-general",
       "name": "Skegness and District General Hospital",
-      "distance": "14.6 miles away",
-      "address": "Skegness, Lincolnshire, PE25 2BS",
-      "openingHours": "8am - 6pm Monday to Friday",
+      "distance": "24 miles away",
+      "address": "Dorothy Avenue, Skegness, PE25 2BS",
+      "openingHours": "8am to 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
-    "diana-princess-of-wales-hospital": {
-      "id": "diana-princess-of-wales-hospital",
+    "diana-princess-wales-hospital": {
+      "id": "diana-princess-wales-hospital",
       "name": "Diana, Princess of Wales Hospital",
-      "distance": "24.8 miles away",
+      "distance": "26.1 miles away",
       "address": "Scartho Road, Grimsby, DN33 2BA",
-      "openingHours": "8am - 6pm Monday to Friday",
+      "openingHours": "8am to 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
     "st-hughs-hospital": {
       "id": "st-hughs-hospital",
       "name": "St Hugh's Hospital",
-      "distance": "25.1 miles away",
+      "distance": "23.2 miles away",
       "address": "Peaks Lane, Grimsby, DN32 9RP",
-      "openingHours": "8am - 6pm Monday to Friday",
+      "openingHours": "8am to 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "grace-swan-health-clinic": {
+      "id": "grace-swan-health-clinic",
+      "name": "Grace Swan Health Clinic",
+      "distance": "17.1 miles away",
+      "address": "Church Lane, Alford, LN13 9HB",
+      "openingHours": "8am to 5pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     },
