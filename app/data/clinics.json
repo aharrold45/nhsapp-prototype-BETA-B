@@ -767,6 +767,96 @@
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "grace-swan-health-clinic": {
+      "id": "grace-swan-health-clinic",
+      "name": "Grace Swan Health Clinic",
+      "distance": "0.3 miles away",
+      "address": "Victoria Road, Mablethorpe, LN12 1AT",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "county-hospital-louth": {
+      "id": "county-hospital-louth",
+      "name": "County Hospital Louth",
+      "distance": "8.2 miles away",
+      "address": "High Holme Road, Louth, LN11 0EU",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "skegness-district-general": {
+      "id": "skegness-district-general",
+      "name": "Skegness and District General Hospital",
+      "distance": "14.6 miles away",
+      "address": "Skegness, Lincolnshire, PE25 2BS",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "diana-princess-of-wales-hospital": {
+      "id": "diana-princess-of-wales-hospital",
+      "name": "Diana, Princess of Wales Hospital",
+      "distance": "24.8 miles away",
+      "address": "Scartho Road, Grimsby, DN33 2BA",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "st-hughs-hospital": {
+      "id": "st-hughs-hospital",
+      "name": "St Hugh's Hospital",
+      "distance": "25.1 miles away",
+      "address": "Peaks Lane, Grimsby, DN32 9RP",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "westbourne-medical-centre": {
+      "id": "westbourne-medical-centre",
+      "name": "Westbourne Medical Centre",
+      "distance": "0.5 miles away",
+      "address": "Milburn Road, Bournemouth, BH4 9HJ",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "poole-hospital": {
+      "id": "poole-hospital",
+      "name": "Poole Hospital",
+      "distance": "1.8 miles away",
+      "address": "Longfleet Road, Poole, BH15 2JB",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "kings-park-hospital": {
+      "id": "kings-park-hospital",
+      "name": "Kings Park Hospital",
+      "distance": "2.1 miles away",
+      "address": "Kings Park Road, Bournemouth, BH7 7DW",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "royal-bournemouth-hospital": {
+      "id": "royal-bournemouth-hospital",
+      "name": "Royal Bournemouth Hospital",
+      "distance": "3.4 miles away",
+      "address": "Castle Lane East, Bournemouth, BH7 7DW",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "university-hospitals-dorset": {
+      "id": "university-hospitals-dorset",
+      "name": "University Hospitals Dorset NHS Foundation Trust",
+      "distance": "3.7 miles away",
+      "address": "Castle Lane East, Bournemouth, BH7 7DW",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     }
   }
 }
