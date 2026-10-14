@@ -45,5 +45,8 @@
   "BH140EA": ["westbourne-medical-centre","poole-hospital","kings-park-hospital","royal-bournemouth-hospital","university-hospitals-dorset"],
   "BH14 0EA": ["westbourne-medical-centre","poole-hospital","kings-park-hospital","royal-bournemouth-hospital","university-hospitals-dorset"],
   "BH14": ["westbourne-medical-centre","poole-hospital","kings-park-hospital","royal-bournemouth-hospital","university-hospitals-dorset"],
+  "NE298BS": ["north-tyneside-general","walkergate-park-hospital","freeman-hospital","royal-victoria-infirmary","south-tyneside-district"],
+  "NE29 8BS": ["north-tyneside-general","walkergate-park-hospital","freeman-hospital","royal-victoria-infirmary","south-tyneside-district"],
+  "NE29": ["north-tyneside-general","walkergate-park-hospital","freeman-hospital","royal-victoria-infirmary","south-tyneside-district"],
   "DEFAULT": ["vanburgh","greenwich","blackheath","charlton","woolwich"]
 }

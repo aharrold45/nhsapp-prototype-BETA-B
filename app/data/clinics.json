@@ -857,6 +857,51 @@
       "openingHours": "8am - 6pm Monday to Friday",
       "cqcRating": "Good",
       "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "north-tyneside-general": {
+      "id": "north-tyneside-general",
+      "name": "North Tyneside General Hospital",
+      "distance": "0.4 miles away",
+      "address": "Rake Lane, North Shields, NE29 8NH",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "walkergate-park-hospital": {
+      "id": "walkergate-park-hospital",
+      "name": "Walkergate Park Hospital",
+      "distance": "4.2 miles away",
+      "address": "Benfield Road, Newcastle upon Tyne, NE6 4QD",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "freeman-hospital": {
+      "id": "freeman-hospital",
+      "name": "Freeman Hospital",
+      "distance": "5.1 miles away",
+      "address": "Freeman Road, High Heaton, Newcastle upon Tyne, NE7 7DN",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "royal-victoria-infirmary": {
+      "id": "royal-victoria-infirmary",
+      "name": "Royal Victoria Infirmary",
+      "distance": "5.8 miles away",
+      "address": "Queen Victoria Road, Newcastle upon Tyne, NE1 4LP",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
+    },
+    "south-tyneside-district": {
+      "id": "south-tyneside-district",
+      "name": "South Tyneside District Hospital",
+      "distance": "7.3 miles away",
+      "address": "Harton Lane, South Shields, NE34 0PL",
+      "openingHours": "8am - 6pm Monday to Friday",
+      "cqcRating": "Good",
+      "durationDesc": "Please allow 20 to 30 minutes for your appointment."
     }
   }
 }
