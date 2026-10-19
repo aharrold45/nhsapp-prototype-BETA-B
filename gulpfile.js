@@ -5,6 +5,7 @@ const babel = require('gulp-babel')
 const clean = require('gulp-clean')
 const nodemon = require('gulp-nodemon')
 const gulpSass = require('gulp-sass')
+const { Transform } = require('stream')
 const PluginError = require('plugin-error')
 const dartSass = require('sass-embedded')
 
@@ -23,6 +24,42 @@ function cleanPublic() {
 // Set Sass compiler
 const sass = gulpSass(dartSass)
 
+// The prototype should always show the NHS App mobile type scale, even in a
+// desktop browser. Strip font-size / line-height declarations from the
+// tablet and desktop media queries so the mobile values always apply.
+function forceMobileFontSizes() {
+  const opener = /@media \(min-width: (?:40\.0625em|48\.0625em)\) \{/g
+  return new Transform({
+    objectMode: true,
+    transform(file, _enc, cb) {
+      if (file.isBuffer() && file.extname === '.css') {
+        const css = file.contents.toString()
+        let out = ''
+        let last = 0
+        let match
+        opener.lastIndex = 0
+        while ((match = opener.exec(css))) {
+          let depth = 1
+          let i = opener.lastIndex
+          while (depth > 0 && i < css.length) {
+            if (css[i] === '{') depth++
+            else if (css[i] === '}') depth--
+            i++
+          }
+          const block = css
+            .slice(match.index, i)
+            .replace(/^[ \t]*(?:font-size|line-height):[^;{}]*;[ \t]*\n/gm, '')
+          out += css.slice(last, match.index) + block
+          last = i
+          opener.lastIndex = i
+        }
+        file.contents = Buffer.from(out + css.slice(last))
+      }
+      cb(null, file)
+    }
+  })
+}
+
 // Compile SASS to CSS
 function compileStyles() {
   return gulp
@@ -40,6 +77,7 @@ function compileStyles() {
         })
       })
     )
+    .pipe(forceMobileFontSizes())
     .pipe(
       gulp.dest('public/css', {
         sourcemaps: '.'

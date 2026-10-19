@@ -57,10 +57,6 @@
 .app-bottom-navigation__label {
   color: nhsuk-colour("white");
   font-size: 12px;
-
-  @include nhsuk-media-query($from: tablet) {
-    font-size: 16px;
-  }
 }
 
 .app-bottom-navigation__label--active {

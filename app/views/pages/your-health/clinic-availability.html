@@ -10,105 +10,112 @@
 {% block content %}
 
   <style>
-    .ca-section-break { border:0; border-top:1px solid #d8dde0; margin:20px 0; }
-    .ca-meta-label { font-weight:700; margin:0 0 4px 0; }
-    .ca-address { margin:0 0 8px 0; }
-    .dates-list { border:1px solid #aeb7bd; margin-bottom:16px; }
-    .date-card { display:flex; align-items:center; text-decoration:none; color:inherit; padding:16px; border-bottom:1px solid #aeb7bd; background:#fff; }
-    .date-card:last-child { border-bottom:none; }
-    .date-card:hover, .date-card:active { background:#fff; }
-    .date-card__body { flex:1; min-width:0; }
-    .date-card__date { display:block; color:#005eb8; font-size:1.125rem; font-weight:700; margin-bottom:4px; }
-    .date-card__slots { font-weight:700; margin:0 0 2px; font-size:1rem; color:#212b32; }
-    .date-card__period { margin:0; font-size:1rem; color:#212b32; }
-    .date-card__chev { flex:0 0 24px; font-size:1.5rem; color:#005eb8; margin-left:12px; line-height:1; }
-    .ca-phone { font-size:1.5rem; font-weight:700; color:#005eb8; display:block; margin-bottom:4px; text-decoration:none; }
-    .ca-phone:hover { text-decoration:underline; }
-    .filter-row { display:flex; align-items:center; justify-content:space-between; background:#f0f4f5; margin:0 -16px 16px; padding:0 16px; }
+    .clinic-availability { --ca-blue:#005eb8; --ca-green:#007f3b; }
+    .clinic-availability .ca-section-break { border:0; border-top:1px solid #d8dde0; margin:20px 0; }
+    .clinic-availability .ca-meta-label { font-weight:700; margin:0 0 4px 0; }
+    .clinic-availability .ca-address { margin:0 0 8px 0; }
+    .clinic-availability .ca-cqc-rating { display:flex; align-items:center; gap:10px; margin:8px 0; }
+    .clinic-availability .ca-cqc-dot { width:18px; height:18px; border-radius:50%; flex:0 0 auto; }
+    .clinic-availability .ca-cqc-dot--good { background:#007f3b; }
+    .clinic-availability .ca-cqc-dot--improve { background:#ffb81c; }
+    .clinic-availability .ca-cqc-dot--outstanding { background:#330072; }
+    .clinic-availability .ca-cqc-dot--inadequate { background:#d5281b; }
+
+    .view-tabs { display:flex; gap: 24px; margin:0; }
+    .tab-panel { background:#fff; margin:0 -16px 24px; padding:24px 16px; }
+    .view-tabs__tab { padding: 12px 12px; background:#d8dde0; color:#212b32; font-size:1rem; text-decoration:underline; }
+    .view-tabs__tab[aria-current="true"] { background:#fff; text-decoration:none; }
+    .day-filter-row { display:flex; align-items:center; justify-content:space-between; margin:0 0 16px; }
+    .day-filter-link { display:inline-flex; align-items:center; gap:10px; padding:8px 0; color:#005eb8; font-size:16px; }
+    .day-filter-clear { color:#005eb8; font-size:16px; }
+
+    .load-more-btn { display:block; width:100%; background:#fff; border:2px solid #005eb8; color:#005eb8; padding:14px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; margin:24px 0 8px; text-align:center; }
+
+    .filter-row { display:flex; align-items:center; justify-content:space-between; background:#f0f4f5; margin:0 -16px 8px; padding:0 16px; }
     .filter-row:hover { background:#e8edee; }
-    .filter-bar { display:flex; align-items:center; gap:10px; background:none; border:none; padding:14px 0; color:#005eb8; font-size:16px; font-weight:700; cursor:pointer; text-align:left; font-family:inherit; text-decoration:none; }
-    .clear-filters-btn { background:none; border:none; color:#005eb8; font-size:16px; cursor:pointer; text-decoration:underline; padding:14px 0; font-family:inherit; white-space:nowrap; }
+    .filter-bar { display:flex; align-items:center; gap:10px; background:none; border:none; padding:14px 0; color:#005eb8; font-size:16px; font-weight:700; cursor:pointer; text-align:left; font-family:inherit; }
+    .clear-filters-btn { display:none; background:none; border:none; color:#005eb8; font-size:16px; cursor:pointer; text-decoration:underline; padding:14px 0; font-family:inherit; white-space:nowrap; }
+
+    .day-heading { font-size:16px; font-weight:normal; margin:20px 0 8px; color:#212b32; }
+    .day-section:first-child .day-heading { margin-top:0; }
+    .period-label { display:none; }
+    .ca-none-available { display:none; }
+    .slots-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-bottom:24px; }
+    .slot-btn { display:flex; align-items:center; justify-content:center; text-align:center; text-decoration:none; background:#fff; border:2px solid #0b5a3b; color:#0b5a3b; min-height:42px; padding:0 4px; border-radius:4px; font-weight:700; font-size:14px; }
+    .slot-btn:hover { background:#f0fff4; }
+    .day-divider { border:none; border-top:1px solid #d8dde0; margin:0; }
+    .no-days-msg { color:#4c6272; text-align:center; padding:40px 0; font-style:italic; }
+    .ca-slot-button { display:block; text-align:center; text-decoration:none; background:#fff; border:2px solid #0b5a3b; color:#0b5a3b; padding:12px 18px; border-radius:8px; font-weight:700; font-size:16px; }
+    .ca-walk-in-select { display:inline-block; margin-top:16px; }
+
   </style>
 
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-full">
+  <div class="clinic-availability">
 
-      <h1 class="nhsapp-page-heading nhsuk-heading-l">{{ clinic.name }}</h1>
+    <h1 class="nhsapp-page-heading nhsuk-heading-l" style="font-weight:normal;">{{ clinic.name }}</h1>
 
-      <p class="ca-meta-label">Location</p>
-      {% if clinic.address %}
-        <p class="ca-address nhsuk-body">{{ clinic.address }}</p>
+    {% if clinic.distance %}
+      <p class="ca-meta-label">Location {{ clinic.distance }}</p>
+    {% endif %}
+    {% if clinic.address %}
+      <p class="ca-address nhsuk-body">{{ clinic.address }}</p>
+    {% endif %}
+    <p style="margin-bottom:16px;"><a class="nhsuk-link" href="#" style="font-size:16px;">Get directions</a></p>
+
+    <hr class="ca-section-break" />
+
+    <p class="ca-meta-label">Opening hours</p>
+    <p class="nhsuk-body">{{ clinic.openingHours }}</p>
+
+    <hr class="ca-section-break" />
+
+    {% if clinic.type == 'walk-in' %}
+
+      <h2 class="nhsuk-heading-m">Availability</h2>
+      <p class="nhsuk-body">{{ clinic.durationDesc }}</p>
+      {% if clinic.busyPeriods %}
+        <p class="nhsuk-body">{{ clinic.busyPeriods }}</p>
       {% endif %}
-      <p><a class="nhsuk-link" href="#">Map and directions</a></p>
+      <a class="ca-slot-button ca-walk-in-select" href="/pages/your-health/check?clinic={{ clinic.id | urlencode }}&postcode={{ postcode | urlencode }}&date={{ 'Walk in' | urlencode }}&time={{ 'Walk in' | urlencode }}">Select walk in</a>
 
-      <hr class="ca-section-break" />
+    {% else %}
 
-      <p class="ca-meta-label">Opening hours</p>
-      <p class="nhsuk-body nhsuk-u-margin-bottom-4">{{ clinic.openingHours }}</p>
+      <p class="nhsuk-body" style="margin-bottom:16px">{{ clinic.durationDesc }}</p>
+      <h2 class="nhsuk-heading-m">Select a time</h2>
+      <div class="day-filter-row">
+        <a class="day-filter-link nhsuk-link" href="{{ filterUrl }}">
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true" focusable="false"><path d="M0 1h20M3 7h14M7 13h6" stroke="#005eb8" stroke-width="2"/></svg>
+          Filter by day{% if filterCount > 0 %} ({{ filterCount }}){% endif %}
+        </a>
+        {% if filterCount > 0 %}<a class="day-filter-clear" href="{{ clearFiltersUrl }}">Clear filter</a>{% endif %}
+      </div>
 
-      <hr class="ca-section-break" />
+      <div id="days-container"></div>
 
-      {% if clinic.type == 'walk-in' %}
+    {% endif %}
 
-        <h2 class="nhsuk-heading-m">Availability</h2>
-        <p class="nhsuk-body">{{ clinic.durationDesc }}</p>
-        {% if clinic.busyPeriods %}
-          <p class="nhsuk-body">{{ clinic.busyPeriods }}</p>
-        {% endif %}
-        <a class="nhsuk-button" style="background:#007f3b; display:inline-block; text-decoration:none; padding:14px 20px; color:#fff; font-weight:700; box-shadow:0 4px 0 #003d20;" href="/pages/your-health/check?clinic={{ clinic.id | urlencode }}&postcode={{ postcode | urlencode }}&date={{ 'Walk in' | urlencode }}&time={{ 'Walk in' | urlencode }}">Select walk in</a>
-
-      {% else %}
-
-        <div class="filter-row">
-          <a class="filter-bar" href="{{ filterPageUrl }}" aria-label="Filter by time and day">
-            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" stroke-width="2"/>
-              <line x1="3" y1="7" x2="15" y2="7" stroke="currentColor" stroke-width="2"/>
-              <line x1="6" y1="13" x2="12" y2="13" stroke="currentColor" stroke-width="2"/>
-            </svg>
-            Filter: Time &amp; day{% if filterCount > 0 %} ({{ filterCount }}){% endif %}
-          </a>
-          {% if filterCount > 0 %}
-            <a class="clear-filters-btn" href="{{ clearFiltersUrl }}">Clear filters</a>
-          {% endif %}
-        </div>
-
-        <h2 class="nhsuk-heading-m">Select a date</h2>
-        <div class="dates-list" id="dates-container"></div>
-        <p id="load-more-wrap" style="display:none; margin-bottom:24px">
-          <a class="nhsuk-link" href="#" id="load-more-btn">Load more days</a>
-        </p>
-
-      {% endif %}
-
-      <hr class="ca-section-break" />
-
-      <h2 class="nhsuk-heading-m">Can't see a time suitable?</h2>
-      <ul class="nhsapp-cards">
-        <li class="nhsapp-card">
-          <div class="nhsapp-card__container">
-            <div class="nhsapp-card__content">
-              <a href="/pages/your-health/arrange-test" class="nhsapp-card__link nhsuk-link--no-visited-state">Order a home test instead</a>
-            </div>
-            <svg class="nhsapp-icon nhsapp-icon--chevron-right" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" height="2rem" width="2rem" viewBox="0 0 24 24">
-              <path d="M8.82 19.11a.97.97 0 0 1-.72-.31.996.996 0 0 1 .03-1.41l5.61-5.38-5.6-5.25c-.4-.38-.42-1.01-.05-1.41.38-.4 1.01-.42 1.41-.05l6.37 5.97c.2.19.31.45.32.72s-.11.54-.31.73l-6.37 6.11c-.19.19-.44.28-.69.28Z" />
-            </svg>
+    <h2 class="nhsuk-heading-m">Can't see a time suitable?</h2>
+    <ul class="nhsapp-cards">
+      <li class="nhsapp-card">
+        <div class="nhsapp-card__container">
+          <div class="nhsapp-card__content">
+            <a class="nhsapp-card__link nhsuk-link--no-visited-state nhsuk-u-font-size-22" href="#">Order a home kit instead</a>
           </div>
-        </li>
-      </ul>
+          {{ nhsappIcon('chevronRight') }}
+        </div>
+      </li>
+    </ul>
 
-      <hr class="ca-section-break" />
+    <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-section-break--l">
 
-      <h2 class="nhsuk-heading-m">Booking over the phone</h2>
-      <p class="nhsuk-body">The easiest way to book and manage a test is through this app. If you would prefer to speak to someone you can call 0800 123 456 (9am - 5pm Monday to Friday).</p>
+    <h2 class="nhsuk-heading-m">Booking over the phone</h2>
+      <p>The easiest way to book and manage a test is through this app. If you would prefer to speak to someone you can call 0800 123 456 (9am to 5pm Monday to Friday)</p>
 
-
-    </div>
   </div>
 
-  <script type="application/json" id="days-data">{{ daysJson | safe }}</script>
+
+<script type="application/json" id="days-data">{{ daysJson | safe }}</script>
   <script type="application/json" id="clinic-meta">{"clinicId":"{{ clinic.id | urlencode }}","postcode":"{{ postcode | urlencode }}"}</script>
-  <script type="application/json" id="active-filters">{{ activeFiltersJson | safe }}</script>
 
   <script>
     (function () {
@@ -116,160 +123,161 @@
       if (!el) return;
       var daysData = JSON.parse(el.textContent);
       var meta = JSON.parse(document.getElementById('clinic-meta').textContent);
-      var activeFilters = JSON.parse(document.getElementById('active-filters').textContent);
       var clinicId = meta.clinicId;
       var postcode = meta.postcode;
-      var hasFilters = activeFilters.days.length > 0 || activeFilters.times.length > 0;
-      var BATCH = 7;
-      var shown = 0;
+
+      var TODAY = new Date();
+      TODAY.setHours(0, 0, 0, 0);
+
+      var MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      var MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var DAYS_LONG = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
       function ordinal(n) {
-        var s = ['th', 'st', 'nd', 'rd'], v = n % 100;
+        var s = ['th','st','nd','rd'], v = n % 100;
         return n + (s[(v - 20) % 10] || s[v] || s[0]);
       }
-
-      function formatDate(dateLabel) {
-        return dateLabel.replace(/(\w+) (\d+) (\w+)/, function (m, dow, day, month) {
-          return dow + ' ' + ordinal(parseInt(day, 10)) + ' ' + month;
-        });
+      function isoDate(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+      function fmtWeekRange(mon, sun) {
+        return ordinal(mon.getDate()) + ' ' + MONTHS_SHORT[mon.getMonth()] + ' – ' + ordinal(sun.getDate()) + ' ' + MONTHS_SHORT[sun.getMonth()];
+      }
+      function fmtMonthYear(mon, sun) {
+        if (mon.getMonth() === sun.getMonth()) return MONTHS_LONG[mon.getMonth()] + ' ' + mon.getFullYear();
+        return MONTHS_LONG[mon.getMonth()] + ' / ' + MONTHS_LONG[sun.getMonth()] + ' ' + sun.getFullYear();
+      }
+      function fmtDayHeading(date) {
+        return DAYS_LONG[date.getDay()] + ' ' + ordinal(date.getDate()) + ' ' + MONTHS_LONG[date.getMonth()];
+      }
+      function getMondayOf(date) {
+        var d = new Date(date);
+        var dow = d.getDay();
+        d.setDate(d.getDate() + (dow === 0 ? -6 : 1 - dow));
+        d.setHours(0, 0, 0, 0);
+        return d;
       }
 
+      var allDays = [];
+      for (var offset = 0; offset < 56; offset++) {
+        var date = new Date(TODAY);
+        date.setDate(TODAY.getDate() + offset);
+        var iso = isoDate(date);
+        var dayData = null;
+        for (var i = 0; i < daysData.length; i++) {
+          if (daysData[i].iso === iso) { dayData = daysData[i]; break; }
+        }
+        if (dayData && dayData.hasSlots) {
+          allDays.push({ data: dayData, heading: fmtDayHeading(date), dayName: DAYS_LONG[date.getDay()] });
+        }
+      }
+
+      var shownCount = 7;
+      var loadMoreClicked = false;
+      var activeFilters = {{ activeFiltersJson | safe }};
+
       function parseHour(timeStr) {
-        var s = (timeStr || '').toLowerCase().trim();
+        var s = (timeStr || '').trim().toLowerCase();
         if (s === 'midnight') return 0;
         if (s === 'midday') return 12;
-        var m = s.match(/^(\d{1,2})(?::\d{2})?\s*(am|pm)$/);
+        var m = s.match(/(\d+)(?::(\d+))?\s*(am|pm)/i);
         if (!m) return 0;
         var h = parseInt(m[1]);
-        var p = m[2];
+        var p = m[3].toLowerCase();
         if (p === 'pm' && h !== 12) h += 12;
         if (p === 'am' && h === 12) h = 0;
         return h;
       }
 
-      function slotMatchesTimeFilter(slot) {
-        if (!activeFilters.times.length) return true;
-        var h = parseHour(slot.start);
-        return activeFilters.times.some(function(f) {
-          if (f === 'before9') return h < 9;
-          if (f === 'morning') return h >= 9 && h < 12;
-          if (f === 'early-afternoon') return h >= 12 && h < 14;
-          if (f === 'late-afternoon') return h >= 14 && h < 17;
-          if (f === 'evening') return h >= 17;
-          return false;
+      function filterSlots(slots) {
+        if (!activeFilters.times.length) return slots;
+        return slots.filter(function(slot) {
+          var h = parseHour(slot.start);
+          return activeFilters.times.some(function(f) {
+            if (f === 'before9') return h < 9;
+            if (f === 'morning') return h >= 9 && h < 12;
+            if (f === 'early-afternoon') return h >= 12 && h < 14;
+            if (f === 'late-afternoon') return h >= 14 && h < 17;
+            if (f === 'evening') return h >= 17;
+            return false;
+          });
         });
       }
 
-      function dayMatchesFilters(day) {
-        if (activeFilters.days.length) {
-          var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-          var d = new Date(day.iso);
-          if (activeFilters.days.indexOf(DAYS[d.getDay()]) === -1) return false;
-        }
-        var allSlots = (day.morning || []).concat(day.afternoon || []).concat(day.evening || []);
-        return allSlots.some(slotMatchesTimeFilter);
+      function slotHref(dayData, slot) {
+        return '/pages/your-health/check?clinic=' + clinicId +
+          '&postcode=' + postcode +
+          '&date=' + encodeURIComponent(dayData.dateLabel) +
+          '&time=' + encodeURIComponent(slot.start);
       }
 
-      function hashSeed(str) {
-        var h = 0;
-        for (var i = 0; i < str.length; i++) {
-          h = (Math.imul(31, h) + str.charCodeAt(i)) >>> 0;
-        }
-        return h;
-      }
-
-      function daytimeCount(day) {
-        var daytime = (day.morning ? day.morning.length : 0) +
-                      (day.afternoon ? day.afternoon.length : 0);
-        var rng = (hashSeed(day.iso || '') % 10000) / 10000;
-        var idx = typeof day.index !== 'undefined' ? day.index : 7;
-        var min, max;
-        if (idx <= 2)       { min = 1; max = 3; }
-        else if (idx <= 5)  { min = 2; max = 5; }
-        else if (idx <= 14) { min = 3; max = 8; }
-        else                { min = 4; max = daytime; }
-        max = Math.min(max, daytime);
-        min = Math.min(min, max);
-        return min + Math.floor(rng * (max - min + 1));
-      }
-
-      function makeCard(day, label, url, dtCount) {
-        var count = dtCount !== undefined ? dtCount : (day.morning || []).concat(day.afternoon || []).concat(day.evening || []).length;
-        var card = document.createElement('a');
-        card.className = 'date-card';
-        card.href = url;
-        card.innerHTML =
-          '<div class="date-card__body">' +
-            '<span class="date-card__date">' + formatDate(day.dateLabel) + '</span>' +
-            '<p class="date-card__slots">' + count + ' ' + (count === 1 ? 'slot' : 'slots') + '</p>' +
-            (label ? '<p class="date-card__period">' + label + '</p>' : '') +
-          '</div>' +
-          '<div class="date-card__chev">&#8250;</div>';
-        return card;
-      }
-
-      var availDays = daysData.filter(function(d) { return d.hasSlots; });
-      var container = document.getElementById('dates-container');
-
-      if (hasFilters) {
-        // Filters active: show ALL matching days with "Preferences available" label
-        var matchingDays = availDays.filter(dayMatchesFilters);
-          var filterQs = activeFilters.times.map(function(t) { return '&filter-times=' + encodeURIComponent(t); }).join('') +
-                         activeFilters.days.map(function(d) { return '&filter-days=' + encodeURIComponent(d); }).join('');
-          var cardsAdded = 0;
-          matchingDays.forEach(function(day) {
-            var url = '/pages/your-health/select-time?clinic=' + clinicId +
-                      '&postcode=' + postcode +
-                      '&iso=' + encodeURIComponent(day.iso) +
-                      '&date=' + encodeURIComponent(day.dateLabel) +
-                      '&count=0' + filterQs;
-            var allSlots = (day.morning || []).concat(day.afternoon || []).concat(day.evening || []);
-            var filteredCount = allSlots.filter(slotMatchesTimeFilter).length;
-            if (filteredCount > 0) {
-              container.appendChild(makeCard(day, 'Preferences available', url, filteredCount));
-              cardsAdded++;
-            }
-          });
-          if (!cardsAdded) {
-            var msg = document.createElement('p');
-            msg.style.cssText = 'color:#4c6272; padding:20px 0; font-style:italic;';
-            msg.textContent = 'No availability matching your preferences.';
-            container.appendChild(msg);
+      function renderPeriod(label, slots, dayData) {
+        var html = '<p class="period-label">' + label + '</p>';
+        if (!slots || !slots.length) {
+          html += '<p class="ca-none-available" style="color:#4c6272; font-size:14px; margin:0 0 16px">None available</p>';
+        } else {
+          html += '<div class="slots-grid">';
+          for (var i = 0; i < slots.length; i++) {
+            html += '<a class="slot-btn" href="' + slotHref(dayData, slots[i]) + '"><span class="nhsuk-u-visually-hidden">' + dayData.dateLabel + ' </span>' + slots[i].start + '</a>';
           }
-        var loadMoreWrap = document.getElementById('load-more-wrap');
-        if (loadMoreWrap) loadMoreWrap.style.display = 'none';
+          html += '</div>';
+        }
+        return html;
+      }
 
-      } else {
-        // No filters: show batches of days, no period label
-        function renderBatch() {
-          var batch = availDays.slice(shown, shown + BATCH);
-          batch.forEach(function(day) {
-            var dtCount = daytimeCount(day);
-            var totalCount = dtCount + (day.evening || []).length;
-            var url = '/pages/your-health/select-time?clinic=' + clinicId +
-                      '&postcode=' + postcode +
-                      '&iso=' + encodeURIComponent(day.iso) +
-                      '&date=' + encodeURIComponent(day.dateLabel) +
-                      '&count=' + dtCount;
-            container.appendChild(makeCard(day, '', url, totalCount));
-          });
-          shown += batch.length;
-          var loadMoreWrap = document.getElementById('load-more-wrap');
-          if (loadMoreWrap) {
-            loadMoreWrap.style.display = shown < availDays.length ? 'block' : 'none';
+      function render() {
+        if (activeFilters.hideList) { document.getElementById('days-container').innerHTML = ''; return; }
+        var filteredDays = allDays.filter(function(day) {
+          if (activeFilters.date && day.data.iso !== activeFilters.date) return false;
+          if (activeFilters.days.length && activeFilters.days.indexOf(day.dayName) === -1) return false;
+          var m = filterSlots(day.data.morning);
+          var a = filterSlots(day.data.afternoon);
+          var e = filterSlots(day.data.evening);
+          return m.length || a.length || e.length;
+        });
+
+        var visible = filteredDays.slice(0, shownCount);
+        var html = '';
+        if (!visible.length) {
+          html = '<p class="no-days-msg">No availability matching your filters.</p>';
+        } else {
+          for (var i = 0; i < visible.length; i++) {
+            var day = visible[i];
+            var isLast = i === visible.length - 1;
+            var morning = filterSlots(day.data.morning);
+            var afternoon = filterSlots(day.data.afternoon);
+            var evening = filterSlots(day.data.evening);
+            html += '<div class="day-section">';
+            // A specific date is already shown above the list, so don't repeat it
+            if (!activeFilters.date) html += '<h2 class="day-heading">' + day.heading + '</h2>';
+            // One continuous grid per day (rows of 3), not one per period
+            html += renderPeriod('', morning.concat(afternoon, evening), day.data);
+            if (!isLast) html += '<hr class="day-divider">';
+            html += '</div>';
           }
         }
 
-        renderBatch();
+        if (filteredDays.length > shownCount) {
+          html += '<button class="load-more-btn" id="load-more-btn">Load more</button>';
+        }
+        document.getElementById('days-container').innerHTML = html;
+
+        if (loadMoreClicked) {
+          var headings = document.getElementById('days-container').querySelectorAll('.day-heading');
+          var target = headings[shownCount - 7] || headings[headings.length - 1];
+          if (target) { target.setAttribute('tabindex', '-1'); target.focus(); }
+          loadMoreClicked = false;
+        }
 
         var loadMoreBtn = document.getElementById('load-more-btn');
         if (loadMoreBtn) {
-          loadMoreBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            renderBatch();
+          loadMoreBtn.addEventListener('click', function () {
+            shownCount += 7;
+            loadMoreClicked = true;
+            render();
           });
         }
       }
+
+      render();
     })();
   </script>
 

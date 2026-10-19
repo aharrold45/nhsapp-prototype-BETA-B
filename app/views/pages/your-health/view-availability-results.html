@@ -12,7 +12,19 @@
     .search-summary__row { padding: 12px 0; border-bottom: 1px solid #aeb7bd }
     .search-summary__label { font-weight: 700; margin: 0 0 2px }
     .search-summary__value { margin: 0 0 4px; color: #212b32 }
+    .search-summary__value-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px }
+    .search-summary__value-row .nhsuk-link { flex: 0 0 auto; white-space: nowrap }
     .provider-card { display: flex; align-items: center; text-decoration: none; color: inherit; background: #fff; border: 1px solid #aeb7bd; border-radius: 4px; padding: 16px; margin-bottom: 16px }
+    .provider-card-list { margin: 0 0 16px; border: 1px solid #d8dde0; background: #fff }
+    .provider-card-list .provider-card { border: 0; border-bottom: 1px solid #d8dde0; border-radius: 0; margin-bottom: 0 }
+    .provider-card-list .provider-card:last-child { border-bottom: 0 }
+    .view-tabs { display: flex; gap: 24px; margin: 0 }
+    .tab-panel { background:#fff; margin:0 -16px 24px; padding:24px 16px; }
+    .view-tabs__tab { padding: 12px 12px; background: #d8dde0; color: #212b32; font-size: 1rem; text-decoration: underline }
+    .view-tabs__tab[aria-current="true"] { background: #fff; text-decoration: none }
+    .day-filter-link { display: inline-flex; align-items: center; gap: 10px; padding: 8px 0; color: #005eb8; font-size: 16px }
+    .day-filter-row { display: flex; align-items: center; justify-content: space-between; margin: 0 0 16px }
+    .day-filter-clear { color: #005eb8; font-size: 16px }
     .provider-card:hover { border-color: #212b32 }
     .provider-card:visited { color: inherit }
     .provider-card__body { flex: 1; min-width: 0 }
@@ -30,7 +42,7 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-full">
 
-  <h1 class="app-dynamic-page-title__heading nhsuk-heading-l">Clinic results</h1>
+  <h1 class="app-dynamic-page-title__heading nhsuk-heading-l">Choose a clinic</h1>
 
       {% if debug == '1' %}
         <h2 class="nhsuk-heading-m">Debug: clinics payload</h2>
@@ -40,33 +52,45 @@
       <div class="search-summary">
         <div class="search-summary__row">
           <p class="search-summary__label">5 clinics near</p>
-          <p class="search-summary__value">{{ postcode }}</p>
-          <a class="nhsuk-link" href="/pages/your-health/view-availability">Change</a>
+          <div class="search-summary__value-row">
+            <p class="search-summary__value">{{ postcode }}</p>
+            <a class="nhsuk-link" href="/pages/your-health/view-availability">Change</a>
+          </div>
         </div>
 
       </div>
 
-      <div class="filter-row">
-        <a class="filter-bar" href="{{ filterPageUrl }}" aria-label="Filter by time and day">
-          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" stroke-width="2"/>
-            <line x1="3" y1="7" x2="15" y2="7" stroke="currentColor" stroke-width="2"/>
-            <line x1="6" y1="13" x2="12" y2="13" stroke="currentColor" stroke-width="2"/>
-          </svg>
-          Filter: Time &amp; day{% if filterCount > 0 %} ({{ filterCount }}){% endif %}
+      <h2 class="nhsuk-heading-m">Select a clinic</h2>
+      <div class="day-filter-row">
+        <a class="day-filter-link nhsuk-link" href="{{ filterUrl }}">
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true" focusable="false"><path d="M0 1h20M3 7h14M7 13h6" stroke="#005eb8" stroke-width="2"/></svg>
+          Filter by day{% if filterCount > 0 %} ({{ filterCount }}){% endif %}
         </a>
-        {% if filterCount > 0 %}
-          <a class="clear-filters-btn" href="{{ clearFiltersUrl }}">Clear filters</a>
-        {% endif %}
+        {% if filterCount > 0 %}<a class="day-filter-clear" href="{{ clearFiltersUrl }}">Clear filter</a>{% endif %}
       </div>
 
-      <h2 class="nhsuk-heading-m">Select a clinic</h2>
+      <nav class="view-tabs" aria-label="Sort clinics by">
+        {% for tab in viewTabs %}
+          <a class="view-tabs__tab" href="{{ tab.url }}"{% if tab.active %} aria-current="true"{% endif %}>{{ tab.label }}</a>
+        {% endfor %}
+      </nav>
 
+      <div class="tab-panel">
+
+      {% if true %}
+      <div id="sd-results">
+      {% if not clinics.length %}
+        <p class="nhsuk-body">No clinics have availability for your selections.</p>
+      {% endif %}
+      <div class="provider-card-list">
       {% for clinic in clinics %}
         {% if clinic.type == 'walk-in' %}
           {% set earliestDate = "Walk in Appointment" %}
         {% elif clinic.times and clinic.times.length %}
           {% set earliestDate = clinic.times[0].dateLabel %}
+          {% if clinic.firstDaySlots %}
+            {% set earliestDate = earliestDate + ' - <strong>' + clinic.firstDaySlots + (' slot' if clinic.firstDaySlots == 1 else ' slots') + '</strong>' %}
+          {% endif %}
         {% else %}
           {% set earliestDate = "Contact clinic for availability" %}
         {% endif %}
@@ -76,13 +100,54 @@
             <span class="provider-card__name">{{ clinic.name }}</span>
             <p class="provider-card__distance">{{ clinic.distance }}</p>
             <p class="provider-card__appt-label">Next appointment:</p>
-            <p class="provider-card__appt-date">{{ earliestDate }}</p>
+            <p class="provider-card__appt-date">{{ earliestDate | safe }}</p>
           </div>
           <div class="provider-card__chev">›</div>
         </a>
       {% endfor %}
+      </div>
+      </div>
+      {% endif %}
+      </div>
 
     </div>
   </div>
+
+  <script>
+    // Switch tabs / submit the Specific day search without a page reload so the
+    // scroll position never moves. Fetches the target and swaps in its main
+    // content; if anything fails it navigates normally.
+    (function () {
+      window.swapMain = function (url, options) {
+        return fetch(url, Object.assign({ credentials: 'same-origin' }, options || {}))
+          .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text().then(function (html) { return { html: html, url: r.url }; }); })
+          .then(function (res) {
+            var doc = new DOMParser().parseFromString(res.html, 'text/html');
+            var next = doc.getElementById('maincontent');
+            var current = document.getElementById('maincontent');
+            if (!next || !current) throw new Error('no main');
+            current.innerHTML = next.innerHTML;
+            // innerHTML does not run scripts, so re-create them
+            current.querySelectorAll('script').forEach(function (old) {
+              if (old.type && old.type !== 'text/javascript') return; // data blocks (e.g. JSON) stay as they are
+              var s = document.createElement('script');
+              s.text = old.text;
+              old.parentNode.replaceChild(s, old);
+            });
+            if (res.url !== location.href) history.pushState({}, '', res.url);
+          })
+          .catch(function () { if (!options) window.location.href = url; else window.location.reload(); });
+      };
+      document.querySelectorAll('.view-tabs__tab').forEach(function (tab) {
+        tab.addEventListener('click', function (e) {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+          e.preventDefault();
+          window.swapMain(tab.href);
+        });
+      });
+      // Back / forward between swapped tabs: reload to show the right content
+      window.addEventListener('popstate', function () { window.location.reload(); });
+    })();
+  </script>
 
 {% endblock %}
