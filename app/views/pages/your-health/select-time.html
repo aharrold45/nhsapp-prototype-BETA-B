@@ -3,11 +3,14 @@
 {% set hub = "Your health" %}
 
 {% set backLink = true %}
+{% set backLinkURL = backUrl %}
 
 {% block content %}
 
   <style>
-    .select-time__clinic { color:#4c6272; margin:0 0 24px; }
+    .select-time__clinic { font-size:16px; font-weight:700; margin:0 0 4px; }
+    .select-time__date { font-size:19px; font-weight:600; margin:0 0 8px; }
+    .select-time__period { font-size:16px; font-weight:700; margin:24px 0 8px; }
   </style>
 
   <div class="nhsuk-grid-row">
@@ -15,32 +18,35 @@
 
       {% if day %}
 
-        <h1 class="nhsapp-page-heading nhsuk-heading-l">{{ dateHeading }}</h1>
-        <p class="select-time__clinic nhsuk-body">{{ clinic.name }}</p>
+        <h1 class="nhsapp-page-heading nhsuk-heading-l">Choose a time</h1>
+        <p class="select-time__clinic">{{ clinic.name }}</p>
+        <p class="select-time__date">{{ dateHeading }}</p>
+        <p class="nhsuk-body">{{ clinic.durationDesc }}</p>
 
         <form action="/pages/your-health/check" method="get">
           <input type="hidden" name="clinic" value="{{ clinic.id }}">
           <input type="hidden" name="postcode" value="{{ postcode }}">
           <input type="hidden" name="date" value="{{ day.dateLabel }}">
 
-          <div class="nhsuk-form-group">
-            <fieldset class="nhsuk-fieldset">
-              <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m">
-                <h2 class="nhsuk-fieldset__heading">Select a time</h2>
-              </legend>
-              <span class="nhsuk-hint nhsuk-u-margin-bottom-0">{{ clinic.durationDesc }}</span>
-              <div style="height: 20px;"></div>
-
-              <div class="nhsuk-radios">
-                {% for slot in slots %}
-                  <div class="nhsuk-radios__item">
-                    <input class="nhsuk-radios__input" id="time-{{ loop.index }}" name="time" type="radio" value="{{ slot.start }}">
-                    <label class="nhsuk-label nhsuk-radios__label" for="time-{{ loop.index }}">{{ slot.start }}</label>
+          {% set periods = [{ label: 'AM', slots: amSlots, id: 'am' }, { label: 'PM', slots: pmSlots, id: 'pm' }] %}
+          {% for period in periods %}
+            {% if period.slots | length %}
+              <div class="nhsuk-form-group">
+                <fieldset class="nhsuk-fieldset">
+                  <legend class="nhsuk-fieldset__legend select-time__period">{{ period.label }}</legend>
+                  <div class="nhsuk-radios">
+                    {% for slot in period.slots %}
+                      <div class="nhsuk-radios__item">
+                        <input class="nhsuk-radios__input" id="time-{{ period.id }}-{{ loop.index }}" name="time" type="radio" value="{{ slot.start }}">
+                        <label class="nhsuk-label nhsuk-radios__label" for="time-{{ period.id }}-{{ loop.index }}">{{ slot.start }}</label>
+                      </div>
+                    {% endfor %}
                   </div>
-                {% endfor %}
+                </fieldset>
               </div>
-            </fieldset>
-          </div>
+            {% endif %}
+          {% endfor %}
+
           <div style="height: 20px;"></div>
 
           <button class="nhsuk-button" id="continue-btn" style="background:#007f3b; box-shadow:0 4px 0 #003d20; width:100%; opacity:0.4; cursor:default" type="submit" disabled>Continue</button>

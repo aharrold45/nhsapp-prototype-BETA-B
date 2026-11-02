@@ -5,7 +5,7 @@
 {% set backLink = true %}
 {% set backLinkURL = backUrl %}
 
-{% set pageHeading = clinic.name %}
+{% set pageHeading = "Choose a date" %}
 
 {% block content %}
 
@@ -13,6 +13,7 @@
     .clinic-availability { --ca-blue:#005eb8; --ca-green:#007f3b; }
     .clinic-availability .ca-section-break { border:0; border-top:1px solid #d8dde0; margin:20px 0; }
     .clinic-availability .ca-meta-label { font-weight:700; margin:0 0 4px 0; }
+    .clinic-availability .ca-clinic-name { font-size:16px; font-weight:700; margin:0 0 4px 0; }
     .clinic-availability .ca-address { margin:0 0 8px 0; }
     .clinic-availability .ca-cqc-rating { display:flex; align-items:center; gap:10px; margin:8px 0; }
     .clinic-availability .ca-cqc-dot { width:18px; height:18px; border-radius:50%; flex:0 0 auto; }
@@ -21,30 +22,21 @@
     .clinic-availability .ca-cqc-dot--outstanding { background:#330072; }
     .clinic-availability .ca-cqc-dot--inadequate { background:#d5281b; }
 
-    .view-tabs { display:flex; gap: 24px; margin:0; }
-    .tab-panel { background:#fff; margin:0 -16px 24px; padding:24px 16px; }
-    .view-tabs__tab { padding: 12px 12px; background:#d8dde0; color:#212b32; font-size:1rem; text-decoration:underline; }
-    .view-tabs__tab[aria-current="true"] { background:#fff; text-decoration:none; }
-    .day-filter-row { display:flex; align-items:center; justify-content:space-between; margin:0 0 16px; }
-    .day-filter-link { display:inline-flex; align-items:center; gap:10px; padding:8px 0; color:#005eb8; font-size:16px; }
-    .day-filter-clear { color:#005eb8; font-size:16px; }
-
-    .load-more-btn { display:block; width:100%; background:#fff; border:2px solid #005eb8; color:#005eb8; padding:14px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; margin:24px 0 8px; text-align:center; }
-
-    .filter-row { display:flex; align-items:center; justify-content:space-between; background:#f0f4f5; margin:0 -16px 8px; padding:0 16px; }
-    .filter-row:hover { background:#e8edee; }
-    .filter-bar { display:flex; align-items:center; gap:10px; background:none; border:none; padding:14px 0; color:#005eb8; font-size:16px; font-weight:700; cursor:pointer; text-align:left; font-family:inherit; }
-    .clear-filters-btn { display:none; background:none; border:none; color:#005eb8; font-size:16px; cursor:pointer; text-decoration:underline; padding:14px 0; font-family:inherit; white-space:nowrap; }
-
-    .day-heading { font-size:16px; font-weight:normal; margin:20px 0 8px; color:#212b32; }
-    .day-section:first-child .day-heading { margin-top:0; }
-    .period-label { display:none; }
-    .ca-none-available { display:none; }
-    .slots-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-bottom:24px; }
-    .slot-btn { display:flex; align-items:center; justify-content:center; text-align:center; text-decoration:none; background:#fff; border:2px solid #0b5a3b; color:#0b5a3b; min-height:42px; padding:0 4px; border-radius:4px; font-weight:700; font-size:14px; }
-    .slot-btn:hover { background:#f0fff4; }
-    .day-divider { border:none; border-top:1px solid #d8dde0; margin:0; }
+    .more-times-link { display:inline-block; margin:12px 0 0; font-size:16px; color:#005eb8; background:none; border:0; padding:0; font-family:inherit; text-decoration:underline; cursor:pointer; }
+    .date-card-list { list-style:none; margin:0 0 16px; padding:0; border:1px solid #d8dde0; background:#fff; }
+    .date-card { border-bottom:1px solid #d8dde0; }
+    .date-card:last-child { border-bottom:0; }
+    .date-card[hidden] { display:none; }
+    .date-card__link { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px; color:inherit; text-decoration:none; }
+    .date-card__body { display:block; }
+    .date-card__title { display:block; color:#005eb8; font-size:1.1875rem; font-weight:600; text-decoration:underline; margin:0 0 6px; }
+    .date-card__line { display:block; font-size:1rem; color:#212b32; }
+    .date-card__chev { flex:0 0 24px; font-size:1.5rem; color:#005eb8; line-height:1; }
     .no-days-msg { color:#4c6272; text-align:center; padding:40px 0; font-style:italic; }
+    .filter-row { display:flex; align-items:center; justify-content:space-between; margin:0 0 8px; }
+    .filter-bar { display:flex; align-items:center; gap:10px; background:none; border:none; padding:14px 0; color:#005eb8; font-size:16px; font-weight:700; cursor:pointer; text-align:left; font-family:inherit; }
+    .clear-filters-btn { display:inline-block; text-decoration:underline; background:none; border:none; color:#005eb8; font-size:16px; cursor:pointer; text-decoration:underline; padding:14px 0; font-family:inherit; white-space:nowrap; }
+
     .ca-slot-button { display:block; text-align:center; text-decoration:none; background:#fff; border:2px solid #0b5a3b; color:#0b5a3b; padding:12px 18px; border-radius:8px; font-weight:700; font-size:16px; }
     .ca-walk-in-select { display:inline-block; margin-top:16px; }
 
@@ -52,20 +44,16 @@
 
   <div class="clinic-availability">
 
-    <h1 class="nhsapp-page-heading nhsuk-heading-l" style="font-weight:normal;">{{ clinic.name }}</h1>
+    <h1 class="nhsapp-page-heading nhsuk-heading-l">Choose a date</h1>
+    <p class="ca-clinic-name">{{ clinic.name }}</p>
 
     {% if clinic.distance %}
-      <p class="ca-meta-label">Location {{ clinic.distance }}</p>
+      <p class="ca-meta-label" style="font-weight:400;">Location {{ clinic.distance }}</p>
     {% endif %}
     {% if clinic.address %}
       <p class="ca-address nhsuk-body">{{ clinic.address }}</p>
     {% endif %}
     <p style="margin-bottom:16px;"><a class="nhsuk-link" href="#" style="font-size:16px;">Get directions</a></p>
-
-    <hr class="ca-section-break" />
-
-    <p class="ca-meta-label">Opening hours</p>
-    <p class="nhsuk-body">{{ clinic.openingHours }}</p>
 
     <hr class="ca-section-break" />
 
@@ -80,21 +68,49 @@
 
     {% else %}
 
-      <p class="nhsuk-body" style="margin-bottom:16px">{{ clinic.durationDesc }}</p>
-      <h2 class="nhsuk-heading-m">Select a time</h2>
-      <div class="day-filter-row">
-        <a class="day-filter-link nhsuk-link" href="{{ filterUrl }}">
-          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true" focusable="false"><path d="M0 1h20M3 7h14M7 13h6" stroke="#005eb8" stroke-width="2"/></svg>
-          Filter by day{% if filterCount > 0 %} ({{ filterCount }}){% endif %}
+      <div class="filter-row">
+        <a class="filter-bar nhsuk-link" href="{{ filterPageUrl }}" aria-label="Filter by day and time">
+          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" stroke-width="2"/>
+            <line x1="3" y1="7" x2="15" y2="7" stroke="currentColor" stroke-width="2"/>
+            <line x1="6" y1="13" x2="12" y2="13" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          Filter: Day and time{% if filterCount > 0 %} ({{ filterCount }}){% endif %}
         </a>
-        {% if filterCount > 0 %}<a class="day-filter-clear" href="{{ clearFiltersUrl }}">Clear filter</a>{% endif %}
+        {% if filterCount > 0 %}
+          <a class="clear-filters-btn" href="{{ clearFiltersUrl }}">Clear filters</a>
+        {% endif %}
       </div>
 
-      <div id="days-container"></div>
+      {% if dateCards | length %}
+        <ul class="date-card-list" id="date-card-list">
+          {% for card in dateCards %}
+            <li class="date-card"{% if loop.index > 10 %} hidden{% endif %}>
+              <a class="date-card__link" href="{{ card.url }}">
+                <span class="date-card__body">
+                  <span class="date-card__title">{{ card.dateLabel }} ({{ card.count }} {{ 'slot' if card.count == 1 else 'slots' }})</span>
+                  {% if card.count == 1 %}
+                    <span class="date-card__line">{{ card.earliest }} only</span>
+                  {% else %}
+                    <span class="date-card__line">Earliest {{ card.earliest }}</span>
+                    <span class="date-card__line">Latest {{ card.latest }}</span>
+                  {% endif %}
+                </span>
+                <span class="date-card__chev" aria-hidden="true">&#8250;</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+        {% if dateCards | length > 10 %}
+          <p><button type="button" class="more-times-link" id="load-more-dates">Load more dates</button></p>
+        {% endif %}
+      {% else %}
+        <p class="no-days-msg">No availability matching your filters.</p>
+      {% endif %}
 
     {% endif %}
 
-    <h2 class="nhsuk-heading-m">Can't see a time suitable?</h2>
+    <h2 class="nhsuk-heading-m" style="margin-top:40px;">Can't see a time suitable?</h2>
     <ul class="nhsapp-cards">
       <li class="nhsapp-card">
         <div class="nhsapp-card__container">
@@ -106,178 +122,21 @@
       </li>
     </ul>
 
-    <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-section-break--l">
-
     <h2 class="nhsuk-heading-m">Booking over the phone</h2>
       <p>The easiest way to book and manage a test is through this app. If you would prefer to speak to someone you can call 0800 123 456 (9am to 5pm Monday to Friday)</p>
 
   </div>
 
 
-<script type="application/json" id="days-data">{{ daysJson | safe }}</script>
-  <script type="application/json" id="clinic-meta">{"clinicId":"{{ clinic.id | urlencode }}","postcode":"{{ postcode | urlencode }}"}</script>
-
   <script>
     (function () {
-      var el = document.getElementById('days-data');
-      if (!el) return;
-      var daysData = JSON.parse(el.textContent);
-      var meta = JSON.parse(document.getElementById('clinic-meta').textContent);
-      var clinicId = meta.clinicId;
-      var postcode = meta.postcode;
-
-      var TODAY = new Date();
-      TODAY.setHours(0, 0, 0, 0);
-
-      var MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-      var MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      var DAYS_LONG = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-
-      function ordinal(n) {
-        var s = ['th','st','nd','rd'], v = n % 100;
-        return n + (s[(v - 20) % 10] || s[v] || s[0]);
-      }
-      function isoDate(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
-      function fmtWeekRange(mon, sun) {
-        return ordinal(mon.getDate()) + ' ' + MONTHS_SHORT[mon.getMonth()] + ' – ' + ordinal(sun.getDate()) + ' ' + MONTHS_SHORT[sun.getMonth()];
-      }
-      function fmtMonthYear(mon, sun) {
-        if (mon.getMonth() === sun.getMonth()) return MONTHS_LONG[mon.getMonth()] + ' ' + mon.getFullYear();
-        return MONTHS_LONG[mon.getMonth()] + ' / ' + MONTHS_LONG[sun.getMonth()] + ' ' + sun.getFullYear();
-      }
-      function fmtDayHeading(date) {
-        return DAYS_LONG[date.getDay()] + ' ' + ordinal(date.getDate()) + ' ' + MONTHS_LONG[date.getMonth()];
-      }
-      function getMondayOf(date) {
-        var d = new Date(date);
-        var dow = d.getDay();
-        d.setDate(d.getDate() + (dow === 0 ? -6 : 1 - dow));
-        d.setHours(0, 0, 0, 0);
-        return d;
-      }
-
-      var allDays = [];
-      for (var offset = 0; offset < 56; offset++) {
-        var date = new Date(TODAY);
-        date.setDate(TODAY.getDate() + offset);
-        var iso = isoDate(date);
-        var dayData = null;
-        for (var i = 0; i < daysData.length; i++) {
-          if (daysData[i].iso === iso) { dayData = daysData[i]; break; }
-        }
-        if (dayData && dayData.hasSlots) {
-          allDays.push({ data: dayData, heading: fmtDayHeading(date), dayName: DAYS_LONG[date.getDay()] });
-        }
-      }
-
-      var shownCount = 7;
-      var loadMoreClicked = false;
-      var activeFilters = {{ activeFiltersJson | safe }};
-
-      function parseHour(timeStr) {
-        var s = (timeStr || '').trim().toLowerCase();
-        if (s === 'midnight') return 0;
-        if (s === 'midday') return 12;
-        var m = s.match(/(\d+)(?::(\d+))?\s*(am|pm)/i);
-        if (!m) return 0;
-        var h = parseInt(m[1]);
-        var p = m[3].toLowerCase();
-        if (p === 'pm' && h !== 12) h += 12;
-        if (p === 'am' && h === 12) h = 0;
-        return h;
-      }
-
-      function filterSlots(slots) {
-        if (!activeFilters.times.length) return slots;
-        return slots.filter(function(slot) {
-          var h = parseHour(slot.start);
-          return activeFilters.times.some(function(f) {
-            if (f === 'before9') return h < 9;
-            if (f === 'morning') return h >= 9 && h < 12;
-            if (f === 'early-afternoon') return h >= 12 && h < 14;
-            if (f === 'late-afternoon') return h >= 14 && h < 17;
-            if (f === 'evening') return h >= 17;
-            return false;
-          });
-        });
-      }
-
-      function slotHref(dayData, slot) {
-        return '/pages/your-health/check?clinic=' + clinicId +
-          '&postcode=' + postcode +
-          '&date=' + encodeURIComponent(dayData.dateLabel) +
-          '&time=' + encodeURIComponent(slot.start);
-      }
-
-      function renderPeriod(label, slots, dayData) {
-        var html = '<p class="period-label">' + label + '</p>';
-        if (!slots || !slots.length) {
-          html += '<p class="ca-none-available" style="color:#4c6272; font-size:14px; margin:0 0 16px">None available</p>';
-        } else {
-          html += '<div class="slots-grid">';
-          for (var i = 0; i < slots.length; i++) {
-            html += '<a class="slot-btn" href="' + slotHref(dayData, slots[i]) + '"><span class="nhsuk-u-visually-hidden">' + dayData.dateLabel + ' </span>' + slots[i].start + '</a>';
-          }
-          html += '</div>';
-        }
-        return html;
-      }
-
-      function render() {
-        if (activeFilters.hideList) { document.getElementById('days-container').innerHTML = ''; return; }
-        var filteredDays = allDays.filter(function(day) {
-          if (activeFilters.date && day.data.iso !== activeFilters.date) return false;
-          if (activeFilters.days.length && activeFilters.days.indexOf(day.dayName) === -1) return false;
-          var m = filterSlots(day.data.morning);
-          var a = filterSlots(day.data.afternoon);
-          var e = filterSlots(day.data.evening);
-          return m.length || a.length || e.length;
-        });
-
-        var visible = filteredDays.slice(0, shownCount);
-        var html = '';
-        if (!visible.length) {
-          html = '<p class="no-days-msg">No availability matching your filters.</p>';
-        } else {
-          for (var i = 0; i < visible.length; i++) {
-            var day = visible[i];
-            var isLast = i === visible.length - 1;
-            var morning = filterSlots(day.data.morning);
-            var afternoon = filterSlots(day.data.afternoon);
-            var evening = filterSlots(day.data.evening);
-            html += '<div class="day-section">';
-            // A specific date is already shown above the list, so don't repeat it
-            if (!activeFilters.date) html += '<h2 class="day-heading">' + day.heading + '</h2>';
-            // One continuous grid per day (rows of 3), not one per period
-            html += renderPeriod('', morning.concat(afternoon, evening), day.data);
-            if (!isLast) html += '<hr class="day-divider">';
-            html += '</div>';
-          }
-        }
-
-        if (filteredDays.length > shownCount) {
-          html += '<button class="load-more-btn" id="load-more-btn">Load more</button>';
-        }
-        document.getElementById('days-container').innerHTML = html;
-
-        if (loadMoreClicked) {
-          var headings = document.getElementById('days-container').querySelectorAll('.day-heading');
-          var target = headings[shownCount - 7] || headings[headings.length - 1];
-          if (target) { target.setAttribute('tabindex', '-1'); target.focus(); }
-          loadMoreClicked = false;
-        }
-
-        var loadMoreBtn = document.getElementById('load-more-btn');
-        if (loadMoreBtn) {
-          loadMoreBtn.addEventListener('click', function () {
-            shownCount += 7;
-            loadMoreClicked = true;
-            render();
-          });
-        }
-      }
-
-      render();
+      var btn = document.getElementById('load-more-dates');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var hidden = document.querySelectorAll('#date-card-list .date-card[hidden]');
+        for (var i = 0; i < Math.min(7, hidden.length); i++) hidden[i].hidden = false;
+        if (hidden.length <= 7) btn.parentNode.hidden = true;
+      });
     })();
   </script>
 

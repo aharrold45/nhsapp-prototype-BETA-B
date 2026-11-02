@@ -231,3 +231,10 @@ body.nhs-app-no-frame .appointment-action-button {
 body.nhs-app-no-frame .ask-to-cancel {
   text-align: left;
 }
+// Content always starts within 20px of the page h1
+h1.nhsuk-heading-l,
+h1.nhsuk-heading-xl,
+h1.nhsapp-page-heading,
+h1.app-dynamic-page-title__heading {
+  margin-bottom: 16px;
+}

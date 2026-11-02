@@ -8,33 +8,32 @@
 {% block content %}
 
   <style>
-    .search-summary { margin-bottom: 24px }
+    h1.app-dynamic-page-title__heading { margin-bottom: 6px }
+    .search-summary { margin-bottom: 20px }
     .search-summary__row { padding: 12px 0; border-bottom: 1px solid #aeb7bd }
     .search-summary__label { font-weight: 700; margin: 0 0 2px }
     .search-summary__value { margin: 0 0 4px; color: #212b32 }
-    .search-summary__value-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px }
-    .search-summary__value-row .nhsuk-link { flex: 0 0 auto; white-space: nowrap }
     .provider-card { display: flex; align-items: center; text-decoration: none; color: inherit; background: #fff; border: 1px solid #aeb7bd; border-radius: 4px; padding: 16px; margin-bottom: 16px }
     .provider-card-list { margin: 0 0 16px; border: 1px solid #d8dde0; background: #fff }
     .provider-card-list .provider-card { border: 0; border-bottom: 1px solid #d8dde0; border-radius: 0; margin-bottom: 0 }
     .provider-card-list .provider-card:last-child { border-bottom: 0 }
-    .view-tabs { display: flex; gap: 24px; margin: 0 }
-    .tab-panel { background:#fff; margin:0 -16px 24px; padding:24px 16px; }
-    .view-tabs__tab { padding: 12px 12px; background: #d8dde0; color: #212b32; font-size: 1rem; text-decoration: underline }
-    .view-tabs__tab[aria-current="true"] { background: #fff; text-decoration: none }
+    .sort-by { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 24px; margin: 0 0 24px }
+    .sort-by__label { color: #212b32; font-size: 1rem }
+    .sort-by__option { color: #005eb8; font-size: 1rem; text-decoration: underline }
+    .sort-by__option[aria-current="true"] { color: #212b32; font-weight: 700; text-decoration: none }
     .day-filter-link { display: inline-flex; align-items: center; gap: 10px; padding: 8px 0; color: #005eb8; font-size: 16px }
     .day-filter-row { display: flex; align-items: center; justify-content: space-between; margin: 0 0 16px }
     .day-filter-clear { color: #005eb8; font-size: 16px }
     .provider-card:hover { border-color: #212b32 }
     .provider-card:visited { color: inherit }
     .provider-card__body { flex: 1; min-width: 0 }
+    .provider-card__badge { display: inline-block; background: #C9E6D8; color: #212b32; font-size: 1rem; font-weight: 600; padding: 4px 8px; margin: 0 0 12px }
     .provider-card__name { display: block; color: #005eb8; font-size: 1.1875rem; font-weight: 600; margin: 0 0 4px; text-decoration: underline }
     .provider-card__distance { font-weight: 700; margin: 0 0 10px; color: #212b32; font-size: 1rem }
     .provider-card__appt-label { font-weight: 700; margin: 0; font-size: 1rem; color: #212b32 }
     .provider-card__appt-date { margin: 2px 0 0; font-size: 1rem; color: #212b32 }
     .provider-card__chev { flex: 0 0 24px; font-size: 1.5rem; color: #005eb8; margin-left: 12px; line-height: 1 }
-    .filter-row { display: flex; align-items: center; justify-content: space-between; background: #f0f4f5; margin: 0 -16px 16px; padding: 0 16px; }
-    .filter-row:hover { background: #e8edee; }
+    .filter-row { display: flex; align-items: center; justify-content: space-between; margin: 0 0 8px; }
     .filter-bar { display: flex; align-items: center; gap: 10px; background: none; border: none; padding: 14px 0; color: #005eb8; font-size: 16px; font-weight: 700; cursor: pointer; text-align: left; font-family: inherit; text-decoration: none; }
     .clear-filters-btn { background: none; border: none; color: #005eb8; font-size: 16px; cursor: pointer; text-decoration: underline; padding: 14px 0; font-family: inherit; white-space: nowrap; }
   </style>
@@ -52,32 +51,33 @@
       <div class="search-summary">
         <div class="search-summary__row">
           <p class="search-summary__label">5 clinics near</p>
-          <div class="search-summary__value-row">
-            <p class="search-summary__value">{{ postcode }}</p>
-            <a class="nhsuk-link" href="/pages/your-health/view-availability">Change</a>
-          </div>
+          <p class="search-summary__value">{{ postcode }}</p>
+          <a class="nhsuk-link" href="/pages/your-health/view-availability">Change location</a>
         </div>
 
       </div>
 
-      <h2 class="nhsuk-heading-m">Select a clinic</h2>
-      <div class="day-filter-row">
-        <a class="day-filter-link nhsuk-link" href="{{ filterUrl }}">
-          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true" focusable="false"><path d="M0 1h20M3 7h14M7 13h6" stroke="#005eb8" stroke-width="2"/></svg>
-          Filter by day{% if filterCount > 0 %} ({{ filterCount }}){% endif %}
+      <div class="filter-row">
+        <a class="filter-bar" href="{{ filterPageUrl }}" aria-label="Filter by day and time">
+          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" stroke-width="2"/>
+            <line x1="3" y1="7" x2="15" y2="7" stroke="currentColor" stroke-width="2"/>
+            <line x1="6" y1="13" x2="12" y2="13" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          Filter: Day and time{% if filterCount > 0 %} ({{ filterCount }}){% endif %}
         </a>
-        {% if filterCount > 0 %}<a class="day-filter-clear" href="{{ clearFiltersUrl }}">Clear filter</a>{% endif %}
+        {% if filterCount > 0 %}
+          <a class="clear-filters-btn" href="{{ clearFiltersUrl }}">Clear filters</a>
+        {% endif %}
       </div>
 
-      <nav class="view-tabs" aria-label="Sort clinics by">
+      <nav class="sort-by" aria-label="Sort clinics by">
+        <span class="sort-by__label">Sort by:</span>
         {% for tab in viewTabs %}
-          <a class="view-tabs__tab" href="{{ tab.url }}"{% if tab.active %} aria-current="true"{% endif %}>{{ tab.label }}</a>
+          <a class="sort-by__option view-tabs__tab" href="{{ tab.url }}"{% if tab.active %} aria-current="true"{% endif %}>{{ tab.label }}</a>
         {% endfor %}
       </nav>
 
-      <div class="tab-panel">
-
-      {% if true %}
       <div id="sd-results">
       {% if not clinics.length %}
         <p class="nhsuk-body">No clinics have availability for your selections.</p>
@@ -86,28 +86,35 @@
       {% for clinic in clinics %}
         {% if clinic.type == 'walk-in' %}
           {% set earliestDate = "Walk in Appointment" %}
+          {% set earliestPlain = earliestDate %}
         {% elif clinic.times and clinic.times.length %}
           {% set earliestDate = clinic.times[0].dateLabel %}
+          {% set earliestPlain = earliestDate + (' - ' + clinic.firstDaySlots + (' slot' if clinic.firstDaySlots == 1 else ' slots') if clinic.firstDaySlots else '') %}
           {% if clinic.firstDaySlots %}
             {% set earliestDate = earliestDate + ' - <strong>' + clinic.firstDaySlots + (' slot' if clinic.firstDaySlots == 1 else ' slots') + '</strong>' %}
           {% endif %}
         {% else %}
           {% set earliestDate = "Contact clinic for availability" %}
+          {% set earliestPlain = earliestDate %}
         {% endif %}
 
         <a class="provider-card" href="{{ clinic.clinicUrl }}">
           <div class="provider-card__body">
-            <span class="provider-card__name">{{ clinic.name }}</span>
-            <p class="provider-card__distance">{{ clinic.distance }}</p>
-            <p class="provider-card__appt-label">Next appointment:</p>
-            <p class="provider-card__appt-date">{{ earliestDate | safe }}</p>
+            {% if view == 'earliest' %}
+              <span class="provider-card__badge">{{ earliestPlain }}</span>
+              <span class="provider-card__name">{{ clinic.name }}</span>
+              <p class="provider-card__distance">{{ clinic.distance }}</p>
+            {% else %}
+              <span class="provider-card__badge">{{ clinic.distance }}</span>
+              <span class="provider-card__name">{{ clinic.name }}</span>
+              <p class="provider-card__appt-label">Next appointment:</p>
+              <p class="provider-card__appt-date">{{ earliestDate | safe }}</p>
+            {% endif %}
           </div>
           <div class="provider-card__chev">›</div>
         </a>
       {% endfor %}
       </div>
-      </div>
-      {% endif %}
       </div>
 
     </div>

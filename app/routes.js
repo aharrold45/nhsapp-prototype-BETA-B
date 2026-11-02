@@ -56,7 +56,7 @@ function parseSlotHour(slot) {
 	const s = (slot || '').toLowerCase().trim();
 	if (s === 'midnight') return 0;
 	if (s === 'midday') return 12;
-	const m = s.match(/^(\d{1,2})(?::\d{2})?\s*(am|pm)$/);
+	const m = s.match(/^(\d{1,2})(?:[:.]\d{2})?\s*(am|pm)$/);
 	if (!m) return 0;
 	let h = parseInt(m[1]);
 	const p = m[2];
@@ -70,7 +70,7 @@ function slotMinutes(slot) {
 	const s = (slot || '').toLowerCase().trim();
 	if (s === 'midnight') return 0;
 	if (s === 'midday') return 720;
-	const m = s.match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/);
+	const m = s.match(/^(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm)$/);
 	if (!m) return 0;
 	return parseSlotHour(s) * 60 + (m[2] ? parseInt(m[2], 10) : 0);
 }
@@ -88,36 +88,11 @@ function slotMatchesTimeFilter(slot, filterTimes) {
 	});
 }
 
-// Server-side copy of daytimeCount() in clinic-availability.html: how many
-// morning/afternoon slots are shown for a day (must stay in sync).
-function daytimeSlotCount(day) {
-	let h = 0;
-	const iso = day.iso || '';
-	for (let i = 0; i < iso.length; i++) {
-		h = (Math.imul(31, h) + iso.charCodeAt(i)) >>> 0;
-	}
-	const rng = (h % 10000) / 10000;
-	const daytime = (day.morning || []).length + (day.afternoon || []).length;
-	const idx = typeof day.index !== 'undefined' ? day.index : 7;
-	let min, max;
-	if (idx <= 2) { min = 1; max = 3; }
-	else if (idx <= 5) { min = 2; max = 5; }
-	else if (idx <= 14) { min = 3; max = 8; }
-	else { min = 4; max = daytime; }
-	max = Math.min(max, daytime);
-	min = Math.min(min, max);
-	return min + Math.floor(rng * (max - min + 1));
-}
-
 // Number of slots listed on select-time for a given day, with or without
 // time filters (matches what the user sees on that page).
 function slotCountForDay(day, filterTimes) {
-	const evening = day.evening || [];
-	if (filterTimes.length) {
-		return [...(day.morning || []), ...(day.afternoon || []), ...evening]
-			.filter(sl => slotMatchesTimeFilter(sl.start, filterTimes)).length;
-	}
-	return daytimeSlotCount(day) + evening.length;
+	return [...(day.morning || []), ...(day.afternoon || []), ...(day.evening || [])]
+		.filter(sl => slotMatchesTimeFilter(sl.start, filterTimes)).length;
 }
 
 // "dd/mm/yyyy" (also d/m/yyyy, - or . separators) -> "yyyy-mm-dd", or '' if invalid
@@ -285,8 +260,8 @@ router.get('/pages/your-health/view-availability-results', (req, res) => {
 	const key = resolvePostcodeKey(postcode);
 	const clinicIds = postcodeMap[key] || postcodeMap['DEFAULT'] || [];
 	const clinicsList = loadClinicsList();
-	// Day filters (set on the filter page) apply to both tabs. They are kept in
-	// the session so they stay until the user removes them.
+	// Day and time filters are kept in the session so they stay until the user
+	// removes them, whichever sort order is showing.
 	const view = req.query.view === 'earliest' ? 'earliest' : 'closest';
 	if (req.query.clearFilters) delete req.session.dayFilters;
 	const dayFilters = getDayFilters(req);
@@ -315,7 +290,7 @@ router.get('/pages/your-health/view-availability-results', (req, res) => {
 		return Object.assign({}, c, { times, clinicUrl, firstDaySlots, earliestKey });
 	}).filter(c => filterCount === 0 || c.times.length > 0);
 
-	// Tabs: closest (default, current order) and earliest appointment
+	// Sort options: closest clinic (default, current order) or soonest date
 	if (view === 'earliest') {
 		clinics.sort((a, b) => a.earliestKey - b.earliestKey);
 	}
@@ -324,25 +299,23 @@ router.get('/pages/your-health/view-availability-results', (req, res) => {
 	});
 	const tabs = [
 		{ id: 'closest', label: 'Closest clinic' },
-		{ id: 'earliest', label: 'Earliest appointment' }
+		{ id: 'earliest', label: 'Soonest date' }
 	].map(t => Object.assign(t, { url: tabUrl(t.id), active: t.id === view }));
-	const filterUrl = buildUrl('/pages/your-health/clinic-availability-filter', {
-		postcode, returnTo: 'results', view: view === 'closest' ? '' : view
-	});
 
 	res.render('pages/your-health/view-availability-results', {
 		postcode,
 		clinics,
 		view,
 		viewTabs: tabs,
-		filterUrl,
-		filterDays,
-		clearFiltersUrl: buildUrl('/pages/your-health/view-availability-results', {
-			postcode, view: view === 'closest' ? '' : view, clearFilters: 1
-		}),
 		clinicsJson: JSON.stringify(clinics, null, 2),
 		debug: req.query.debug || '',
-		filterCount
+		filterCount,
+		filterPageUrl: buildUrl('/pages/your-health/clinic-availability-filter', {
+			postcode, returnTo: 'results', view: view === 'closest' ? '' : view
+		}),
+		clearFiltersUrl: buildUrl('/pages/your-health/view-availability-results', {
+			postcode, view: view === 'closest' ? '' : view, clearFilters: 1
+		})
 	});
 });
 
@@ -356,7 +329,7 @@ router.post('/pages/your-health/specific-day', (req, res) => {
 	const days = [].concat(req.body['filter-days'] || []).filter(v => v !== '_unchecked');
 	const back = () => returnTo === 'clinic'
 		? buildUrl('/pages/your-health/clinic-availability', { clinic: clinicId, postcode, view })
-		: buildUrl('/pages/your-health/view-availability-results', { postcode, view: 'day' });
+		: buildUrl('/pages/your-health/view-availability-results', { postcode });
 
 	let iso = '';
 	let dayVal = '', monthVal = '';
@@ -384,22 +357,19 @@ router.post('/pages/your-health/specific-day', (req, res) => {
 router.get('/pages/your-health/clinic-availability-filter', (req, res) => {
 	const clinicId = req.query.clinic || '';
 	const postcode = req.query.postcode || '';
+	const { days: filterDays, times: filterTimes, date: filterDate } = getDayFilters(req);
 	const returnTo = req.query.returnTo || '';
-	const saved = getDayFilters(req);
-	const filterDays = returnTo === 'results' ? saved.days : [].concat(req.query['filter-days'] || []).filter(v => v !== '_unchecked');
-	const filterTimes = [].concat(req.query['filter-times'] || []).filter(v => v !== '_unchecked');
-	const filterDate = '';
 	res.render('pages/your-health/clinic-availability-filter', {
 		clinic: clinicId, postcode, filterDays, filterTimes, filterDate,
-		backUrl: filterBackUrl(returnTo, clinicId, postcode, req.query.view, filterDays, filterTimes),
-		returnTo, view: req.query.view || ''
+		backUrl: filterBackUrl(returnTo, clinicId, postcode, req.query.view, filterDays, filterTimes, req.query.show),
+		returnTo, view: req.query.view || '', show: req.query.show || ''
 	});
 });
 
-function filterBackUrl(returnTo, clinicId, postcode, view, filterDays, filterTimes) {
+function filterBackUrl(returnTo, clinicId, postcode, view, filterDays, filterTimes, show) {
 	return returnTo === 'clinic'
-		? buildUrl('/pages/your-health/clinic-availability', { clinic: clinicId, postcode, view })
-		: buildUrl('/pages/your-health/view-availability-results', { postcode, view: returnTo === 'results' ? view : '' });
+		? buildUrl('/pages/your-health/clinic-availability', { clinic: clinicId, postcode, view, show })
+		: buildUrl('/pages/your-health/view-availability-results', { postcode, view: view === 'earliest' ? view : '' });
 }
 
 router.post('/pages/your-health/clinic-availability-filter', (req, res) => {
@@ -408,7 +378,21 @@ router.post('/pages/your-health/clinic-availability-filter', (req, res) => {
 	const returnTo = req.body.returnTo || '';
 	const filterDays = [].concat(req.body['filter-days'] || []).filter(v => v !== '_unchecked');
 	const filterTimes = [].concat(req.body['filter-times'] || []).filter(v => v !== '_unchecked');
-	const filterDate = '';
+	// A chosen date replaces the day-of-week filters ("or")
+	let filterDate = '';
+	if (req.body['filter-date-toggle']) {
+		const dateParts = [req.body['filter-date-day'], req.body['filter-date-month'], req.body['filter-date-year']];
+		const dateError = validateFilterDate(...dateParts);
+		if (dateError) {
+			return res.render('pages/your-health/clinic-availability-filter', {
+				clinic: clinicId, postcode, filterDays: [], filterTimes: [], filterDate: '',
+				dateError, dateParts: dateParts.map(v => v || ''), dateChecked: true,
+				backUrl: filterBackUrl(returnTo, clinicId, postcode, req.body.view, filterDays, filterTimes, req.body.show),
+				returnTo, view: req.body.view || '', show: req.body.show || ''
+			});
+		}
+		filterDate = parseFilterDate(dateParts.join('/'));
+	}
 	// Day-tab filters are shared between the results page and clinic page
 	if (returnTo === 'clinic' || returnTo === 'results') {
 		if (filterDate) {
@@ -421,10 +405,12 @@ router.post('/pages/your-health/clinic-availability-filter', (req, res) => {
 	}
 	if (returnTo === 'clinic') {
 		res.redirect(buildUrl('/pages/your-health/clinic-availability', {
-			clinic: clinicId, postcode, view: req.body.view
+			clinic: clinicId, postcode, view: req.body.view, show: req.body.show
 		}));
 	} else if (returnTo === 'results') {
-		res.redirect(buildUrl('/pages/your-health/view-availability-results', { postcode, view: req.body.view }));
+		res.redirect(buildUrl('/pages/your-health/view-availability-results', {
+			postcode, view: req.body.view === 'earliest' ? 'earliest' : ''
+		}));
 	} else {
 		res.redirect(buildUrl('/pages/your-health/view-availability-results', {
 			postcode, 'filter-days': filterDays, 'filter-times': filterTimes
@@ -461,22 +447,43 @@ router.get('/pages/your-health/clinic-availability', (req, res) => {
 	const filterDate = dayFilters.date;
 	const filterCount = filterDays.length + filterTimes.length + (filterDate ? 1 : 0);
 	const view = req.query.view === 'earliest' ? 'earliest' : '';
-	const filterUrl = buildUrl('/pages/your-health/clinic-availability-filter', { clinic: clinicId, postcode, returnTo: 'clinic', view });
-	const clearFiltersUrl = buildUrl('/pages/your-health/clinic-availability', { clinic: clinicId, postcode, view, clearFilters: 1 });
+
+	// Step 1 "Choose a date": one card per day that has slots matching the
+	// shared filters, showing the earliest and latest time (or "x only").
+	const dateCards = [];
+	for (const day of days) {
+		if (!day.hasSlots) continue;
+		if (filterDate && day.iso !== filterDate) continue;
+		if (filterDays.length && !filterDays.includes(day.dateLabel.split(' ')[0])) continue;
+		const matched = [...day.morning, ...day.afternoon, ...day.evening]
+			.filter(sl => slotMatchesTimeFilter(sl.start, filterTimes));
+		if (!matched.length) continue;
+		dateCards.push({
+			dateLabel: day.dateLabel,
+			count: matched.length,
+			earliest: matched[0].start,
+			latest: matched[matched.length - 1].start,
+			url: buildUrl('/pages/your-health/select-time', { clinic: clinicId, postcode, iso: day.iso, view })
+		});
+	}
+
 	const backUrl = buildUrl('/pages/your-health/view-availability-results', { postcode, view });
+	const filterPageUrl = buildUrl('/pages/your-health/clinic-availability-filter', {
+		clinic: clinicId, postcode, returnTo: 'clinic', view
+	});
+	const clearFiltersUrl = buildUrl('/pages/your-health/clinic-availability', {
+		clinic: clinicId, postcode, view, clearFilters: 1
+	});
 
 	res.render('pages/your-health/clinic-availability', {
 		clinic,
-		days,
-		daysJson: JSON.stringify(days),
+		dateCards,
 		postcode,
 		filterCount,
 		backUrl,
 		view,
-		filterDays,
-		filterUrl,
-		clearFiltersUrl,
-		activeFiltersJson: JSON.stringify({ days: filterDays, times: filterTimes, date: filterDate })
+		filterPageUrl,
+		clearFiltersUrl
 	});
 });
 
@@ -502,31 +509,24 @@ router.get('/pages/your-health/select-time', (req, res) => {
 		return res.redirect('/pages/your-health/clinic-availability?clinic=' + encodeURIComponent(clinicId) + '&postcode=' + encodeURIComponent(req.query.postcode || ''));
 	}
 
-	const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-	const d = new Date(day.iso);
-	const n = d.getDate();
-	const ordSuffixes = ['th','st','nd','rd'];
-	const v = n % 100;
-	const ord = n + (ordSuffixes[(v - 20) % 10] || ordSuffixes[v] || ordSuffixes[0]);
-	const dateHeading = dayNames[d.getDay()] + ' ' + ord + ' ' + day.month;
+	const dateHeading = day.dateLabel;
 
-	const filterTimes = [].concat(req.query['filter-times'] || []).filter(v => v !== '_unchecked');
-	const daytime = [...(day.morning || []), ...(day.afternoon || [])];
-	const dtCount = parseInt(req.query.count, 10);
-	let slots = [
-		...(dtCount > 0 ? daytime.slice(0, dtCount) : daytime),
-		...(day.evening || [])
-	];
-	if (filterTimes.length) {
-		slots = slots.filter(s => slotMatchesTimeFilter(s.start, filterTimes));
-	}
+	// Time filters chosen on the filter page carry across from step 1
+	const { times: filterTimes } = getDayFilters(req);
+	const matches = sl => slotMatchesTimeFilter(sl.start, filterTimes);
+	const amSlots = (day.morning || []).filter(matches);
+	const pmSlots = [...(day.afternoon || []), ...(day.evening || [])].filter(matches);
 
 	res.render('pages/your-health/select-time', {
 		clinic,
 		day,
-		slots,
+		amSlots,
+		pmSlots,
 		dateHeading,
-		postcode: req.query.postcode || ''
+		postcode: req.query.postcode || '',
+		backUrl: buildUrl('/pages/your-health/clinic-availability', {
+			clinic: clinicId, postcode: req.query.postcode || '', view: req.query.view
+		})
 	});
 });
 
