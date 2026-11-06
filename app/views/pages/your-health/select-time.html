@@ -10,6 +10,9 @@
   <style>
     .select-time__clinic { font-size:16px; font-weight:700; margin:0 0 4px; }
     .select-time__date { font-size:19px; font-weight:600; margin:0 0 8px; }
+    #continue-btn { background:#007f3b; box-shadow:0 4px 0 #003d20; width:100%; }
+    #continue-btn:focus, #continue-btn:focus-visible { background:#ffeb3b; color:#212b32; box-shadow:0 4px 0 #212b32; outline:4px solid transparent; }
+    #time-error-summary[hidden], #time-error[hidden] { display:none !important; }
     .select-time__period { font-size:16px; font-weight:700; margin:24px 0 8px; }
   </style>
 
@@ -18,16 +21,29 @@
 
       {% if day %}
 
+        <div class="nhsuk-error-summary" id="time-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" hidden>
+          <h2 class="nhsuk-error-summary__title" id="error-summary-title">There is a problem</h2>
+          <div class="nhsuk-error-summary__body">
+            <ul class="nhsuk-list nhsuk-error-summary__list">
+              <li><a href="#time-error-target">Select a time</a></li>
+            </ul>
+          </div>
+        </div>
+
         <h1 class="nhsapp-page-heading nhsuk-heading-l">Choose a time</h1>
         <p class="select-time__clinic">{{ clinic.name }}</p>
         <p class="select-time__date">{{ dateHeading }}</p>
         <p class="nhsuk-body">{{ clinic.durationDesc }}</p>
 
-        <form action="/pages/your-health/check" method="get">
+        <form action="/pages/your-health/check" method="get" novalidate>
           <input type="hidden" name="clinic" value="{{ clinic.id }}">
           <input type="hidden" name="postcode" value="{{ postcode }}">
           <input type="hidden" name="date" value="{{ day.dateLabel }}">
 
+          <div class="nhsuk-form-group" id="time-group">
+          <p class="nhsuk-error-message" id="time-error" hidden>
+            <span class="nhsuk-u-visually-hidden">Error:</span> Select a time
+          </p>
           {% set periods = [{ label: 'AM', slots: amSlots, id: 'am' }, { label: 'PM', slots: pmSlots, id: 'pm' }] %}
           {% for period in periods %}
             {% if period.slots | length %}
@@ -37,7 +53,7 @@
                   <div class="nhsuk-radios">
                     {% for slot in period.slots %}
                       <div class="nhsuk-radios__item">
-                        <input class="nhsuk-radios__input" id="time-{{ period.id }}-{{ loop.index }}" name="time" type="radio" value="{{ slot.start }}">
+                        <input class="nhsuk-radios__input" id="time-{{ period.id }}-{{ loop.index }}" name="time" type="radio" value="{{ slot.start }}" aria-describedby="time-error">
                         <label class="nhsuk-label nhsuk-radios__label" for="time-{{ period.id }}-{{ loop.index }}">{{ slot.start }}</label>
                       </div>
                     {% endfor %}
@@ -46,10 +62,11 @@
               </div>
             {% endif %}
           {% endfor %}
+          </div>
 
           <div style="height: 20px;"></div>
 
-          <button class="nhsuk-button" id="continue-btn" style="background:#007f3b; box-shadow:0 4px 0 #003d20; width:100%; opacity:0.4; cursor:default" type="submit" disabled>Continue</button>
+          <button class="nhsuk-button" id="continue-btn" type="submit">Continue</button>
         </form>
 
       {% if day %}
@@ -90,13 +107,55 @@
 {% block pageScripts %}
   <script>
     (function () {
-      var btn = document.getElementById('continue-btn');
-      if (!btn) return;
-      document.querySelectorAll('input[name="time"]').forEach(function (radio) {
-        radio.addEventListener('change', function () {
-          btn.disabled = false;
-          btn.style.opacity = '1';
-          btn.style.cursor = 'pointer';
+      var form = document.querySelector('form[action="/pages/your-health/check"]');
+      if (!form) return;
+      var radios = Array.prototype.slice.call(form.querySelectorAll('input[name="time"]'));
+      var summary = document.getElementById('time-error-summary');
+      var message = document.getElementById('time-error');
+      var group = document.getElementById('time-group');
+      var baseTitle = document.title;
+
+      function setError(on) {
+        summary.hidden = !on;
+        message.hidden = !on;
+        group.classList.toggle('nhsuk-form-group--error', on);
+        document.title = on ? 'Error: ' + baseTitle : baseTitle;
+      }
+
+      form.addEventListener('submit', function (e) {
+        if (radios.some(function (r) { return r.checked; })) return;
+        e.preventDefault();
+        setError(true);
+        summary.focus();
+      });
+
+      radios.forEach(function (r) {
+        r.addEventListener('change', function () { setError(false); });
+      });
+
+      // The error summary link focuses the first radio
+      summary.querySelector('a').addEventListener('click', function (e) {
+        e.preventDefault();
+        if (radios[0]) radios[0].focus();
+      });
+
+      // AM and PM share one radio group, which browsers treat as a single tab
+      // stop. Make Tab / Shift+Tab step through every radio (arrow keys still work).
+      radios.forEach(function (r, i) {
+        r.addEventListener('keydown', function (e) {
+          // Enter selects the focused radio (Space already does natively).
+          // If it is already selected, Enter submits the form as normal.
+          if (e.key === 'Enter' && !r.checked) {
+            e.preventDefault();
+            r.checked = true;
+            r.dispatchEvent(new Event('change', { bubbles: true }));
+            return;
+          }
+          if (e.key !== 'Tab') return;
+          var next = radios[i + (e.shiftKey ? -1 : 1)];
+          if (!next) return;
+          e.preventDefault();
+          next.focus();
         });
       });
     })();
