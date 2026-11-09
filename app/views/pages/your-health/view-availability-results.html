@@ -31,6 +31,7 @@
     .provider-card__name { display: block; color: #005eb8; font-size: 1.1875rem; font-weight: 600; margin: 0 0 4px; text-decoration: underline }
     .provider-card__distance { font-weight: 700; margin: 0 0 10px; color: #212b32; font-size: 1rem }
     .provider-card__appt-label { font-weight: 700; margin: 0; font-size: 1rem; color: #212b32 }
+    .provider-card__appts { margin: 2px 0 0; font-size: 1rem; color: #212b32 }
     .provider-card__appt-date { margin: 2px 0 0; font-size: 1rem; color: #212b32 }
     .provider-card__chev { flex: 0 0 24px; font-size: 1.5rem; color: #005eb8; margin-left: 12px; line-height: 1 }
     .filter-row { display: flex; align-items: center; justify-content: space-between; margin: 0 0 8px; }
@@ -84,31 +85,32 @@
       {% endif %}
       <div class="provider-card-list">
       {% for clinic in clinics %}
+        {% set apptCount = 0 %}
         {% if clinic.type == 'walk-in' %}
           {% set earliestDate = "Walk in Appointment" %}
-          {% set earliestPlain = earliestDate %}
         {% elif clinic.times and clinic.times.length %}
           {% set earliestDate = clinic.times[0].dateLabel %}
-          {% set earliestPlain = earliestDate + (' - ' + clinic.firstDaySlots + (' slot' if clinic.firstDaySlots == 1 else ' slots') if clinic.firstDaySlots else '') %}
-          {% if clinic.firstDaySlots %}
-            {% set earliestDate = earliestDate + ' - <strong>' + clinic.firstDaySlots + (' slot' if clinic.firstDaySlots == 1 else ' slots') + '</strong>' %}
-          {% endif %}
+          {% set apptCount = clinic.firstDaySlots %}
         {% else %}
           {% set earliestDate = "Contact clinic for availability" %}
-          {% set earliestPlain = earliestDate %}
         {% endif %}
 
         <a class="provider-card" href="{{ clinic.clinicUrl }}">
           <div class="provider-card__body">
             {% if view == 'earliest' %}
-              <span class="provider-card__badge">{{ earliestPlain }}</span>
+              <span class="provider-card__badge">{{ earliestDate }}</span>
+              {% if apptCount %}
+                <p class="provider-card__appts"><strong>{{ apptCount }}</strong> {{ 'appointment' if apptCount == 1 else 'appointments' }}</p>
+              {% endif %}
               <span class="provider-card__name">{{ clinic.name }}</span>
               <p class="provider-card__distance">{{ clinic.distance }}</p>
             {% else %}
               <span class="provider-card__badge">{{ clinic.distance }}</span>
               <span class="provider-card__name">{{ clinic.name }}</span>
-              <p class="provider-card__appt-label">Next appointment:</p>
-              <p class="provider-card__appt-date">{{ earliestDate | safe }}</p>
+              <p class="provider-card__appt-date"><strong>Next date:</strong> {{ earliestDate }}</p>
+              {% if apptCount %}
+                <p class="provider-card__appts"><strong>{{ apptCount }}</strong> {{ 'appointment' if apptCount == 1 else 'appointments' }}</p>
+              {% endif %}
             {% endif %}
           </div>
           <div class="provider-card__chev">›</div>

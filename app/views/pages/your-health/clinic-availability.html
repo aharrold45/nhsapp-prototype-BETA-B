@@ -29,7 +29,8 @@
     .date-card[hidden] { display:none; }
     .date-card__link { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px; color:inherit; text-decoration:none; }
     .date-card__body { display:block; }
-    .date-card__title { display:block; color:#005eb8; font-size:1.1875rem; font-weight:600; text-decoration:underline; margin:0 0 6px; }
+    .date-card__title { display:block; color:#005eb8; font-size:1.1875rem; font-weight:600; text-decoration:underline; margin:0 0 4px; }
+    .date-card__count { font-weight:700; margin:0 0 6px; }
     .date-card__line { display:block; font-size:1rem; color:#212b32; }
     .date-card__chev { flex:0 0 24px; font-size:1.5rem; color:#005eb8; line-height:1; }
     .no-days-msg { color:#4c6272; text-align:center; padding:40px 0; font-style:italic; }
@@ -88,7 +89,8 @@
             <li class="date-card"{% if loop.index > 10 %} hidden{% endif %}>
               <a class="date-card__link" href="{{ card.url }}">
                 <span class="date-card__body">
-                  <span class="date-card__title">{{ card.dateLabel }} ({{ card.count }} {{ 'slot' if card.count == 1 else 'slots' }})</span>
+                  <span class="date-card__title">{{ card.dateLabel }}</span>
+                  <span class="date-card__line date-card__count">{{ card.count }} {{ 'appointment' if card.count == 1 else 'appointments' }}</span>
                   {% if card.count == 1 %}
                     <span class="date-card__line">{{ card.earliest }} only</span>
                   {% else %}
