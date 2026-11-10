@@ -73,7 +73,7 @@
       </div>
 
       <nav class="sort-by" aria-label="Sort clinics by">
-        <span class="sort-by__label">Sort by:</span>
+        <span class="sort-by__label">View by:</span>
         {% for tab in viewTabs %}
           <a class="sort-by__option view-tabs__tab" href="{{ tab.url }}"{% if tab.active %} aria-current="true"{% endif %}>{{ tab.label }}</a>
         {% endfor %}
