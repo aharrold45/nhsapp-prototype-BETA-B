@@ -8,8 +8,10 @@
 {% block content %}
 
   <style>
-    .select-time__clinic { font-size:16px; font-weight:700; margin:0 0 4px; }
     .select-time__date { font-size:19px; font-weight:600; margin:0 0 8px; }
+    .select-time__skip { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+    .select-time__skip:focus { position:static; width:auto; height:auto; overflow:visible; clip:auto; white-space:normal; display:inline-block; margin:16px 0 24px; }
+    .select-time__skip:focus + .nhsuk-fieldset .select-time__period { margin-top:0; }
     #continue-btn { background:#007f3b; box-shadow:0 4px 0 #003d20; width:100%; }
     #continue-btn:focus, #continue-btn:focus-visible { background:#ffeb3b; color:#212b32; box-shadow:0 4px 0 #212b32; outline:4px solid transparent; }
     #time-error-summary[hidden], #time-error[hidden] { display:none !important; }
@@ -31,8 +33,7 @@
         </div>
 
         <h1 class="nhsapp-page-heading nhsuk-heading-l">Choose a time</h1>
-        <p class="select-time__clinic">{{ clinic.name }}</p>
-        <p class="select-time__date">{{ dateHeading }}</p>
+        <p class="select-time__date">{{ dateHeading }} at {{ clinic.name }}</p>
         <p class="nhsuk-body">{{ clinic.durationDesc }}</p>
 
         <form action="/pages/your-health/check" method="get" novalidate>
@@ -48,6 +49,13 @@
           {% for period in periods %}
             {% if period.slots | length %}
               <div class="nhsuk-form-group">
+                {% if amSlots | length and pmSlots | length %}
+                  {% if period.id == 'am' %}
+                    <a class="select-time__skip nhsuk-link" href="#time-pm-1" data-skip-to="pm">Skip to PM</a>
+                  {% else %}
+                    <a class="select-time__skip nhsuk-link" href="#time-am-1" data-skip-to="am">Back to AM</a>
+                  {% endif %}
+                {% endif %}
                 <fieldset class="nhsuk-fieldset">
                   <legend class="nhsuk-fieldset__legend select-time__period">{{ period.label }}</legend>
                   <div class="nhsuk-radios">
@@ -139,20 +147,52 @@
         if (radios[0]) radios[0].focus();
       });
 
+      // Skip links ("Skip to PM" / "Back to AM") are hidden until focused
+      var skips = Array.prototype.slice.call(form.querySelectorAll('[data-skip-to]'));
+      skips.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var target = document.getElementById('time-' + link.getAttribute('data-skip-to') + '-1');
+          if (target) target.focus();
+        });
+      });
+
       // AM and PM share one radio group, which browsers treat as a single tab
-      // stop. Make Tab / Shift+Tab step through every radio (arrow keys still work).
+      // stop. Make Tab / Shift+Tab step through every radio and skip link in
+      // page order. Arrow keys move to (and select) the next / previous time,
+      // running on from AM into PM.
+      var stops = Array.prototype.slice.call(form.querySelectorAll('input[name="time"], [data-skip-to]'));
+      function select(r) {
+        r.focus();
+        r.checked = true;
+        r.dispatchEvent(new Event('change', { bubbles: true }));
+      }
       radios.forEach(function (r, i) {
         r.addEventListener('keydown', function (e) {
           // Enter selects the focused radio (Space already does natively).
           // If it is already selected, Enter submits the form as normal.
           if (e.key === 'Enter' && !r.checked) {
             e.preventDefault();
-            r.checked = true;
-            r.dispatchEvent(new Event('change', { bubbles: true }));
+            select(r);
+            return;
+          }
+          if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            var forward = e.key === 'ArrowDown' || e.key === 'ArrowRight';
+            select(radios[(i + (forward ? 1 : -1) + radios.length) % radios.length]);
             return;
           }
           if (e.key !== 'Tab') return;
-          var next = radios[i + (e.shiftKey ? -1 : 1)];
+          var next = stops[stops.indexOf(r) + (e.shiftKey ? -1 : 1)];
+          if (!next) return;
+          e.preventDefault();
+          next.focus();
+        });
+      });
+      skips.forEach(function (link) {
+        link.addEventListener('keydown', function (e) {
+          if (e.key !== 'Tab') return;
+          var next = stops[stops.indexOf(link) + (e.shiftKey ? -1 : 1)];
           if (!next) return;
           e.preventDefault();
           next.focus();
